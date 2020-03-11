@@ -1,0 +1,24 @@
+{
+  "name": "sos1920-l04",
+  "version": "0.0.0",
+  "description": "Lab04",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanillo62gm/SOS1920-Labs.git"
+  },
+  "author": "juanillo62gm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juanillo62gm/SOS1920-Labs/issues"
+  },
+  "homepage": "https://github.com/juanillo62gm/SOS1920-Labs#readme",
+  "dependencies": {
+    "cool-ascii-faces": "^1.3.4",
+    "express": "^4.17.1"
+  }
+}
