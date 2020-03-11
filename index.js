@@ -10,8 +10,10 @@ app.get("/public", (request,response) => {
 });
 
 
-app.listen(80);		// Servidor web listo
-console.log("Server ready! ");
+app.listen(port,() => { 					// Servidor web listo
+	console.log("Server ready! ");
+});	
+
 
 console.log("I love js");
 console.log(cool());
