@@ -4,11 +4,15 @@ const express = require("express");
 var app = express();
 var port = process.env.PORT || 80;
 
-app.get("/public", (request,response) => {
-	response.sendFile(__dirname + "/public/index.html");
+app.use("/", express.static("./public"));
+
+app.get("/cool", (request,response) => {
+	response.send("<html>" + cool() + "</html>");
 });
 
-app.listen(port,() => {
-	console.log("Server ready! ");
-	console.log(cool());
-});	
+app.listen(port, () => {
+	console.log("Server ready!");
+});
+
+console.log("Starting server...");
+console.log(cool());
