@@ -3,6 +3,8 @@ const express = require("express");
 
 var app = express();	// Se construye un objeto
 
+var port = process.env.PORT || 80;
+
 app.get("/public", (request,response) => {
 	response.sendFile(__dirname + "/public/index.html");
 });
