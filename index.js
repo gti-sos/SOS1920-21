@@ -10,6 +10,17 @@ app.get("/cool", (request,response) => {
 	response.send("<html>" + cool() + "</html>");
 });
 
+const BASE_API_URL = "/api/v1";
+
+app.get(BASE_API_URL+"/", (req,res) =>{
+	
+});
+
+app.post(BASE_API_URL+"/", (req,res) =>{
+	
+});
+
+
 app.listen(port, () => {
 	console.log("Server ready!");
 });
