@@ -17,6 +17,10 @@ app.get("/cool", (request,response) => {
 
 const BASE_API_URL = "/api/v1";
 
+// ==================================================
+// =============== Inicio antpritag ================= 
+// ==================================================
+
 var driving_licenses = [
 	{
 		aut_com: "andalucia",
@@ -120,6 +124,71 @@ app.delete(BASE_API_URL+"/driving_licenses/:aut_com", (req,res)=>{
 	
 	
 });
+
+// ==================================================
+// =============== Inicio juagommat ================= 
+// ==================================================
+
+
+// GET trafic-injuries
+app.get(BASE_API_URL+"/contacts", (req,res) =>{
+	res.send(JSON.stringify(contacts,null,2));
+	console.log("Data sent:"+JSON.stringify(contacts,null,2));
+});
+
+
+// POST trafic-injuries
+app.post(BASE_API_URL+"/contacts",(req,res) =>{
+	
+	var newContact = req.body;
+	
+	if((newContact == "") || (newContact.name == null)){
+		res.sendStatus(400,"BAD REQUEST");
+	} else {
+		contacts.push(newContact); 	
+		res.sendStatus(201,"CREATED");
+	}
+});
+
+// DELETE trafic-injuries
+
+// GET trafic-injuries/XXX
+
+app.get(BASE_API_URL+"/contacts/:name", (req, res)=>{
+	var name = req.params.name;
+	
+	var filteredContacts = contact.filter((c) =>{
+		return (c.name == name);
+	});
+	
+	if(filteredContacts.length >= 1){
+		res.send(filteredContacts[0]);
+	}else{
+		res.sendStatus(404,"CONTACT NOT FOUND")
+	}
+})
+
+// PUT trafic-injuries/XXX
+
+// DELETE trafic-injuries/XXX
+app.delete(BASE_API_URL+"/contacts/:name", (req, res)=>{
+	var name = req.params.name;
+	
+	var filteredContacts = contact.filter((c) =>{
+		return (c.name != name);
+	});
+	
+	if(filteredContacts.length < contacts.length){
+		contacts = filteredContacts;
+		res.sendStatus(200);
+	}else{
+		res.sendStatus(404,"CONTACT NOT FOUND")
+	}
+})
+
+// ==================================================
+// =============== Inicio josdeonc ================= 
+// ==================================================
 
 app.listen(port, () => {
 	console.log("Server ready!");
