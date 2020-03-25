@@ -169,11 +169,6 @@ app.delete(BASE_API_URL+"/driving_licenses/:aut_com", (req,res)=>{
 // =============== Start juagommat ================= 
 // ==================================================
 
-// Redirect to postman url
-app.get("/api/v1/traffic-injuries/docs", (req, res)=>{
-   res.redirect("https://documenter.getpostman.com/view/10693282/SzYT5gnd");
-});
-
 var trafficInjuries = [
   {
     autoCom: "andalusia",
@@ -302,13 +297,6 @@ var trafficInjuries = [
     injure: 1.031
   },
   {
-    autoCom: "",
-    year: "",
-    accident: "",
-    dead: "",
-    injure: ""
-  },
-  {
     autoCom: "andalusia",
     year: 2017,
     accident: 15.671,
@@ -435,13 +423,6 @@ var trafficInjuries = [
     injure: 1.248
   },
   {
-    autoCom: "",
-    year: "",
-    accident: "",
-    dead: "",
-    injure: ""
-  },
-  {
     autoCom: "andalusia",
     year: 2016,
     accident: 15.859,
@@ -566,13 +547,6 @@ var trafficInjuries = [
     accident: 862,
     dead: 3,
     injure: 1.241
-  },
-  {
-    autoCom: "",
-    year: "",
-    accident: "",
-    dead: "",
-    injure: ""
   },
   {
     autoCom: "andalusia",
@@ -702,61 +676,74 @@ var trafficInjuries = [
   }
 ];
 
-// a) GET traffic-injuries
+// Redirect to postman url
+app.get("/api/v1/traffic-injuries/docs", (req, res)=>{
+   res.redirect("https://documenter.getpostman.com/view/10693282/SzYT5gnd");
+});
+
+// a) GET /traffic-injuries
 app.get(BASE_API_URL+"/traffic-injuries", (req,res) =>{
 	res.send(JSON.stringify(trafficInjuries,null,2));
 	console.log("\nData sent: " + JSON.stringify(trafficInjuries,null,2));
 });
 
 
-// POST trafic-injuries
+// b) POST /traffic-injuries
 app.post(BASE_API_URL+"/traffic-injuries",(req,res) =>{
 	
-	var newContact = req.body;
+	var newTrafficInjury = req.body;
 	
-	if((newContact == "") || (newContact.name == null)){
+	if((newTrafficInjury == "") || (newTrafficInjury.autoCom == null)){
 		res.sendStatus(400,"BAD REQUEST");
+		console.log("\n400 - BAD REQUEST");
 	} else {
-		trafficInjuries.push(newContact); 	
-		res.sendStatus(201,"CREATED");
+		trafficInjuries.push(newTrafficInjury); 	
+		res.sendStatus(201,"TRAFFIC INJURY CREATED");
+		console.log("\n201 - TRAFFIC INJURY CREATED");
 	}
 });
 
-// DELETE trafic-injuries
-
-// GET trafic-injuries/XXX
-
-app.get(BASE_API_URL+"/traffic-injuries/:name", (req, res)=>{
-	var name = req.params.name;
+// c) GET /traffic-injuries/XXX
+app.get(BASE_API_URL+"/traffic-injuries/:autoCom", (req, res)=>{
+	var autoCom = req.params.autoCom;
 	
-	var filteredContacts = trafficInjuries.filter((c) =>{
-		return (c.name == name);
+	var filteredTrafficInjury = trafficInjuries.filter((c) =>{
+		return (c.autoCom == autoCom);
 	});
 	
-	if(filteredContacts.length >= 1){
-		res.send(filteredContacts[0]);
+	if(filteredTrafficInjury.length >= 1){
+		res.send(filteredTrafficInjury[0]);
 	}else{
-		res.sendStatus(404,"TRAFIC INJURIE NOT FOUND")
+		res.sendStatus(404,"TRAFFIC INJURY NOT FOUND")
+		console.log("\n404 - TRAFFIC INJURY NOT FOUND");
 	}
 })
 
-// PUT trafic-injuries/XXX
-
-// DELETE trafic-injuries/XXX
-app.delete(BASE_API_URL+"/traffic-injuries/:name", (req, res)=>{
-	var name = req.params.name;
+// d) DELETE /traffic-injuries/XXX
+app.delete(BASE_API_URL+"/traffic-injuries/:autoCom", (req, res)=>{
+	var autoCom = req.params.autoCom;
 	
-	var filteredContacts = trafficInjuries.filter((c) =>{
-		return (c.name != name);
+	var filteredTrafficInjury = trafficInjuries.filter((c) =>{
+		return (c.autoCom != autoCom);
 	});
 	
-	if(filteredContacts.length < trafficInjuries.length){
-		trafficInjuries = filteredContacts;
-		res.sendStatus(200);
+	if(filteredTrafficInjury.length < trafficInjuries.length){
+		trafficInjuries = filteredTrafficInjury;
+		res.sendStatus(200,"TRAFFIC INJURY DELETED");
+		console.log("\n200 - TRAFFIC INJURY DELETED");
 	}else{
-		res.sendStatus(404,"TRAFIC INJURIE NOT FOUND")
+		res.sendStatus(404,"404 - TRAFFIC INJURY NOT FOUND")
+		console.log("\n404 - TRAFFIC INJURY NOT FOUND");
 	}
 })
+
+// e) PUT /traffic-injuries/XXX
+
+// f) POST /traffic-injuries/XXX
+
+// g) PUT /traffic-injuries
+
+// h) DELETE /traffic-injuries
 
 // ==================================================
 // =============== Start josdeonc ================= 
