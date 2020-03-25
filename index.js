@@ -1374,11 +1374,10 @@ app.get(BASE_API_URL+"/traffic-injuries", (req,res) =>{
 	console.log("\nDATA SENT: " + JSON.stringify(trafficInjuries,null,2));
 });
 
-
 // b) POST /traffic-injuries
 app.post(BASE_API_URL+"/traffic-injuries",(req,res) =>{
 	var newTrafficInjury = req.body;
-	
+
 	if((newTrafficInjury == "") || (newTrafficInjury.auto_com == null)){
 		res.sendStatus(400,"BAD REQUEST");
 		console.log("\n400 - BAD REQUEST");
@@ -1425,7 +1424,7 @@ app.delete(BASE_API_URL+"/traffic-injuries/:auto_com", (req, res)=>{
 
 // e) PUT /traffic-injuries/XXX
 app.put(BASE_API_URL+"/traffic-injuries/:auto_com", (req,res)=>{
-
+	// TODO
 });
 
 // f) POST /traffic-injuries/XXX
