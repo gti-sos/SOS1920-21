@@ -19,7 +19,7 @@ const BASE_API_URL = "/api/v1";
 
 // ==================================================
 // =============== Start antpritag ================= 
-// ==================================================
+// ==================================================	
 
 var driving_licenses = [
   {
@@ -740,6 +740,13 @@ app.post(BASE_API_URL+"/driving_licenses",(req,res) =>{
 	}
 });
 
+// POST DRIVING-LICENSES/XXX (ERROR)
+
+app.post(BASE_API_URL+"/driving_licenses/:aut_com",(req,res) =>{
+	
+	res.sendStatus(405,"METHOD NOT ALLOW");
+});
+
 // DELETE DRIVING-LICENSES
 app.delete(BASE_API_URL+"/driving_licenses", (req,res)=>{
 	
@@ -774,6 +781,13 @@ app.get(BASE_API_URL+"/driving_licenses/:aut_com", (req,res)=>{
 	}else{
 		res.sendStatus(404,"DRIVING LICENSES NOT FOUND");
 	}
+});
+
+// PUT DRIVING-LICENSES (ERROR)
+
+app.put(BASE_API_URL+"/driving_licenses",(req,res) =>{
+	
+	res.sendStatus(405,"METHOD NOT ALLOW");
 });
 
 // PUT DRIVING-LICENSES/XXX
