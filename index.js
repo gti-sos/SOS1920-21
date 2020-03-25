@@ -1431,7 +1431,7 @@ app.delete(BASE_API_URL + "/traffic-injuries", (req, res) => {
 // =============== Start josdeonc ================= 
 // ==================================================
 
-[
+var public_transports =[
   {
     autonomous_community: "andalusia",
     year: 2016,
@@ -1953,6 +1953,20 @@ app.delete(BASE_API_URL + "/traffic-injuries", (req, res) => {
     bus_compared_with_last_year_porcentage: "2,0"
   }
 ]
+
+app.get(BASE_API_URL + "/public_transports",(req,res) =>{
+	res.send(JSON.stringify(public_transports,null,2));
+});
+app.post(BASE_API_URL + "/public_transports",(req,res) =>{
+	public_transports.push(req.body);
+	res.send(201,"CREATED");
+});
+
+
+
+//----------------------------------------------------
+//----------------------------------------------------
+
 
 app.listen(port, () => {
 	console.log("Server ready!");
