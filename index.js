@@ -169,7 +169,12 @@ app.delete(BASE_API_URL+"/driving_licenses/:aut_com", (req,res)=>{
 // =============== Start juagommat ================= 
 // ==================================================
 
-var trafficInjuries = [
+var trafficInjuries = [];
+
+// GET loadInitialData
+app.get(BASE_API_URL + "/traffic-injuries/loadInitialData", (req,res) => {
+    
+	var initialDataTrafficInjuries = [
   {
     autoCom: "andalusia",
     year: 2018,
@@ -675,6 +680,16 @@ var trafficInjuries = [
     injure: 1.278
   }
 ];
+	
+    if(trafficInjuries.length >=1){
+        res.sendStatus(400,"BAD REQUEST");
+		console.log("\n400 - BAD REQUEST - DATA ALREADY LOADED");
+    }else{
+        trafficInjuries = initialDataTrafficInjuries;
+		res.send(JSON.stringify(trafficInjuries, null, 2));
+		console.log("\nData sent: " + JSON.stringify(trafficInjuries,null,2));
+    }
+});
 
 // Redirect to postman url
 app.get("/api/v1/traffic-injuries/docs", (req, res)=>{
@@ -684,13 +699,12 @@ app.get("/api/v1/traffic-injuries/docs", (req, res)=>{
 // a) GET /traffic-injuries
 app.get(BASE_API_URL+"/traffic-injuries", (req,res) =>{
 	res.send(JSON.stringify(trafficInjuries,null,2));
-	console.log("\nData sent: " + JSON.stringify(trafficInjuries,null,2));
+	console.log("\nDATA SENT: " + JSON.stringify(trafficInjuries,null,2));
 });
 
 
 // b) POST /traffic-injuries
 app.post(BASE_API_URL+"/traffic-injuries",(req,res) =>{
-	
 	var newTrafficInjury = req.body;
 	
 	if((newTrafficInjury == "") || (newTrafficInjury.autoCom == null)){
@@ -732,7 +746,7 @@ app.delete(BASE_API_URL+"/traffic-injuries/:autoCom", (req, res)=>{
 		res.sendStatus(200,"TRAFFIC INJURY DELETED");
 		console.log("\n200 - TRAFFIC INJURY DELETED");
 	}else{
-		res.sendStatus(404,"404 - TRAFFIC INJURY NOT FOUND")
+		res.sendStatus(404,"TRAFFIC INJURY NOT FOUND")
 		console.log("\n404 - TRAFFIC INJURY NOT FOUND");
 	}
 })
@@ -744,6 +758,16 @@ app.delete(BASE_API_URL+"/traffic-injuries/:autoCom", (req, res)=>{
 // g) PUT /traffic-injuries
 
 // h) DELETE /traffic-injuries
+app.delete(BASE_API_URL + "/traffic-injuries", (req, res) => {
+    if(trafficInjuries.length >=1){
+    	trafficInjuries = [];
+		res.sendStatus(200, "ALL TRAFFIC INJURIES DELETED");
+		console.log("\n200 - ALL TRAFFIC INJURIES DELETED");
+    }else{
+		res.sendStatus(400,"BAD REQUEST");
+		console.log("\n400 - BAD REQUEST NO DATA TO DELETE");
+	}
+});
 
 // ==================================================
 // =============== Start josdeonc ================= 
