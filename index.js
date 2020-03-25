@@ -19,7 +19,7 @@ const BASE_API_URL = "/api/v1";
 
 // ==================================================
 // =============== Start antpritag ================= 
-// ==================================================
+// ==================================================	
 
 var driving_licenses = [
   {
@@ -740,6 +740,13 @@ app.post(BASE_API_URL+"/driving_licenses",(req,res) =>{
 	}
 });
 
+// POST DRIVING-LICENSES/XXX (ERROR)
+
+app.post(BASE_API_URL+"/driving_licenses/:aut_com",(req,res) =>{
+	
+	res.sendStatus(405,"METHOD NOT ALLOW");
+});
+
 // DELETE DRIVING-LICENSES
 app.delete(BASE_API_URL+"/driving_licenses", (req,res)=>{
 	
@@ -774,6 +781,13 @@ app.get(BASE_API_URL+"/driving_licenses/:aut_com", (req,res)=>{
 	}else{
 		res.sendStatus(404,"DRIVING LICENSES NOT FOUND");
 	}
+});
+
+// PUT DRIVING-LICENSES (ERROR)
+
+app.put(BASE_API_URL+"/driving_licenses",(req,res) =>{
+	
+	res.sendStatus(405,"METHOD NOT ALLOW");
 });
 
 // PUT DRIVING-LICENSES/XXX
@@ -834,504 +848,504 @@ app.get(BASE_API_URL + "/traffic-injuries/loadInitialData", (req,res) => {
     
 	var initialDataTrafficInjuries = [
   {
-    autoCom: "andalusia",
+    auto_com: "andalusia",
     year: 2018,
     accident: 17.066,
     dead: 274,
     injure: 24.2
   },
   {
-    autoCom: "aragon",
+    auto_com: "aragon",
     year: 2018,
     accident: 2.228,
     dead: 85,
     injure: 2.915
   },
   {
-    autoCom: "asturias",
+    auto_com: "asturias",
     year: 2018,
     accident: 2.103,
     dead: 43,
     injure: 2.873
   },
   {
-    autoCom: "balearic-islands",
+    auto_com: "balearic-islands",
     year: 2018,
     accident: 3.501,
     dead: 53,
     injure: 4.642
   },
   {
-    autoCom: "canary-islands",
+    auto_com: "canary-islands",
     year: 2018,
     accident: 3.506,
     dead: 68,
     injure: 4.96
   },
   {
-    autoCom: "cantabria",
+    auto_com: "cantabria",
     year: 2018,
     accident: 647,
     dead: 23,
     injure: 971
   },
   {
-    autoCom: "castile-leon",
+    auto_com: "castile-leon",
     year: 2018,
     accident: 2.586,
     dead: 100,
     injure: 3.649
   },
   {
-    autoCom: "castile-la-mancha",
+    auto_com: "castile-la-mancha",
     year: 2018,
     accident: 4.425,
     dead: 176,
     injure: 5.869
   },
   {
-    autoCom: "catalonia",
+    auto_com: "catalonia",
     year: 2018,
     accident: 27.202,
     dead: 326,
     injure: 35.426
   },
   {
-    autoCom: "ceuta-melilla",
+    auto_com: "ceuta-melilla",
     year: 2018,
     accident: 1.504,
     dead: 51,
     injure: 2.068
   },
   {
-    autoCom: "valencia",
+    auto_com: "valencia",
     year: 2018,
     accident: 4.519,
     dead: 144,
     injure: 6.267
   },
   {
-    autoCom: "extremadura",
+    auto_com: "extremadura",
     year: 2018,
     accident: 16.724,
     dead: 114,
     injure: 21.285
   },
   {
-    autoCom: "galicia",
+    auto_com: "galicia",
     year: 2018,
     accident: 2.58,
     dead: 66,
     injure: 3.456
   },
   {
-    autoCom: "madrid",
+    auto_com: "madrid",
     year: 2018,
     accident: 855,
     dead: 35,
     injure: 1.067
   },
   {
-    autoCom: "murcia",
+    auto_com: "murcia",
     year: 2018,
     accident: 612,
     dead: 10,
     injure: 819
   },
   {
-    autoCom: "navarre",
+    auto_com: "navarre",
     year: 2018,
     accident: 8.36,
     dead: 183,
     injure: 10.96
   },
   {
-    autoCom: "basque-country",
+    auto_com: "basque-country",
     year: 2018,
     accident: 4.798,
     dead: 49,
     injure: 6.151
   },
   {
-    autoCom: "the-rioja",
+    auto_com: "the-rioja",
     year: 2018,
     accident: 762,
     dead: 6,
     injure: 1.031
   },
   {
-    autoCom: "andalusia",
+    auto_com: "andalusia",
     year: 2017,
     accident: 15.671,
     dead: 305,
     injure: 22.303
   },
   {
-    autoCom: "aragon",
+    auto_com: "aragon",
     year: 2017,
     accident: 2.483,
     dead: 80,
     injure: 3.289
   },
   {
-    autoCom: "asturias",
+    auto_com: "asturias",
     year: 2017,
     accident: 2.348,
     dead: 37,
     injure: 3.197
   },
   {
-    autoCom: "balearic-islands",
+    auto_com: "balearic-islands",
     year: 2017,
     accident: 3.846,
     dead: 68,
     injure: 5.017
   },
   {
-    autoCom: "canary-islands",
+    auto_com: "canary-islands",
     year: 2017,
     accident: 3.58,
     dead: 67,
     injure: 5.133
   },
   {
-    autoCom: "cantabria",
+    auto_com: "cantabria",
     year: 2017,
     accident: 734,
     dead: 22,
     injure: 1.017
   },
   {
-    autoCom: "castile-leon",
+    auto_com: "castile-leon",
     year: 2017,
     accident: 2.761,
     dead: 129,
     injure: 3.783
   },
   {
-    autoCom: "castile-la-mancha",
+    auto_com: "castile-la-mancha",
     year: 2017,
     accident: 4.492,
     dead: 164,
     injure: 5.877
   },
   {
-    autoCom: "catalonia",
+    auto_com: "catalonia",
     year: 2017,
     accident: 27.305,
     dead: 283,
     injure: 35.884
   },
   {
-    autoCom: "ceuta-melilla",
+    auto_com: "ceuta-melilla",
     year: 2017,
     accident: 1.546,
     dead: 62,
     injure: 2.137
   },
   {
-    autoCom: "valencia",
+    auto_com: "valencia",
     year: 2017,
     accident: 4.741,
     dead: 117,
     injure: 6.716
   },
   {
-    autoCom: "extremadura",
+    auto_com: "extremadura",
     year: 2017,
     accident: 16.364,
     dead: 125,
     injure: 20.94
   },
   {
-    autoCom: "galicia",
+    auto_com: "galicia",
     year: 2017,
     accident: 2.552,
     dead: 85,
     injure: 3.453
   },
   {
-    autoCom: "madrid",
+    auto_com: "madrid",
     year: 2017,
     accident: 898,
     dead: 29,
     injure: 1.156
   },
   {
-    autoCom: "murcia",
+    auto_com: "murcia",
     year: 2017,
     accident: 730,
     dead: 26,
     injure: 917
   },
   {
-    autoCom: "navarre",
+    auto_com: "navarre",
     year: 2017,
     accident: 8.206,
     dead: 176,
     injure: 10.882
   },
   {
-    autoCom: "basque-country",
+    auto_com: "basque-country",
     year: 2017,
     accident: 4.769,
     dead: 51,
     injure: 6.213
   },
   {
-    autoCom: "the-rioja",
+    auto_com: "the-rioja",
     year: 2017,
     accident: 879,
     dead: 4,
     injure: 1.248
   },
   {
-    autoCom: "andalusia",
+    auto_com: "andalusia",
     year: 2016,
     accident: 15.859,
     dead: 303,
     injure: 22.988
   },
   {
-    autoCom: "aragon",
+    auto_com: "aragon",
     year: 2016,
     accident: 2.239,
     dead: 73,
     injure: 2.991
   },
   {
-    autoCom: "asturias",
+    auto_com: "asturias",
     year: 2016,
     accident: 2.258,
     dead: 35,
     injure: 3.156
   },
   {
-    autoCom: "balearic-islands",
+    auto_com: "balearic-islands",
     year: 2016,
     accident: 3.872,
     dead: 60,
     injure: 5.276
   },
   {
-    autoCom: "canary-islands",
+    auto_com: "canary-islands",
     year: 2016,
     accident: 3.639,
     dead: 71,
     injure: 5.184
   },
   {
-    autoCom: "cantabria",
+    auto_com: "cantabria",
     year: 2016,
     accident: 728,
     dead: 21,
     injure: 1.068
   },
   {
-    autoCom: "castile-leon",
+    auto_com: "castile-leon",
     year: 2016,
     accident: 2.928,
     dead: 118,
     injure: 4.098
   },
   {
-    autoCom: "castile-la-mancha",
+    auto_com: "castile-la-mancha",
     year: 2016,
     accident: 4.735,
     dead: 175,
     injure: 6.432
   },
   {
-    autoCom: "catalonia",
+    auto_com: "catalonia",
     year: 2016,
     accident: 27.244,
     dead: 282,
     injure: 35.999
   },
   {
-    autoCom: "ceuta-melilla",
+    auto_com: "ceuta-melilla",
     year: 2016,
     accident: 1.366,
     dead: 62,
     injure: 1.853
   },
   {
-    autoCom: "valencia",
+    auto_com: "valencia",
     year: 2016,
     accident: 4.874,
     dead: 141,
     injure: 6.848
   },
   {
-    autoCom: "extremadura",
+    auto_com: "extremadura",
     year: 2016,
     accident: 16.27,
     dead: 121,
     injure: 20.659
   },
   {
-    autoCom: "galicia",
+    auto_com: "galicia",
     year: 2016,
     accident: 2.354,
     dead: 58,
     injure: 3.222
   },
   {
-    autoCom: "madrid",
+    auto_com: "madrid",
     year: 2016,
     accident: 756,
     dead: 26,
     injure: 944
   },
   {
-    autoCom: "murcia",
+    auto_com: "murcia",
     year: 2016,
     accident: 733,
     dead: 25,
     injure: 958
   },
   {
-    autoCom: "navarre",
+    auto_com: "navarre",
     year: 2016,
     accident: 8.388,
     dead: 180,
     injure: 11.104
   },
   {
-    autoCom: "basque-country",
+    auto_com: "basque-country",
     year: 2016,
     accident: 4.92,
     dead: 56,
     injure: 6.369
   },
   {
-    autoCom: "the-rioja",
+    auto_com: "the-rioja",
     year: 2016,
     accident: 862,
     dead: 3,
     injure: 1.241
   },
   {
-    autoCom: "andalusia",
+    auto_com: "andalusia",
     year: 2015,
     accident: 16.431,
     dead: 262,
     injure: 23.897
   },
   {
-    autoCom: "aragon",
+    auto_com: "aragon",
     year: 2015,
     accident: 2.264,
     dead: 71,
     injure: 2.962
   },
   {
-    autoCom: "asturias",
+    auto_com: "asturias",
     year: 2015,
     accident: 2.408,
     dead: 36,
     injure: 3.425
   },
   {
-    autoCom: "balearic-islands",
+    auto_com: "balearic-islands",
     year: 2015,
     accident: 3.513,
     dead: 53,
     injure: 4.724
   },
   {
-    autoCom: "canary-islands",
+    auto_com: "canary-islands",
     year: 2015,
     accident: 3.33,
     dead: 62,
     injure: 4.669
   },
   {
-    autoCom: "cantabria",
+    auto_com: "cantabria",
     year: 2015,
     accident: 723,
     dead: 22,
     injure: 1.043
   },
   {
-    autoCom: "castile-leon",
+    auto_com: "castile-leon",
     year: 2015,
     accident: 2.727,
     dead: 107,
     injure: 3.776
   },
   {
-    autoCom: "castile-la-mancha",
+    auto_com: "castile-la-mancha",
     year: 2015,
     accident: 4.503,
     dead: 181,
     injure: 6.192
   },
   {
-    autoCom: "catalonia",
+    auto_com: "catalonia",
     year: 2015,
     accident: 25.554,
     dead: 291,
     injure: 33.675
   },
   {
-    autoCom: "ceuta-melilla",
+    auto_com: "ceuta-melilla",
     year: 2015,
     accident: 1.446,
     dead: 54,
     injure: 2.03
   },
   {
-    autoCom: "valencia",
+    auto_com: "valencia",
     year: 2015,
     accident: 4.581,
     dead: 123,
     injure: 6.526
   },
   {
-    autoCom: "extremadura",
+    auto_com: "extremadura",
     year: 2015,
     accident: 15.523,
     dead: 111,
     injure: 20.003
   },
   {
-    autoCom: "galicia",
+    auto_com: "galicia",
     year: 2015,
     accident: 1.796,
     dead: 44,
     injure: 2.517
   },
   {
-    autoCom: "madrid",
+    auto_com: "madrid",
     year: 2015,
     accident: 475,
     dead: 26,
     injure: 586
   },
   {
-    autoCom: "murcia",
+    auto_com: "murcia",
     year: 2015,
     accident: 723,
     dead: 20,
     injure: 957
   },
   {
-    autoCom: "navarre",
+    auto_com: "navarre",
     year: 2015,
     accident: 7.787,
     dead: 154,
     injure: 10.213
   },
   {
-    autoCom: "basque-country",
+    auto_com: "basque-country",
     year: 2015,
     accident: 4.613,
     dead: 67,
     injure: 5.982
   },
   {
-    autoCom: "the-rioja",
+    auto_com: "the-rioja",
     year: 2015,
     accident: 918,
     dead: 5,
@@ -1365,7 +1379,7 @@ app.get(BASE_API_URL+"/traffic-injuries", (req,res) =>{
 app.post(BASE_API_URL+"/traffic-injuries",(req,res) =>{
 	var newTrafficInjury = req.body;
 	
-	if((newTrafficInjury == "") || (newTrafficInjury.autoCom == null)){
+	if((newTrafficInjury == "") || (newTrafficInjury.auto_com == null)){
 		res.sendStatus(400,"BAD REQUEST");
 		console.log("\n400 - BAD REQUEST");
 	} else {
@@ -1376,11 +1390,11 @@ app.post(BASE_API_URL+"/traffic-injuries",(req,res) =>{
 });
 
 // c) GET /traffic-injuries/XXX
-app.get(BASE_API_URL+"/traffic-injuries/:autoCom", (req, res)=>{
-	var autoCom = req.params.autoCom;
+app.get(BASE_API_URL+"/traffic-injuries/:auto_com", (req, res)=>{
+	var auto_com = req.params.auto_com;
 	
 	var filteredTrafficInjury = trafficInjuries.filter((c) =>{
-		return (c.autoCom == autoCom);
+		return (c.auto_com == auto_com);
 	});
 	
 	if(filteredTrafficInjury.length >= 1){
@@ -1392,11 +1406,11 @@ app.get(BASE_API_URL+"/traffic-injuries/:autoCom", (req, res)=>{
 })
 
 // d) DELETE /traffic-injuries/XXX
-app.delete(BASE_API_URL+"/traffic-injuries/:autoCom", (req, res)=>{
-	var autoCom = req.params.autoCom;
+app.delete(BASE_API_URL+"/traffic-injuries/:auto_com", (req, res)=>{
+	var auto_com = req.params.auto_com;
 	
 	var filteredTrafficInjury = trafficInjuries.filter((c) =>{
-		return (c.autoCom != autoCom);
+		return (c.auto_com != auto_com);
 	});
 	
 	if(filteredTrafficInjury.length < trafficInjuries.length){
@@ -1410,10 +1424,19 @@ app.delete(BASE_API_URL+"/traffic-injuries/:autoCom", (req, res)=>{
 })
 
 // e) PUT /traffic-injuries/XXX
+app.put(BASE_API_URL+"/traffic-injuries/:auto_com", (req,res)=>{
+
+});
 
 // f) POST /traffic-injuries/XXX
+app.post(BASE_API_URL+"/traffic-injuries/:auto_com", (req,res)=>{
+	res.sendStatus(405, "METHOD NOT ALLOWED");
+});
 
 // g) PUT /traffic-injuries
+app.put(BASE_API_URL+"/traffic-injuries", (req,res)=>{
+	res.sendStatus(405, "METHOD NOT ALLOWED");
+});
 
 // h) DELETE /traffic-injuries
 app.delete(BASE_API_URL + "/traffic-injuries", (req, res) => {
