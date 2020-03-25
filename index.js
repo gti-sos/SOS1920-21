@@ -848,504 +848,504 @@ app.get(BASE_API_URL + "/traffic-injuries/loadInitialData", (req,res) => {
     
 	var initialDataTrafficInjuries = [
   {
-    autoCom: "andalusia",
+    auto_com: "andalusia",
     year: 2018,
     accident: 17.066,
     dead: 274,
     injure: 24.2
   },
   {
-    autoCom: "aragon",
+    auto_com: "aragon",
     year: 2018,
     accident: 2.228,
     dead: 85,
     injure: 2.915
   },
   {
-    autoCom: "asturias",
+    auto_com: "asturias",
     year: 2018,
     accident: 2.103,
     dead: 43,
     injure: 2.873
   },
   {
-    autoCom: "balearic-islands",
+    auto_com: "balearic-islands",
     year: 2018,
     accident: 3.501,
     dead: 53,
     injure: 4.642
   },
   {
-    autoCom: "canary-islands",
+    auto_com: "canary-islands",
     year: 2018,
     accident: 3.506,
     dead: 68,
     injure: 4.96
   },
   {
-    autoCom: "cantabria",
+    auto_com: "cantabria",
     year: 2018,
     accident: 647,
     dead: 23,
     injure: 971
   },
   {
-    autoCom: "castile-leon",
+    auto_com: "castile-leon",
     year: 2018,
     accident: 2.586,
     dead: 100,
     injure: 3.649
   },
   {
-    autoCom: "castile-la-mancha",
+    auto_com: "castile-la-mancha",
     year: 2018,
     accident: 4.425,
     dead: 176,
     injure: 5.869
   },
   {
-    autoCom: "catalonia",
+    auto_com: "catalonia",
     year: 2018,
     accident: 27.202,
     dead: 326,
     injure: 35.426
   },
   {
-    autoCom: "ceuta-melilla",
+    auto_com: "ceuta-melilla",
     year: 2018,
     accident: 1.504,
     dead: 51,
     injure: 2.068
   },
   {
-    autoCom: "valencia",
+    auto_com: "valencia",
     year: 2018,
     accident: 4.519,
     dead: 144,
     injure: 6.267
   },
   {
-    autoCom: "extremadura",
+    auto_com: "extremadura",
     year: 2018,
     accident: 16.724,
     dead: 114,
     injure: 21.285
   },
   {
-    autoCom: "galicia",
+    auto_com: "galicia",
     year: 2018,
     accident: 2.58,
     dead: 66,
     injure: 3.456
   },
   {
-    autoCom: "madrid",
+    auto_com: "madrid",
     year: 2018,
     accident: 855,
     dead: 35,
     injure: 1.067
   },
   {
-    autoCom: "murcia",
+    auto_com: "murcia",
     year: 2018,
     accident: 612,
     dead: 10,
     injure: 819
   },
   {
-    autoCom: "navarre",
+    auto_com: "navarre",
     year: 2018,
     accident: 8.36,
     dead: 183,
     injure: 10.96
   },
   {
-    autoCom: "basque-country",
+    auto_com: "basque-country",
     year: 2018,
     accident: 4.798,
     dead: 49,
     injure: 6.151
   },
   {
-    autoCom: "the-rioja",
+    auto_com: "the-rioja",
     year: 2018,
     accident: 762,
     dead: 6,
     injure: 1.031
   },
   {
-    autoCom: "andalusia",
+    auto_com: "andalusia",
     year: 2017,
     accident: 15.671,
     dead: 305,
     injure: 22.303
   },
   {
-    autoCom: "aragon",
+    auto_com: "aragon",
     year: 2017,
     accident: 2.483,
     dead: 80,
     injure: 3.289
   },
   {
-    autoCom: "asturias",
+    auto_com: "asturias",
     year: 2017,
     accident: 2.348,
     dead: 37,
     injure: 3.197
   },
   {
-    autoCom: "balearic-islands",
+    auto_com: "balearic-islands",
     year: 2017,
     accident: 3.846,
     dead: 68,
     injure: 5.017
   },
   {
-    autoCom: "canary-islands",
+    auto_com: "canary-islands",
     year: 2017,
     accident: 3.58,
     dead: 67,
     injure: 5.133
   },
   {
-    autoCom: "cantabria",
+    auto_com: "cantabria",
     year: 2017,
     accident: 734,
     dead: 22,
     injure: 1.017
   },
   {
-    autoCom: "castile-leon",
+    auto_com: "castile-leon",
     year: 2017,
     accident: 2.761,
     dead: 129,
     injure: 3.783
   },
   {
-    autoCom: "castile-la-mancha",
+    auto_com: "castile-la-mancha",
     year: 2017,
     accident: 4.492,
     dead: 164,
     injure: 5.877
   },
   {
-    autoCom: "catalonia",
+    auto_com: "catalonia",
     year: 2017,
     accident: 27.305,
     dead: 283,
     injure: 35.884
   },
   {
-    autoCom: "ceuta-melilla",
+    auto_com: "ceuta-melilla",
     year: 2017,
     accident: 1.546,
     dead: 62,
     injure: 2.137
   },
   {
-    autoCom: "valencia",
+    auto_com: "valencia",
     year: 2017,
     accident: 4.741,
     dead: 117,
     injure: 6.716
   },
   {
-    autoCom: "extremadura",
+    auto_com: "extremadura",
     year: 2017,
     accident: 16.364,
     dead: 125,
     injure: 20.94
   },
   {
-    autoCom: "galicia",
+    auto_com: "galicia",
     year: 2017,
     accident: 2.552,
     dead: 85,
     injure: 3.453
   },
   {
-    autoCom: "madrid",
+    auto_com: "madrid",
     year: 2017,
     accident: 898,
     dead: 29,
     injure: 1.156
   },
   {
-    autoCom: "murcia",
+    auto_com: "murcia",
     year: 2017,
     accident: 730,
     dead: 26,
     injure: 917
   },
   {
-    autoCom: "navarre",
+    auto_com: "navarre",
     year: 2017,
     accident: 8.206,
     dead: 176,
     injure: 10.882
   },
   {
-    autoCom: "basque-country",
+    auto_com: "basque-country",
     year: 2017,
     accident: 4.769,
     dead: 51,
     injure: 6.213
   },
   {
-    autoCom: "the-rioja",
+    auto_com: "the-rioja",
     year: 2017,
     accident: 879,
     dead: 4,
     injure: 1.248
   },
   {
-    autoCom: "andalusia",
+    auto_com: "andalusia",
     year: 2016,
     accident: 15.859,
     dead: 303,
     injure: 22.988
   },
   {
-    autoCom: "aragon",
+    auto_com: "aragon",
     year: 2016,
     accident: 2.239,
     dead: 73,
     injure: 2.991
   },
   {
-    autoCom: "asturias",
+    auto_com: "asturias",
     year: 2016,
     accident: 2.258,
     dead: 35,
     injure: 3.156
   },
   {
-    autoCom: "balearic-islands",
+    auto_com: "balearic-islands",
     year: 2016,
     accident: 3.872,
     dead: 60,
     injure: 5.276
   },
   {
-    autoCom: "canary-islands",
+    auto_com: "canary-islands",
     year: 2016,
     accident: 3.639,
     dead: 71,
     injure: 5.184
   },
   {
-    autoCom: "cantabria",
+    auto_com: "cantabria",
     year: 2016,
     accident: 728,
     dead: 21,
     injure: 1.068
   },
   {
-    autoCom: "castile-leon",
+    auto_com: "castile-leon",
     year: 2016,
     accident: 2.928,
     dead: 118,
     injure: 4.098
   },
   {
-    autoCom: "castile-la-mancha",
+    auto_com: "castile-la-mancha",
     year: 2016,
     accident: 4.735,
     dead: 175,
     injure: 6.432
   },
   {
-    autoCom: "catalonia",
+    auto_com: "catalonia",
     year: 2016,
     accident: 27.244,
     dead: 282,
     injure: 35.999
   },
   {
-    autoCom: "ceuta-melilla",
+    auto_com: "ceuta-melilla",
     year: 2016,
     accident: 1.366,
     dead: 62,
     injure: 1.853
   },
   {
-    autoCom: "valencia",
+    auto_com: "valencia",
     year: 2016,
     accident: 4.874,
     dead: 141,
     injure: 6.848
   },
   {
-    autoCom: "extremadura",
+    auto_com: "extremadura",
     year: 2016,
     accident: 16.27,
     dead: 121,
     injure: 20.659
   },
   {
-    autoCom: "galicia",
+    auto_com: "galicia",
     year: 2016,
     accident: 2.354,
     dead: 58,
     injure: 3.222
   },
   {
-    autoCom: "madrid",
+    auto_com: "madrid",
     year: 2016,
     accident: 756,
     dead: 26,
     injure: 944
   },
   {
-    autoCom: "murcia",
+    auto_com: "murcia",
     year: 2016,
     accident: 733,
     dead: 25,
     injure: 958
   },
   {
-    autoCom: "navarre",
+    auto_com: "navarre",
     year: 2016,
     accident: 8.388,
     dead: 180,
     injure: 11.104
   },
   {
-    autoCom: "basque-country",
+    auto_com: "basque-country",
     year: 2016,
     accident: 4.92,
     dead: 56,
     injure: 6.369
   },
   {
-    autoCom: "the-rioja",
+    auto_com: "the-rioja",
     year: 2016,
     accident: 862,
     dead: 3,
     injure: 1.241
   },
   {
-    autoCom: "andalusia",
+    auto_com: "andalusia",
     year: 2015,
     accident: 16.431,
     dead: 262,
     injure: 23.897
   },
   {
-    autoCom: "aragon",
+    auto_com: "aragon",
     year: 2015,
     accident: 2.264,
     dead: 71,
     injure: 2.962
   },
   {
-    autoCom: "asturias",
+    auto_com: "asturias",
     year: 2015,
     accident: 2.408,
     dead: 36,
     injure: 3.425
   },
   {
-    autoCom: "balearic-islands",
+    auto_com: "balearic-islands",
     year: 2015,
     accident: 3.513,
     dead: 53,
     injure: 4.724
   },
   {
-    autoCom: "canary-islands",
+    auto_com: "canary-islands",
     year: 2015,
     accident: 3.33,
     dead: 62,
     injure: 4.669
   },
   {
-    autoCom: "cantabria",
+    auto_com: "cantabria",
     year: 2015,
     accident: 723,
     dead: 22,
     injure: 1.043
   },
   {
-    autoCom: "castile-leon",
+    auto_com: "castile-leon",
     year: 2015,
     accident: 2.727,
     dead: 107,
     injure: 3.776
   },
   {
-    autoCom: "castile-la-mancha",
+    auto_com: "castile-la-mancha",
     year: 2015,
     accident: 4.503,
     dead: 181,
     injure: 6.192
   },
   {
-    autoCom: "catalonia",
+    auto_com: "catalonia",
     year: 2015,
     accident: 25.554,
     dead: 291,
     injure: 33.675
   },
   {
-    autoCom: "ceuta-melilla",
+    auto_com: "ceuta-melilla",
     year: 2015,
     accident: 1.446,
     dead: 54,
     injure: 2.03
   },
   {
-    autoCom: "valencia",
+    auto_com: "valencia",
     year: 2015,
     accident: 4.581,
     dead: 123,
     injure: 6.526
   },
   {
-    autoCom: "extremadura",
+    auto_com: "extremadura",
     year: 2015,
     accident: 15.523,
     dead: 111,
     injure: 20.003
   },
   {
-    autoCom: "galicia",
+    auto_com: "galicia",
     year: 2015,
     accident: 1.796,
     dead: 44,
     injure: 2.517
   },
   {
-    autoCom: "madrid",
+    auto_com: "madrid",
     year: 2015,
     accident: 475,
     dead: 26,
     injure: 586
   },
   {
-    autoCom: "murcia",
+    auto_com: "murcia",
     year: 2015,
     accident: 723,
     dead: 20,
     injure: 957
   },
   {
-    autoCom: "navarre",
+    auto_com: "navarre",
     year: 2015,
     accident: 7.787,
     dead: 154,
     injure: 10.213
   },
   {
-    autoCom: "basque-country",
+    auto_com: "basque-country",
     year: 2015,
     accident: 4.613,
     dead: 67,
     injure: 5.982
   },
   {
-    autoCom: "the-rioja",
+    auto_com: "the-rioja",
     year: 2015,
     accident: 918,
     dead: 5,
@@ -1379,7 +1379,7 @@ app.get(BASE_API_URL+"/traffic-injuries", (req,res) =>{
 app.post(BASE_API_URL+"/traffic-injuries",(req,res) =>{
 	var newTrafficInjury = req.body;
 	
-	if((newTrafficInjury == "") || (newTrafficInjury.autoCom == null)){
+	if((newTrafficInjury == "") || (newTrafficInjury.auto_com == null)){
 		res.sendStatus(400,"BAD REQUEST");
 		console.log("\n400 - BAD REQUEST");
 	} else {
@@ -1390,11 +1390,11 @@ app.post(BASE_API_URL+"/traffic-injuries",(req,res) =>{
 });
 
 // c) GET /traffic-injuries/XXX
-app.get(BASE_API_URL+"/traffic-injuries/:autoCom", (req, res)=>{
-	var autoCom = req.params.autoCom;
+app.get(BASE_API_URL+"/traffic-injuries/:auto_com", (req, res)=>{
+	var auto_com = req.params.auto_com;
 	
 	var filteredTrafficInjury = trafficInjuries.filter((c) =>{
-		return (c.autoCom == autoCom);
+		return (c.auto_com == auto_com);
 	});
 	
 	if(filteredTrafficInjury.length >= 1){
@@ -1406,11 +1406,11 @@ app.get(BASE_API_URL+"/traffic-injuries/:autoCom", (req, res)=>{
 })
 
 // d) DELETE /traffic-injuries/XXX
-app.delete(BASE_API_URL+"/traffic-injuries/:autoCom", (req, res)=>{
-	var autoCom = req.params.autoCom;
+app.delete(BASE_API_URL+"/traffic-injuries/:auto_com", (req, res)=>{
+	var auto_com = req.params.auto_com;
 	
 	var filteredTrafficInjury = trafficInjuries.filter((c) =>{
-		return (c.autoCom != autoCom);
+		return (c.auto_com != auto_com);
 	});
 	
 	if(filteredTrafficInjury.length < trafficInjuries.length){
@@ -1424,10 +1424,19 @@ app.delete(BASE_API_URL+"/traffic-injuries/:autoCom", (req, res)=>{
 })
 
 // e) PUT /traffic-injuries/XXX
+app.put(BASE_API_URL+"/traffic-injuries/:auto_com", (req,res)=>{
+
+});
 
 // f) POST /traffic-injuries/XXX
+app.post(BASE_API_URL+"/traffic-injuries/:auto_com", (req,res)=>{
+	res.sendStatus(405, "METHOD NOT ALLOWED");
+});
 
 // g) PUT /traffic-injuries
+app.put(BASE_API_URL+"/traffic-injuries", (req,res)=>{
+	res.sendStatus(405, "METHOD NOT ALLOWED");
+});
 
 // h) DELETE /traffic-injuries
 app.delete(BASE_API_URL + "/traffic-injuries", (req, res) => {
@@ -1444,6 +1453,529 @@ app.delete(BASE_API_URL + "/traffic-injuries", (req, res) => {
 // ==================================================
 // =============== Start josdeonc ================= 
 // ==================================================
+
+[
+  {
+    autonomous_community: "andalusia",
+    year: 2016,
+    underground_rate_per_thousand: 6338,
+    underground_compared_with_last_year_porcentage: 1.2,
+    commuter_train_rate_per_thousand: 1514,
+    commuter_train_compared_with_last_year_porcentage: 6.2,
+    bus_rate_per_thousand: 18576,
+    bus_compared_with_last_year_porcentage: 1.2
+  },
+  {
+    autonomous_community: "aragon",
+    year: 2016,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 10091,
+    bus_compared_with_last_year_porcentage: -3.3
+  },
+  {
+    autonomous_community: "asturias",
+    year: 2016,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 2696,
+    bus_compared_with_last_year_porcentage: 1.2
+  },
+  {
+    autonomous_community: "canary-islands",
+    year: 2016,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 4746,
+    bus_compared_with_last_year_porcentage: 3.3
+  },
+  {
+    autonomous_community: "castile-leon",
+    year: 2016,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 5647,
+    bus_compared_with_last_year_porcentage: 1.8
+  },
+  {
+    autonomous_community: "castile-la-mancha",
+    year: 2016,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 1654,
+    bus_compared_with_last_year_porcentage: 3.1
+  },
+  {
+    autonomous_community: "catalonia",
+    year: 2016,
+    underground_rate_per_thousand: 18274,
+    underground_compared_with_last_year_porcentage: -5.2,
+    commuter_train_rate_per_thousand: 30678,
+    commuter_train_compared_with_last_year_porcentage: -5.2,
+    bus_rate_per_thousand: 24942,
+    bus_compared_with_last_year_porcentage: 6.4
+  },
+  {
+    autonomous_community: "valencia",
+    year: 2016,
+    underground_rate_per_thousand: 8301,
+    underground_compared_with_last_year_porcentage: 3.3,
+    commuter_train_rate_per_thousand: 5240,
+    commuter_train_compared_with_last_year_porcentage: 3.3,
+    bus_rate_per_thousand: 11623,
+    bus_compared_with_last_year_porcentage: 4.9
+  },
+  {
+    autonomous_community: "extremadura",
+    year: 2016,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 917,
+    bus_compared_with_last_year_porcentage: 1.7
+  },
+  {
+    autonomous_community: "galicia",
+    year: 2016,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 5078,
+    bus_compared_with_last_year_porcentage: -0.9
+  },
+  {
+    autonomous_community: "madrid",
+    year: 2016,
+    underground_rate_per_thousand: 37930,
+    underground_compared_with_last_year_porcentage: 4.3,
+    commuter_train_rate_per_thousand: 49535,
+    commuter_train_compared_with_last_year_porcentage: 4.3,
+    bus_rate_per_thousand: 42752,
+    bus_compared_with_last_year_porcentage: 9.3
+  },
+  {
+    autonomous_community: "murcia",
+    year: 2016,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 1408,
+    bus_compared_with_last_year_porcentage: 0.4
+  },
+  {
+    autonomous_community: "basque-country",
+    year: 2016,
+    underground_rate_per_thousand: 3139,
+    underground_compared_with_last_year_porcentage: -0.9,
+    commuter_train_rate_per_thousand: 7414,
+    commuter_train_compared_with_last_year_porcentage: 0.8,
+    bus_rate_per_thousand: 7307,
+    bus_compared_with_last_year_porcentage: 1.8
+  },
+  {
+    autonomous_community: "andalusia",
+    year: 2017,
+    underground_rate_per_thousand: 7196,
+    underground_compared_with_last_year_porcentage: -0.1,
+    commuter_train_rate_per_thousand: 2053,
+    commuter_train_compared_with_last_year_porcentage: 13,
+    bus_rate_per_thousand: 19582,
+    bus_compared_with_last_year_porcentage: 0.5
+  },
+  {
+    autonomous_community: "aragon",
+    year: 2017,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 10623,
+    bus_compared_with_last_year_porcentage: 0.8
+  },
+  {
+    autonomous_community: "asturias",
+    year: 2017,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 2783,
+    bus_compared_with_last_year_porcentage: -1
+  },
+  {
+    autonomous_community: "canary-islands",
+    year: 2017,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 5156,
+    bus_compared_with_last_year_porcentage: 1.1
+  },
+  {
+    autonomous_community: "castile-leon",
+    year: 2017,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 6043,
+    bus_compared_with_last_year_porcentage: 2
+  },
+  {
+    autonomous_community: "castile-la-mancha",
+    year: 2017,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 1700,
+    bus_compared_with_last_year_porcentage: -0.5
+  },
+  {
+    autonomous_community: "catalonia",
+    year: 2017,
+    underground_rate_per_thousand: 18056,
+    underground_compared_with_last_year_porcentage: -0.8,
+    commuter_train_rate_per_thousand: 33943,
+    commuter_train_compared_with_last_year_porcentage: 0.9,
+    bus_rate_per_thousand: 25150,
+    bus_compared_with_last_year_porcentage: -0.9
+  },
+  {
+    autonomous_community: "valencia",
+    year: 2017,
+    underground_rate_per_thousand: 8657,
+    underground_compared_with_last_year_porcentage: 1.4,
+    commuter_train_rate_per_thousand: 5712,
+    commuter_train_compared_with_last_year_porcentage: 1.5,
+    bus_rate_per_thousand: 12232,
+    bus_compared_with_last_year_porcentage: 4
+  },
+  {
+    autonomous_community: "extremadura",
+    year: 2017,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 1068,
+    bus_compared_with_last_year_porcentage: 1.3
+  },
+  {
+    autonomous_community: "galicia",
+    year: 2017,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 5479,
+    bus_compared_with_last_year_porcentage: 0.9
+  },
+  {
+    autonomous_community: "madrid",
+    year: 2017,
+    underground_rate_per_thousand: 38138,
+    underground_compared_with_last_year_porcentage: 0.9,
+    commuter_train_rate_per_thousand: 57721,
+    commuter_train_compared_with_last_year_porcentage: 7.6,
+    bus_rate_per_thousand: 43954,
+    bus_compared_with_last_year_porcentage: 1.1
+  },
+  {
+    autonomous_community: "murcia",
+    year: 2017,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 1913,
+    bus_compared_with_last_year_porcentage: 6
+  },
+  {
+    autonomous_community: "basque-country",
+    year: 2017,
+    underground_rate_per_thousand: 3290,
+    underground_compared_with_last_year_porcentage: 0.1,
+    commuter_train_rate_per_thousand: 7936,
+    commuter_train_compared_with_last_year_porcentage: 1.4,
+    bus_rate_per_thousand: 7840,
+    bus_compared_with_last_year_porcentage: 1.7
+  },
+  {
+    autonomous_community: "andalusia",
+    year: 2018,
+    underground_rate_per_thousand: 11822,
+    underground_compared_with_last_year_porcentage: 8.3,
+    commuter_train_rate_per_thousand: 2307,
+    commuter_train_compared_with_last_year_porcentage: 19.2,
+    bus_rate_per_thousand: 21813,
+    bus_compared_with_last_year_porcentage: 3.9
+  },
+  {
+    autonomous_community: "aragon",
+    year: 2018,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 12468,
+    bus_compared_with_last_year_porcentage: 2.3
+  },
+  {
+    autonomous_community: "asturias",
+    year: 2018,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 2941,
+    bus_compared_with_last_year_porcentage: 2.4
+  },
+  {
+    autonomous_community: "canary-islands",
+    year: 2018,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 5563,
+    bus_compared_with_last_year_porcentage: 5.9
+  },
+  {
+    autonomous_community: "castile-leon",
+    year: 2018,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 6292,
+    bus_compared_with_last_year_porcentage: 5
+  },
+  {
+    autonomous_community: "castile-la-mancha",
+    year: 2018,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 1785,
+    bus_compared_with_last_year_porcentage: 0.6
+  },
+  {
+    autonomous_community: "catalonia",
+    year: 2018,
+    underground_rate_per_thousand: 20709,
+    underground_compared_with_last_year_porcentage: 11.8,
+    commuter_train_rate_per_thousand: 37935,
+    commuter_train_compared_with_last_year_porcentage: 11.8,
+    bus_rate_per_thousand: 28697,
+    bus_compared_with_last_year_porcentage: 11.2
+  },
+  {
+    autonomous_community: "valencia",
+    year: 2018,
+    underground_rate_per_thousand: 8679,
+    underground_compared_with_last_year_porcentage: 0.9,
+    commuter_train_rate_per_thousand: 6046,
+    commuter_train_compared_with_last_year_porcentage: 7.8,
+    bus_rate_per_thousand: 13097,
+    bus_compared_with_last_year_porcentage: 1.8
+  },
+  {
+    autonomous_community: "extremadura",
+    year: 2018,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 1121,
+    bus_compared_with_last_year_porcentage: 1.5
+  },
+  {
+    autonomous_community: "galicia",
+    year: 2018,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 5932,
+    bus_compared_with_last_year_porcentage: 5.4
+  },
+  {
+    autonomous_community: "madrid",
+    year: 2018,
+    underground_rate_per_thousand: 40495,
+    underground_compared_with_last_year_porcentage: 3.2,
+    commuter_train_rate_per_thousand: 62907,
+    commuter_train_compared_with_last_year_porcentage: 6.3,
+    bus_rate_per_thousand: 46573,
+    bus_compared_with_last_year_porcentage: 3.6
+  },
+  {
+    autonomous_community: "murcia",
+    year: 2018,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 2086,
+    bus_compared_with_last_year_porcentage: 7.7
+  },
+  {
+    autonomous_community: "basque-country",
+    year: 2018,
+    underground_rate_per_thousand: 3422,
+    underground_compared_with_last_year_porcentage: 3,
+    commuter_train_rate_per_thousand: 8220,
+    commuter_train_compared_with_last_year_porcentage: 1.9,
+    bus_rate_per_thousand: 8096,
+    bus_compared_with_last_year_porcentage: 3.3
+  },
+  {
+    autonomous_community: "andalusia",
+    year: 2019,
+    underground_rate_per_thousand: 9396,
+    underground_compared_with_last_year_porcentage: 4,
+    commuter_train_rate_per_thousand: 1437,
+    commuter_train_compared_with_last_year_porcentage: 15.9,
+    bus_rate_per_thousand: 18.479,
+    bus_compared_with_last_year_porcentage: "5,8"
+  },
+  {
+    autonomous_community: "aragon",
+    year: 2019,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 9.271,
+    bus_compared_with_last_year_porcentage: "3,8"
+  },
+  {
+    autonomous_community: "asturias",
+    year: 2019,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 2.843,
+    bus_compared_with_last_year_porcentage: "6,4"
+  },
+  {
+    autonomous_community: "canary-islands",
+    year: 2019,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 5.384,
+    bus_compared_with_last_year_porcentage: "10,9"
+  },
+  {
+    autonomous_community: "castile-leon",
+    year: 2019,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 5.135,
+    bus_compared_with_last_year_porcentage: "3,9"
+  },
+  {
+    autonomous_community: "castile-la-mancha",
+    year: 2019,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 1.508,
+    bus_compared_with_last_year_porcentage: "4,9"
+  },
+  {
+    autonomous_community: "catalonia",
+    year: 2019,
+    underground_rate_per_thousand: 19986,
+    underground_compared_with_last_year_porcentage: 6.9,
+    commuter_train_rate_per_thousand: 32808,
+    commuter_train_compared_with_last_year_porcentage: 4.5,
+    bus_rate_per_thousand: 27.331,
+    bus_compared_with_last_year_porcentage: "6,7"
+  },
+  {
+    autonomous_community: "valencia",
+    year: 2019,
+    underground_rate_per_thousand: 7868,
+    underground_compared_with_last_year_porcentage: 2,
+    commuter_train_rate_per_thousand: 5363,
+    commuter_train_compared_with_last_year_porcentage: 2.6,
+    bus_rate_per_thousand: 12.464,
+    bus_compared_with_last_year_porcentage: "2,4"
+  },
+  {
+    autonomous_community: "extremadura",
+    year: 2019,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 762,
+    bus_compared_with_last_year_porcentage: "7,9"
+  },
+  {
+    autonomous_community: "galicia",
+    year: 2019,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 5.196,
+    bus_compared_with_last_year_porcentage: "5,5"
+  },
+  {
+    autonomous_community: "madrid",
+    year: 2019,
+    underground_rate_per_thousand: 32858,
+    underground_compared_with_last_year_porcentage: 7.3,
+    commuter_train_rate_per_thousand: 50950,
+    commuter_train_compared_with_last_year_porcentage: 4.5,
+    bus_rate_per_thousand: 37.5,
+    bus_compared_with_last_year_porcentage: "7,3"
+  },
+  {
+    autonomous_community: "murcia",
+    year: 2019,
+    underground_rate_per_thousand: "",
+    underground_compared_with_last_year_porcentage: "",
+    commuter_train_rate_per_thousand: "",
+    commuter_train_compared_with_last_year_porcentage: "",
+    bus_rate_per_thousand: 1.322,
+    bus_compared_with_last_year_porcentage: "6,1"
+  },
+  {
+    autonomous_community: "basque-country",
+    year: 2019,
+    underground_rate_per_thousand: 2630,
+    underground_compared_with_last_year_porcentage: -0.1,
+    commuter_train_rate_per_thousand: 6727,
+    commuter_train_compared_with_last_year_porcentage: 3,
+    bus_rate_per_thousand: 7.255,
+    bus_compared_with_last_year_porcentage: "2,0"
+  }
+]
 
 app.listen(port, () => {
 	console.log("Server ready!");
