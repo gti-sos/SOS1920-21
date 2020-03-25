@@ -129,16 +129,31 @@ app.delete(BASE_API_URL+"/driving_licenses/:aut_com", (req,res)=>{
 // =============== Start juagommat ================= 
 // ==================================================
 
+// Redirect to postman url
+app.get("/api/v1/hurricanes/docs", (req, res)=>{
+   res.redirect("https://documenter.getpostman.com/view/10693282/SzYT5gnd");
+});
 
-// GET trafic-injuries
-app.get(BASE_API_URL+"/contacts", (req,res) =>{
-	res.send(JSON.stringify(contacts,null,2));
-	console.log("Data sent:"+JSON.stringify(contacts,null,2));
+var traficInjuries = [
+	{ 
+		name: "peter",
+		phone: 123456	
+	},
+	{ 
+		name: "pablo",
+		phone: 789456	
+	}
+];
+
+// a) GET trafic-injuries
+app.get(BASE_API_URL+"/trafic-injuries", (req,res) =>{
+	res.send(JSON.stringify(traficInjuries,null,2));
+	console.log("\nData sent: " + JSON.stringify(traficInjuries,null,2));
 });
 
 
 // POST trafic-injuries
-app.post(BASE_API_URL+"/contacts",(req,res) =>{
+app.post(BASE_API_URL+"/trafic-injuries",(req,res) =>{
 	
 	var newContact = req.body;
 	
@@ -154,35 +169,35 @@ app.post(BASE_API_URL+"/contacts",(req,res) =>{
 
 // GET trafic-injuries/XXX
 
-app.get(BASE_API_URL+"/contacts/:name", (req, res)=>{
+app.get(BASE_API_URL+"/trafic-injuries/:name", (req, res)=>{
 	var name = req.params.name;
 	
-	var filteredContacts = contact.filter((c) =>{
+	var filteredContacts = traficInjuries.filter((c) =>{
 		return (c.name == name);
 	});
 	
 	if(filteredContacts.length >= 1){
 		res.send(filteredContacts[0]);
 	}else{
-		res.sendStatus(404,"CONTACT NOT FOUND")
+		res.sendStatus(404,"TRAFIC INJURIE NOT FOUND")
 	}
 })
 
 // PUT trafic-injuries/XXX
 
 // DELETE trafic-injuries/XXX
-app.delete(BASE_API_URL+"/contacts/:name", (req, res)=>{
+app.delete(BASE_API_URL+"/trafic-injuries/:name", (req, res)=>{
 	var name = req.params.name;
 	
-	var filteredContacts = contact.filter((c) =>{
+	var filteredContacts = traficInjuries.filter((c) =>{
 		return (c.name != name);
 	});
 	
-	if(filteredContacts.length < contacts.length){
-		contacts = filteredContacts;
+	if(filteredContacts.length < traficInjuries.length){
+		traficInjuries = filteredContacts;
 		res.sendStatus(200);
 	}else{
-		res.sendStatus(404,"CONTACT NOT FOUND")
+		res.sendStatus(404,"TRAFIC INJURIE NOT FOUND")
 	}
 })
 
