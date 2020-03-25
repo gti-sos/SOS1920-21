@@ -83,6 +83,22 @@ app.post(BASE_API_URL+"/driving_licenses",(req,res) =>{
 });
 
 // DELETE DRIVING-LICENSES
+app.delete(BASE_API_URL+"/driving_licenses", (req,res)=>{
+	
+	var filteredDriving_licenses = driving_licenses.filter((c) => {
+		return null;
+	});
+	
+	
+	if(filteredDriving_licenses.length < driving_licenses.length){
+		driving_licenses = filteredDriving_licenses;
+		res.sendStatus(200);
+	}else{
+		res.sendStatus(404,"DRIVING LICENSES NOT FOUND");
+	}
+	
+	
+});
 
 // GET DRIVING-LICENSES
 
@@ -103,6 +119,30 @@ app.get(BASE_API_URL+"/driving_licenses/:aut_com", (req,res)=>{
 });
 
 // PUT DRIVING-LICENSES/XXX
+app.put(BASE_API_URL+"/driving_licenses/:aut_com",(req,res) =>{
+
+	var aut_com = req.params.aut_com;
+	
+	var newDriving_license = req.body;
+	
+	if(aut_com == newDriving_license.aut_com){
+	var filteredDriving_licenses = driving_licenses.filter((c) => {
+		return (!(c.aut_com == aut_com));
+	});
+	
+	if(!(filteredDriving_licenses == driving_licenses)){
+		driving_licenses = filteredDriving_licenses;
+	if((newDriving_license == "") || (newDriving_license.aut_com == null)){
+		res.sendStatus(400,"BAD REQUEST");
+	} else {
+		driving_licenses.push(newDriving_license); 	
+		res.sendStatus(201,"UPDATED");
+	}} else{
+		res.sendStatus(400,"BAD REQUEST");
+	}}else{
+		res.sendStatus(400,"BAD REQUEST");	
+	}
+});
 
 // DELETE DRIVING-LICENSES/XXX
 
