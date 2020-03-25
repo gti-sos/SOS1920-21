@@ -130,11 +130,11 @@ app.delete(BASE_API_URL+"/driving_licenses/:aut_com", (req,res)=>{
 // ==================================================
 
 // Redirect to postman url
-app.get("/api/v1/trafic-injuries/docs", (req, res)=>{
+app.get("/api/v1/traffic-injuries/docs", (req, res)=>{
    res.redirect("https://documenter.getpostman.com/view/10693282/SzYT5gnd");
 });
 
-var traficInjuries = [
+var trafficInjuries = [
   {
     autoCom: "andalusia",
     year: 2018,
@@ -662,22 +662,22 @@ var traficInjuries = [
   }
 ];
 
-// a) GET trafic-injuries
-app.get(BASE_API_URL+"/trafic-injuries", (req,res) =>{
-	res.send(JSON.stringify(traficInjuries,null,2));
-	console.log("\nData sent: " + JSON.stringify(traficInjuries,null,2));
+// a) GET traffic-injuries
+app.get(BASE_API_URL+"/traffic-injuries", (req,res) =>{
+	res.send(JSON.stringify(trafficInjuries,null,2));
+	console.log("\nData sent: " + JSON.stringify(trafficInjuries,null,2));
 });
 
 
 // POST trafic-injuries
-app.post(BASE_API_URL+"/trafic-injuries",(req,res) =>{
+app.post(BASE_API_URL+"/traffic-injuries",(req,res) =>{
 	
 	var newContact = req.body;
 	
 	if((newContact == "") || (newContact.name == null)){
 		res.sendStatus(400,"BAD REQUEST");
 	} else {
-		contacts.push(newContact); 	
+		trafficInjuries.push(newContact); 	
 		res.sendStatus(201,"CREATED");
 	}
 });
@@ -686,10 +686,10 @@ app.post(BASE_API_URL+"/trafic-injuries",(req,res) =>{
 
 // GET trafic-injuries/XXX
 
-app.get(BASE_API_URL+"/trafic-injuries/:name", (req, res)=>{
+app.get(BASE_API_URL+"/traffic-injuries/:name", (req, res)=>{
 	var name = req.params.name;
 	
-	var filteredContacts = traficInjuries.filter((c) =>{
+	var filteredContacts = trafficInjuries.filter((c) =>{
 		return (c.name == name);
 	});
 	
@@ -703,15 +703,15 @@ app.get(BASE_API_URL+"/trafic-injuries/:name", (req, res)=>{
 // PUT trafic-injuries/XXX
 
 // DELETE trafic-injuries/XXX
-app.delete(BASE_API_URL+"/trafic-injuries/:name", (req, res)=>{
+app.delete(BASE_API_URL+"/traffic-injuries/:name", (req, res)=>{
 	var name = req.params.name;
 	
-	var filteredContacts = traficInjuries.filter((c) =>{
+	var filteredContacts = trafficInjuries.filter((c) =>{
 		return (c.name != name);
 	});
 	
-	if(filteredContacts.length < traficInjuries.length){
-		traficInjuries = filteredContacts;
+	if(filteredContacts.length < trafficInjuries.length){
+		trafficInjuries = filteredContacts;
 		res.sendStatus(200);
 	}else{
 		res.sendStatus(404,"TRAFIC INJURIE NOT FOUND")
