@@ -1472,9 +1472,15 @@ app.delete(BASE_API_URL + "/traffic-injuries", (req, res) => {
 // =============== Start josdeonc ================= 
 // ==================================================
 
-var public_transports =[
+
+
+app.get("/api/v1/public_transports/docs", (req, res)=>{
+   res.redirect("https://documenter.getpostman.com/view/10660202/SzYUZLpP");
+});
+
+ var public_transports =[
   {
-    autonomous_community: "andalusia",
+    aut_com: "andalusia",
     year: 2016,
     underground_rate_per_thousand: 6338,
     underground_compared_with_last_year_porcentage: 1.2,
@@ -1484,57 +1490,57 @@ var public_transports =[
     bus_compared_with_last_year_porcentage: 1.2
   },
   {
-    autonomous_community: "aragon",
+    aut_com: "aragon",
     year: 2016,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 10091,
     bus_compared_with_last_year_porcentage: -3.3
   },
   {
-    autonomous_community: "asturias",
+    aut_com: "asturias",
     year: 2016,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 2696,
     bus_compared_with_last_year_porcentage: 1.2
   },
   {
-    autonomous_community: "canary-islands",
+    aut_com: "canary-islands",
     year: 2016,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 4746,
     bus_compared_with_last_year_porcentage: 3.3
   },
   {
-    autonomous_community: "castile-leon",
+    aut_com: "castile-leon",
     year: 2016,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 5647,
     bus_compared_with_last_year_porcentage: 1.8
   },
   {
-    autonomous_community: "castile-la-mancha",
+    aut_com: "castile-la-mancha",
     year: 2016,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 1654,
     bus_compared_with_last_year_porcentage: 3.1
   },
   {
-    autonomous_community: "catalonia",
+    aut_com: "catalonia",
     year: 2016,
     underground_rate_per_thousand: 18274,
     underground_compared_with_last_year_porcentage: -5.2,
@@ -1544,7 +1550,7 @@ var public_transports =[
     bus_compared_with_last_year_porcentage: 6.4
   },
   {
-    autonomous_community: "valencia",
+    aut_com: "valencia",
     year: 2016,
     underground_rate_per_thousand: 8301,
     underground_compared_with_last_year_porcentage: 3.3,
@@ -1554,27 +1560,27 @@ var public_transports =[
     bus_compared_with_last_year_porcentage: 4.9
   },
   {
-    autonomous_community: "extremadura",
+    aut_com: "extremadura",
     year: 2016,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 917,
     bus_compared_with_last_year_porcentage: 1.7
   },
   {
-    autonomous_community: "galicia",
+    aut_com: "galicia",
     year: 2016,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 5078,
     bus_compared_with_last_year_porcentage: -0.9
   },
   {
-    autonomous_community: "madrid",
+    aut_com: "madrid",
     year: 2016,
     underground_rate_per_thousand: 37930,
     underground_compared_with_last_year_porcentage: 4.3,
@@ -1584,17 +1590,17 @@ var public_transports =[
     bus_compared_with_last_year_porcentage: 9.3
   },
   {
-    autonomous_community: "murcia",
+    aut_com: "murcia",
     year: 2016,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 1408,
     bus_compared_with_last_year_porcentage: 0.4
   },
   {
-    autonomous_community: "basque-country",
+    aut_com: "basque-country",
     year: 2016,
     underground_rate_per_thousand: 3139,
     underground_compared_with_last_year_porcentage: -0.9,
@@ -1604,7 +1610,7 @@ var public_transports =[
     bus_compared_with_last_year_porcentage: 1.8
   },
   {
-    autonomous_community: "andalusia",
+    aut_com: "andalusia",
     year: 2017,
     underground_rate_per_thousand: 7196,
     underground_compared_with_last_year_porcentage: -0.1,
@@ -1614,57 +1620,57 @@ var public_transports =[
     bus_compared_with_last_year_porcentage: 0.5
   },
   {
-    autonomous_community: "aragon",
+    aut_com: "aragon",
     year: 2017,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 10623,
     bus_compared_with_last_year_porcentage: 0.8
   },
   {
-    autonomous_community: "asturias",
+    aut_com: "asturias",
     year: 2017,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 2783,
     bus_compared_with_last_year_porcentage: -1
   },
   {
-    autonomous_community: "canary-islands",
+    aut_com: "canary-islands",
     year: 2017,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 5156,
     bus_compared_with_last_year_porcentage: 1.1
   },
   {
-    autonomous_community: "castile-leon",
+    aut_com: "castile-leon",
     year: 2017,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 6043,
     bus_compared_with_last_year_porcentage: 2
   },
   {
-    autonomous_community: "castile-la-mancha",
+    aut_com: "castile-la-mancha",
     year: 2017,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 1700,
     bus_compared_with_last_year_porcentage: -0.5
   },
   {
-    autonomous_community: "catalonia",
+    aut_com: "catalonia",
     year: 2017,
     underground_rate_per_thousand: 18056,
     underground_compared_with_last_year_porcentage: -0.8,
@@ -1674,7 +1680,7 @@ var public_transports =[
     bus_compared_with_last_year_porcentage: -0.9
   },
   {
-    autonomous_community: "valencia",
+    aut_com: "valencia",
     year: 2017,
     underground_rate_per_thousand: 8657,
     underground_compared_with_last_year_porcentage: 1.4,
@@ -1684,27 +1690,27 @@ var public_transports =[
     bus_compared_with_last_year_porcentage: 4
   },
   {
-    autonomous_community: "extremadura",
+    aut_com: "extremadura",
     year: 2017,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 1068,
     bus_compared_with_last_year_porcentage: 1.3
   },
   {
-    autonomous_community: "galicia",
+    aut_com: "galicia",
     year: 2017,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 5479,
     bus_compared_with_last_year_porcentage: 0.9
   },
   {
-    autonomous_community: "madrid",
+    aut_com: "madrid",
     year: 2017,
     underground_rate_per_thousand: 38138,
     underground_compared_with_last_year_porcentage: 0.9,
@@ -1714,17 +1720,17 @@ var public_transports =[
     bus_compared_with_last_year_porcentage: 1.1
   },
   {
-    autonomous_community: "murcia",
+    aut_com: "murcia",
     year: 2017,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 1913,
     bus_compared_with_last_year_porcentage: 6
   },
   {
-    autonomous_community: "basque-country",
+    aut_com: "basque-country",
     year: 2017,
     underground_rate_per_thousand: 3290,
     underground_compared_with_last_year_porcentage: 0.1,
@@ -1734,7 +1740,7 @@ var public_transports =[
     bus_compared_with_last_year_porcentage: 1.7
   },
   {
-    autonomous_community: "andalusia",
+    aut_com: "andalusia",
     year: 2018,
     underground_rate_per_thousand: 11822,
     underground_compared_with_last_year_porcentage: 8.3,
@@ -1744,57 +1750,57 @@ var public_transports =[
     bus_compared_with_last_year_porcentage: 3.9
   },
   {
-    autonomous_community: "aragon",
+    aut_com: "aragon",
     year: 2018,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 12468,
     bus_compared_with_last_year_porcentage: 2.3
   },
   {
-    autonomous_community: "asturias",
+    aut_com: "asturias",
     year: 2018,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 2941,
     bus_compared_with_last_year_porcentage: 2.4
   },
   {
-    autonomous_community: "canary-islands",
+    aut_com: "canary-islands",
     year: 2018,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 5563,
     bus_compared_with_last_year_porcentage: 5.9
   },
   {
-    autonomous_community: "castile-leon",
+    aut_com: "castile-leon",
     year: 2018,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 6292,
     bus_compared_with_last_year_porcentage: 5
   },
   {
-    autonomous_community: "castile-la-mancha",
+    aut_com: "castile-la-mancha",
     year: 2018,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 1785,
     bus_compared_with_last_year_porcentage: 0.6
   },
   {
-    autonomous_community: "catalonia",
+    aut_com: "catalonia",
     year: 2018,
     underground_rate_per_thousand: 20709,
     underground_compared_with_last_year_porcentage: 11.8,
@@ -1804,7 +1810,7 @@ var public_transports =[
     bus_compared_with_last_year_porcentage: 11.2
   },
   {
-    autonomous_community: "valencia",
+    aut_com: "valencia",
     year: 2018,
     underground_rate_per_thousand: 8679,
     underground_compared_with_last_year_porcentage: 0.9,
@@ -1814,27 +1820,27 @@ var public_transports =[
     bus_compared_with_last_year_porcentage: 1.8
   },
   {
-    autonomous_community: "extremadura",
+    aut_com: "extremadura",
     year: 2018,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 1121,
     bus_compared_with_last_year_porcentage: 1.5
   },
   {
-    autonomous_community: "galicia",
+    aut_com: "galicia",
     year: 2018,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 5932,
     bus_compared_with_last_year_porcentage: 5.4
   },
   {
-    autonomous_community: "madrid",
+    aut_com: "madrid",
     year: 2018,
     underground_rate_per_thousand: 40495,
     underground_compared_with_last_year_porcentage: 3.2,
@@ -1844,17 +1850,17 @@ var public_transports =[
     bus_compared_with_last_year_porcentage: 3.6
   },
   {
-    autonomous_community: "murcia",
+    aut_com: "murcia",
     year: 2018,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 2086,
     bus_compared_with_last_year_porcentage: 7.7
   },
   {
-    autonomous_community: "basque-country",
+    aut_com: "basque-country",
     year: 2018,
     underground_rate_per_thousand: 3422,
     underground_compared_with_last_year_porcentage: 3,
@@ -1864,146 +1870,242 @@ var public_transports =[
     bus_compared_with_last_year_porcentage: 3.3
   },
   {
-    autonomous_community: "andalusia",
+    aut_com: "andalusia",
     year: 2019,
     underground_rate_per_thousand: 9396,
     underground_compared_with_last_year_porcentage: 4,
     commuter_train_rate_per_thousand: 1437,
     commuter_train_compared_with_last_year_porcentage: 15.9,
     bus_rate_per_thousand: 18.479,
-    bus_compared_with_last_year_porcentage: "5,8"
+    bus_compared_with_last_year_porcentage: 5.8
   },
   {
-    autonomous_community: "aragon",
+    aut_com: "aragon",
     year: 2019,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 9.271,
-    bus_compared_with_last_year_porcentage: "3,8"
+    bus_compared_with_last_year_porcentage: 3.8
   },
   {
-    autonomous_community: "asturias",
+    aut_com: "asturias",
     year: 2019,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 2.843,
-    bus_compared_with_last_year_porcentage: "6,4"
+    bus_compared_with_last_year_porcentage: 6.4
   },
   {
-    autonomous_community: "canary-islands",
+    aut_com: "canary-islands",
     year: 2019,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 5.384,
-    bus_compared_with_last_year_porcentage: "10,9"
+    bus_compared_with_last_year_porcentage: 10.9
   },
   {
-    autonomous_community: "castile-leon",
+    aut_com: "castile-leon",
     year: 2019,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 5.135,
-    bus_compared_with_last_year_porcentage: "3,9"
+    bus_compared_with_last_year_porcentage: 3.9
   },
   {
-    autonomous_community: "castile-la-mancha",
+    aut_com: "castile-la-mancha",
     year: 2019,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 1.508,
-    bus_compared_with_last_year_porcentage: "4,9"
+    bus_compared_with_last_year_porcentage: 4.9
   },
   {
-    autonomous_community: "catalonia",
+    aut_com: "catalonia",
     year: 2019,
     underground_rate_per_thousand: 19986,
     underground_compared_with_last_year_porcentage: 6.9,
     commuter_train_rate_per_thousand: 32808,
     commuter_train_compared_with_last_year_porcentage: 4.5,
     bus_rate_per_thousand: 27.331,
-    bus_compared_with_last_year_porcentage: "6,7"
+    bus_compared_with_last_year_porcentage: 6.7
   },
   {
-    autonomous_community: "valencia",
+    aut_com: "valencia",
     year: 2019,
     underground_rate_per_thousand: 7868,
     underground_compared_with_last_year_porcentage: 2,
     commuter_train_rate_per_thousand: 5363,
     commuter_train_compared_with_last_year_porcentage: 2.6,
     bus_rate_per_thousand: 12.464,
-    bus_compared_with_last_year_porcentage: "2,4"
+    bus_compared_with_last_year_porcentage: 2.4
   },
   {
-    autonomous_community: "extremadura",
+    aut_com: "extremadura",
     year: 2019,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 762,
-    bus_compared_with_last_year_porcentage: "7,9"
+    bus_compared_with_last_year_porcentage: 7.9
   },
   {
-    autonomous_community: "galicia",
+    aut_com: "galicia",
     year: 2019,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 5.196,
-    bus_compared_with_last_year_porcentage: "5,5"
+    bus_compared_with_last_year_porcentage: 5.5
   },
   {
-    autonomous_community: "madrid",
+    aut_com: "madrid",
     year: 2019,
     underground_rate_per_thousand: 32858,
     underground_compared_with_last_year_porcentage: 7.3,
     commuter_train_rate_per_thousand: 50950,
     commuter_train_compared_with_last_year_porcentage: 4.5,
     bus_rate_per_thousand: 37.5,
-    bus_compared_with_last_year_porcentage: "7,3"
+    bus_compared_with_last_year_porcentage: 7.3
   },
   {
-    autonomous_community: "murcia",
+    aut_com: "murcia",
     year: 2019,
-    underground_rate_per_thousand: "",
-    underground_compared_with_last_year_porcentage: "",
-    commuter_train_rate_per_thousand: "",
-    commuter_train_compared_with_last_year_porcentage: "",
+    underground_rate_per_thousand: 0,
+    underground_compared_with_last_year_porcentage: 0,
+    commuter_train_rate_per_thousand: 0,
+    commuter_train_compared_with_last_year_porcentage: 0,
     bus_rate_per_thousand: 1.322,
-    bus_compared_with_last_year_porcentage: "6,1"
+    bus_compared_with_last_year_porcentage: 6.1
   },
   {
-    autonomous_community: "basque-country",
+    aut_com: "basque-country",
     year: 2019,
     underground_rate_per_thousand: 2630,
     underground_compared_with_last_year_porcentage: -0.1,
     commuter_train_rate_per_thousand: 6727,
     commuter_train_compared_with_last_year_porcentage: 3,
     bus_rate_per_thousand: 7.255,
-    bus_compared_with_last_year_porcentage: "2,0"
+    bus_compared_with_last_year_porcentage: 2
   }
 ]
+ 
+ 
+var public_transports_aux = public_transports;
+ 
+// GET LOAD INITIAL
+ 
+app.get(BASE_API_URL+"/public_transports/loadInitialData", (req,res) =>{
+	public_transports = public_transports_aux;
+	res.send(JSON.stringify(public_transports,null,2));
+	console.log("Data sent:"+JSON.stringify(public_transports,null,2));
+}); 
+
+//GET PUBLIC_TRANSPORTS
 
 app.get(BASE_API_URL + "/public_transports",(req,res) =>{
 	res.send(JSON.stringify(public_transports,null,2));
 });
+
+//POST PUBLIC_TRANSPORTS
+
 app.post(BASE_API_URL + "/public_transports",(req,res) =>{
-	public_transports.push(req.body);
-	res.send(201,"CREATED");
+	
+	var newPublicTransports = req.body;
+	
+	if((newPublicTransports == "") || (newPublicTransports.aut_com == null)){
+		res.sendStatus(400,"BAD REQUEST");
+	} else {
+		public_transports.push(newPublicTransports); 	
+		res.sendStatus(201,"CREATED");
+	}
 });
 
+//DELETE PUBLIC_TRANSPORTS
 
+app.delete(BASE_API_URL + "/public_transports", (req, res) => {
+    if(public_transports.length >=1){
+    	public_transports = [];
+		res.sendStatus(200, "ALL DELETED");
+    }else{
+		res.sendStatus(400,"BAD REQUEST");
+	}
+});
+
+//GET PUBLIC_TRANSPORTS/XXXX
+
+
+app.get(BASE_API_URL + "/public_transports/:aut_com",(req,res) =>{
+	
+	var aut_com = req.params.aut_com;
+	
+	var filteredPublicTransports = public_transports.filter((c)=>{
+		return (c.aut_com == aut_com);
+	});
+	
+	if(filteredPublicTransports.length >= 1){
+		res.send(filteredPublicTransports[0]);
+	}else{
+		res.sendStatus(404,"NOT FOUND");
+	}
+
+});
+
+//PUT PUBLIC_TRANSPORTS/XXXX
+
+app.put(BASE_API_URL+"/public_transports/:aut_com/:year", (req,res)=>{
+	var newPublicTransports = req.body;
+	if((newPublicTransports.aut_com==null) || (newPublicTransports.year==null) || (newPublicTransports.underground_rate_per_thousand==null) || (newPublicTransports.underground_compared_with_last_year_porcentage==null)  ||(newPublicTransports.commuter_train_rate_per_thousand==null) ||(newPublicTransports. commuter_train_compared_with_last_year_porcentage==null) || (newPublicTransports.bus_rate_per_thousand == null) ||(newPublicTransports.bus_compared_with_last_year_porcentage==null) ||newPublicTransports == ""){
+		res.sendStatus(400,"BAD REQUEST");
+	}else{
+		var newPublicTransports = public_transports.filter((v) => {
+		return (v.auto_com != public_transports.auto_com && v.year != public_transports.year);
+		});
+		public_transports = newPublicTransports;
+		public_transports.push(public_transports);
+		res.sendStatus(200,"UPDATE OK");
+	}
+});
+
+//DELETE PUBLIC_TRANSPORTS/XXXX
+
+app.delete(BASE_API_URL+"/public_transports/:aut_com", (req, res)=>{
+	var aut_com = req.params.aut_com;
+	
+	var filteredPublicTransports = public_transports.filter((c) =>{
+		return (c.aut_com != aut_com);
+	});
+	
+	if(filteredPublicTransports.length < public_transports.length){
+		public_transports = filteredPublicTransports;
+		res.sendStatus(200);
+	}else{
+		res.sendStatus(404,"NOT FOUND");
+	}
+})
+
+//POST PUBLIC_TRANSPORTS/XXXX
+
+app.post(BASE_API_URL+"/public_transports/:aut_com", (req,res)=>{
+	res.sendStatus(405, "METHOD NOT ALLOWED");
+});
+
+//PUT PUBLIC_TRANSPORTS/XXXX
+
+app.put(BASE_API_URL+"/public_transports", (req,res)=>{
+	res.sendStatus(405, "METHOD NOT ALLOWED");
+});
 
 //----------------------------------------------------
 //----------------------------------------------------
