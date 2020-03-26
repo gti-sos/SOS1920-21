@@ -22,7 +22,7 @@ const BASE_API_URL = "/api/v1";
 // =============== Start antpritag ================= 
 // ==================================================	
 
-app.get("/api/v1/driving_licenses/docs", (req, res)=>{
+app.get("/api/v1/driving-licenses/docs", (req, res)=>{
    res.redirect("https://documenter.getpostman.com/view/10660202/SzYUZLpP");
 });
 
