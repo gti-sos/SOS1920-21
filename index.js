@@ -716,7 +716,7 @@ var driving_licenses = [
 var driving_licenses_aux = driving_licenses;
 
 // GET LOAD INITIAL
-app.get(BASE_API_URL+"/driving_licenses/loadInitialData", (req,res) =>{
+app.get(BASE_API_URL+"/driving-licenses/loadInitialData", (req,res) =>{
 	driving_licenses = driving_licenses_aux;
 	res.send(JSON.stringify(driving_licenses,null,2));
 	console.log("Data sent:"+JSON.stringify(driving_licenses,null,2));
@@ -725,7 +725,7 @@ app.get(BASE_API_URL+"/driving_licenses/loadInitialData", (req,res) =>{
 
 // GET DRIVING-LICENSES
 
-app.get(BASE_API_URL+"/driving_licenses", (req,res) =>{
+app.get(BASE_API_URL+"/driving-licenses", (req,res) =>{
 	res.send(JSON.stringify(driving_licenses,null,2));
 	console.log("Data sent:"+JSON.stringify(driving_licenses,null,2));
 });
@@ -733,7 +733,7 @@ app.get(BASE_API_URL+"/driving_licenses", (req,res) =>{
 
 // POST DRIVING-LICENSES
 
-app.post(BASE_API_URL+"/driving_licenses",(req,res) =>{
+app.post(BASE_API_URL+"/driving-licenses",(req,res) =>{
 	
 	var newDriving_license = req.body;
 	
@@ -747,13 +747,13 @@ app.post(BASE_API_URL+"/driving_licenses",(req,res) =>{
 
 // POST DRIVING-LICENSES/XXX (ERROR)
 
-app.post(BASE_API_URL+"/driving_licenses/:aut_com",(req,res) =>{
+app.post(BASE_API_URL+"/driving-licenses/:aut_com",(req,res) =>{
 	
 	res.sendStatus(405,"METHOD NOT ALLOW");
 });
 
 // DELETE DRIVING-LICENSES
-app.delete(BASE_API_URL+"/driving_licenses", (req,res)=>{
+app.delete(BASE_API_URL+"/driving-licenses", (req,res)=>{
 	
 	var filteredDriving_licenses = driving_licenses.filter((c) => {
 		return null;
@@ -772,7 +772,7 @@ app.delete(BASE_API_URL+"/driving_licenses", (req,res)=>{
 
 // GET DRIVING-LICENSES
 
-app.get(BASE_API_URL+"/driving_licenses/:aut_com", (req,res)=>{
+app.get(BASE_API_URL+"/driving-licenses/:aut_com", (req,res)=>{
 	
 	var aut_com = req.params.aut_com;
 	
@@ -790,13 +790,13 @@ app.get(BASE_API_URL+"/driving_licenses/:aut_com", (req,res)=>{
 
 // PUT DRIVING-LICENSES (ERROR)
 
-app.put(BASE_API_URL+"/driving_licenses",(req,res) =>{
+app.put(BASE_API_URL+"/driving-licenses",(req,res) =>{
 	
 	res.sendStatus(405,"METHOD NOT ALLOW");
 });
 
 // PUT DRIVING-LICENSES/XXX
-app.put(BASE_API_URL+"/driving_licenses/:aut_com",(req,res) =>{
+app.put(BASE_API_URL+"/driving-licenses/:aut_com",(req,res) =>{
 
 	var aut_com = req.params.aut_com;
 	
@@ -823,7 +823,7 @@ app.put(BASE_API_URL+"/driving_licenses/:aut_com",(req,res) =>{
 
 // DELETE DRIVING-LICENSES/XXX
 
-app.delete(BASE_API_URL+"/driving_licenses/:aut_com", (req,res)=>{
+app.delete(BASE_API_URL+"/driving-licenses/:aut_com", (req,res)=>{
 	
 	var aut_com = req.params.aut_com;
 	
