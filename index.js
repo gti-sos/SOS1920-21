@@ -1,3 +1,4 @@
+  
 const cool = require("cool-ascii-faces");
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -23,7 +24,7 @@ const BASE_API_URL = "/api/v1";
 
 var driving_licenses = [
   {
-    aut_com: "andalucia",
+    aut_com: "andalusia",
     year: 2018,
     cars_men: 48446,
     cars_women: 46618,
@@ -35,7 +36,7 @@ var driving_licenses = [
     rel_mot: 831.84
   },
   {
-    aut_com: "andalucia",
+    aut_com: "andalusia",
     year: 2017,
     cars_men: 37408,
     cars_women: 34766,
@@ -47,7 +48,7 @@ var driving_licenses = [
     rel_mot: 727.81
   },
   {
-    aut_com: "andalucia",
+    aut_com: "andalusia",
     year: 2016,
     cars_men: 44272,
     cars_women: 41941,
@@ -167,7 +168,7 @@ var driving_licenses = [
     rel_mot: 996.00
   },
   {
-    aut_com: "c_mancha",
+    aut_com: "castile-la-mancha",
     year: 2018,
     cars_men: 17659,
     cars_women: 16818,
@@ -179,7 +180,7 @@ var driving_licenses = [
     rel_mot: 976.70
   },
   {
-    aut_com: "c_mancha",
+    aut_com: "castile-la-mancha",
     year: 2017,
     cars_men: 12492,
     cars_women: 11561,
@@ -191,7 +192,7 @@ var driving_licenses = [
     rel_mot: 1026.77
   },
   {
-    aut_com: "c_mancha",
+    aut_com: "castile-la-mancha",
     year: 2016,
     cars_men: 14874,
     cars_women: 13522,
@@ -203,7 +204,7 @@ var driving_licenses = [
     rel_mot: 907.29
   },
   {
-    aut_com: "c_leon",
+    aut_com: "castile-leon",
     year: 2018,
     cars_men: 14289,
     cars_women: 13398,
@@ -215,7 +216,7 @@ var driving_licenses = [
     rel_mot: 1003.03
   },
   {
-    aut_com: "c_leon",
+    aut_com: "castile-leon",
     year: 2017,
     cars_men: 12271,
     cars_women: 11020,
@@ -227,7 +228,7 @@ var driving_licenses = [
     rel_mot: 1056.94
   },
   {
-    aut_com: "c_leon",
+    aut_com: "castile-leon",
     year: 2016,
     cars_men: 12923,
     cars_women: 11954,
@@ -383,7 +384,7 @@ var driving_licenses = [
     rel_mot: 673.39
   },
   {
-    aut_com: "baleares",
+    aut_com: "balearic-islands",
     year: 2018,
     cars_men: 6574,
     cars_women: 6680,
@@ -395,7 +396,7 @@ var driving_licenses = [
     rel_mot: 266.09
   },
   {
-    aut_com: "baleares",
+    aut_com: "balearic-islands",
     year: 2017,
     cars_men: 5567,
     cars_women: 6541,
@@ -407,7 +408,7 @@ var driving_licenses = [
     rel_mot: 321.91
   },
   {
-    aut_com: "baleares",
+    aut_com: "balearic-islands",
     year: 2016,
     cars_men: 5638,
     cars_women: 8633,
@@ -419,7 +420,7 @@ var driving_licenses = [
     rel_mot: 285.47
   },
   {
-    aut_com: "canarias",
+    aut_com: "canary-islands",
     year: 2018,
     cars_men: 14503,
     cars_women: 13102,
@@ -431,7 +432,7 @@ var driving_licenses = [
     rel_mot: 460.07
   },
   {
-    aut_com: "canarias",
+    aut_com: "canary-islands",
     year: 2017,
     cars_men: 12036,
     cars_women: 11088,
@@ -443,7 +444,7 @@ var driving_licenses = [
     rel_mot: 481.09
   },
   {
-    aut_com: "canarias",
+    aut_com: "canary-islands",
     year: 2016,
     cars_men: 12547,
     cars_women: 11503,
@@ -455,7 +456,7 @@ var driving_licenses = [
     rel_mot: 409.24
   },
   {
-    aut_com: "rioja",
+    aut_com: "the-rioja",
     year: 2018,
     cars_men: 2102,
     cars_women: 1818,
@@ -467,7 +468,7 @@ var driving_licenses = [
     rel_mot: 735.48
   },
   {
-    aut_com: "rioja",
+    aut_com: "the-rioja",
     year: 2017,
     cars_men: 1608,
     cars_women: 1328,
@@ -479,7 +480,7 @@ var driving_licenses = [
     rel_mot: 1850.00
   },
   {
-    aut_com: "rioja",
+    aut_com: "the-rioja",
     year: 2016,
     cars_men: 1797,
     cars_women: 1730,
@@ -599,7 +600,7 @@ var driving_licenses = [
     rel_mot: 755.45
   },
   {
-    aut_com: "navarra",
+    aut_com: "navarre",
     year: 2018,
     cars_men: 3583,
     cars_women: 3093,
@@ -611,7 +612,7 @@ var driving_licenses = [
     rel_mot: 584.91
   },
   {
-    aut_com: "navarra",
+    aut_com: "navarre",
     year: 2017,
     cars_men: 2326,
     cars_women: 1992,
@@ -623,7 +624,7 @@ var driving_licenses = [
     rel_mot: 750.00
   },
   {
-    aut_com: "navarra",
+    aut_com: "navarre",
     year: 2016,
     cars_men: 3156,
     cars_women: 2642,
@@ -635,7 +636,7 @@ var driving_licenses = [
     rel_mot: 1342.11
   },
   {
-    aut_com: "pais_vasco",
+    aut_com: "basque-country",
     year: 2018,
     cars_men: 10634,
     cars_women: 8679,
@@ -647,7 +648,7 @@ var driving_licenses = [
     rel_mot: 946.88
   },
   {
-    aut_com: "pais_vasco",
+    aut_com: "basque-country",
     year: 2017,
     cars_men: 8073,
     cars_women: 6620,
@@ -659,7 +660,7 @@ var driving_licenses = [
     rel_mot: 1167.35
   },
   {
-    aut_com: "pais_vasco",
+    aut_com: "basque-country",
     year: 2016,
     cars_men: 9877,
     cars_women: 8094,
@@ -671,7 +672,7 @@ var driving_licenses = [
     rel_mot: 1336.49
   },
   {
-    aut_com: "com_valen",
+    aut_com: "valencia",
     year: 2018,
     cars_men: 34003,
     cars_women: 28982,
@@ -683,7 +684,7 @@ var driving_licenses = [
     rel_mot: 781.10
   },
   {
-    aut_com: "com_valen",
+    aut_com: "valencia",
     year: 2017,
     cars_men: 26410,
     cars_women: 22862,
@@ -695,7 +696,7 @@ var driving_licenses = [
     rel_mot: 715.62
   },
   {
-    aut_com: "com_valen",
+    aut_com: "valencia",
     year: 2016,
     cars_men: 29045,
     cars_women: 25122,
