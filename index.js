@@ -1427,13 +1427,15 @@ app.put(BASE_API_URL+"/traffic-injuries/:auto_com/:year", (req,res)=>{
 	var newTrafficInjury = req.body;
 	if((newTrafficInjury.auto_com==null) || (newTrafficInjury.year==null) || (newTrafficInjury.accident==null) || (newTrafficInjury.dead==null)  ||(newTrafficInjury.injure==null) || (newTrafficInjury == "")){
 		res.sendStatus(400,"BAD REQUEST");
+		console.log("\n400 - BAD REQUEST");
 	}else{
 		var filteredTrafficInjury = trafficInjuries.filter((v) => {
 		return (v.auto_com != newTrafficInjury.auto_com && v.year != newTrafficInjury.year);
 		});
 		trafficInjuries = filteredTrafficInjury;
 		trafficInjuries.push(newTrafficInjury);
-		res.sendStatus(200,"OK");
+		res.sendStatus(200,"UPDATE OK");
+		console.log("\200 - UPDATE OK");
 	}
 });
 
