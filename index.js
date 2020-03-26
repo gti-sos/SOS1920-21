@@ -1474,7 +1474,7 @@ app.delete(BASE_API_URL + "/traffic-injuries", (req, res) => {
 
 
 
-app.get("/api/v1/public_transports/docs", (req, res)=>{
+app.get("/api/v1/public-transports/docs", (req, res)=>{
    res.redirect("https://documenter.getpostman.com/view/10637326/SzYUaM2s");
 });
 
