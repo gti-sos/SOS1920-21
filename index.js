@@ -839,7 +839,7 @@ app.delete(BASE_API_URL+"/driving_licenses/:aut_com", (req,res)=>{
 });
 
 // Redirect to postman url
-app.get("/api/v1/driving_licenses/docs", (req, res)=>{
+app.get(BASE_API_URL+"/driving_licenses/docs", (req, res)=>{
    res.redirect("https://documenter.getpostman.com/view/10660202/SzYUZLpP");
 });
 
