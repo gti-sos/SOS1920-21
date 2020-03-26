@@ -1423,8 +1423,18 @@ app.delete(BASE_API_URL+"/traffic-injuries/:auto_com", (req, res)=>{
 })
 
 // e) PUT /traffic-injuries/XXX
-app.put(BASE_API_URL+"/traffic-injuries/:auto_com", (req,res)=>{
-	// TODO
+app.put(BASE_API_URL+"/traffic-injuries/:auto_com/:year", (req,res)=>{
+	var newTrafficInjury = req.body;
+	if((newTrafficInjury.auto_com==null) || (newTrafficInjury.year==null) || (newTrafficInjury.accident==null) || (newTrafficInjury.dead==null)  ||(newTrafficInjury.injure==null) || (newTrafficInjury == "")){
+		res.sendStatus(400,"BAD REQUEST");
+	}else{
+		var filteredTrafficInjury = trafficInjuries.filter((v) => {
+		return (v.auto_com != newTrafficInjury.auto_com && v.year != newTrafficInjury.year);
+		});
+		trafficInjuries = filteredTrafficInjury;
+		trafficInjuries.push(newTrafficInjury);
+		res.sendStatus(200,"OK");
+	}
 });
 
 // f) POST /traffic-injuries/XXX
