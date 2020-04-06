@@ -2,13 +2,21 @@
 const cool = require("cool-ascii-faces");
 const express = require("express");
 const bodyParser = require("body-parser");
+const dataStore = require("nedb");
+const path = require("path");
 
+const port = process.env.PORT || 80;
+const dbFileName = path.join(__dirname,"/contacts.db");
 
-var app = express();
+const app = express();
 
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 80;
+
+const db = new dataStore({
+				filename: dbFileName,
+				autoload: true
+			});
 
 app.use("/", express.static("./public"));
 
@@ -17,7 +25,6 @@ app.get("/cool", (request,response) => {
 });
 
 const BASE_API_URL = "/api/v1";
-
 // ==================================================
 // =============== Start antpritag ================= 
 // ==================================================	
