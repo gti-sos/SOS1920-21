@@ -1485,7 +1485,7 @@ app.get("/api/v1/public-transports/docs", (req, res)=>{
    res.redirect("https://documenter.getpostman.com/view/10637326/SzYUaM2s");
 });
 
- var public_transports =[
+ var initial_public_transports =[
   {
     aut_com: "andalusia",
     year: 2016,
@@ -2008,7 +2008,14 @@ app.get("/api/v1/public-transports/docs", (req, res)=>{
   }
 ]
  
+// GET LOAD INITIAL
  
+app.get(BASE_API_URL+"loadInitialData", (req,res) =>{
+	db.insert(initial_public_transports);
+	res.sendStatus(200)
+	console.log("Initial Public Trasport loaded:"+JSON.stringify(initial_public_transports,null,2));
+}); 
+/* 
 var public_transports_aux = public_transports;
  
 // GET LOAD INITIAL
@@ -2017,7 +2024,9 @@ app.get(BASE_API_URL+"/public_transports/loadInitialData", (req,res) =>{
 	public_transports = public_transports_aux;
 	res.send(JSON.stringify(public_transports,null,2));
 	console.log("Data sent:"+JSON.stringify(public_transports,null,2));
-}); 
+}); */
+
+
 
 //GET PUBLIC_TRANSPORTS
 
