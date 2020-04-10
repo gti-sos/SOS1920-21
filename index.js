@@ -1402,7 +1402,7 @@ app.post(BASE_API_URL+"/traffic-injuries",(req,res) =>{
 	}
 });
 
-// c) GET /traffic-injuries/XXX
+// c) GET /traffic-injuries/auto_com/year
 app.get(BASE_API_URL+"/traffic-injuries/:auto_com/:year", (req, res)=>{
 	var auto_com = req.params.auto_com;
 	var year = req.params.year;
@@ -1419,7 +1419,7 @@ app.get(BASE_API_URL+"/traffic-injuries/:auto_com/:year", (req, res)=>{
 	}
 })
 
-// d) DELETE /traffic-injuries/XXX
+// d) DELETE /traffic-injuries/auto_com/year
 app.delete(BASE_API_URL+"/traffic-injuries/:auto_com/:year", (req, res)=>{
 	var auto_com = req.params.auto_com;
 	var year = req.params.year;
@@ -1438,7 +1438,7 @@ app.delete(BASE_API_URL+"/traffic-injuries/:auto_com/:year", (req, res)=>{
 	}
 })
 
-// e) PUT /traffic-injuries/XXX
+// e) PUT /traffic-injuries/auto_com/year
 app.put(BASE_API_URL+"/traffic-injuries/:auto_com/:year", (req,res)=>{
 	var newTrafficInjury = req.body;
 	if((newTrafficInjury.auto_com==null) || (newTrafficInjury.year==null) || (newTrafficInjury.accident==null) || (newTrafficInjury.dead==null)  ||(newTrafficInjury.injure==null) || (newTrafficInjury == "")){
@@ -1455,15 +1455,26 @@ app.put(BASE_API_URL+"/traffic-injuries/:auto_com/:year", (req,res)=>{
 	}
 });
 
-// f) POST /traffic-injuries/XXX
+// f) POST /traffic-injuries/auto_com/
+// f.1) POST /traffic-injuries/auto_com/year
+app.post(BASE_API_URL+"/traffic-injuries/:auto_com", (req,res)=>{
+	res.sendStatus(405, "METHOD NOT ALLOWED");
+});
+
 app.post(BASE_API_URL+"/traffic-injuries/:auto_com/:year", (req,res)=>{
 	res.sendStatus(405, "METHOD NOT ALLOWED");
 });
 
 // g) PUT /traffic-injuries
+// g.1) PUT /traffic-injuries/auto_com
 app.put(BASE_API_URL+"/traffic-injuries", (req,res)=>{
 	res.sendStatus(405, "METHOD NOT ALLOWED");
 });
+
+app.put(BASE_API_URL+"/traffic-injuries/:auto_com", (req,res)=>{
+	res.sendStatus(405, "METHOD NOT ALLOWED");
+});
+
 
 // h) DELETE /traffic-injuries
 app.delete(BASE_API_URL + "/traffic-injuries", (req, res) => {
