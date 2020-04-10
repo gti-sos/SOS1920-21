@@ -1403,11 +1403,12 @@ app.post(BASE_API_URL+"/traffic-injuries",(req,res) =>{
 });
 
 // c) GET /traffic-injuries/XXX
-app.get(BASE_API_URL+"/traffic-injuries/:auto_com", (req, res)=>{
+app.get(BASE_API_URL+"/traffic-injuries/:auto_com/:year", (req, res)=>{
 	var auto_com = req.params.auto_com;
+	var year = req.params.year;
 	
 	var filteredTrafficInjury = trafficInjuries.filter((c) =>{
-		return (c.auto_com == auto_com);
+		return (c.auto_com == auto_com && c.year == year);
 	});
 	
 	if(filteredTrafficInjury.length >= 1){
@@ -1419,11 +1420,12 @@ app.get(BASE_API_URL+"/traffic-injuries/:auto_com", (req, res)=>{
 })
 
 // d) DELETE /traffic-injuries/XXX
-app.delete(BASE_API_URL+"/traffic-injuries/:auto_com", (req, res)=>{
+app.delete(BASE_API_URL+"/traffic-injuries/:auto_com/:year", (req, res)=>{
 	var auto_com = req.params.auto_com;
+	var year = req.params.year;
 	
 	var filteredTrafficInjury = trafficInjuries.filter((c) =>{
-		return (c.auto_com != auto_com);
+		return (c.auto_com != auto_com && c.year != year);
 	});
 	
 	if(filteredTrafficInjury.length < trafficInjuries.length){
@@ -1454,7 +1456,7 @@ app.put(BASE_API_URL+"/traffic-injuries/:auto_com/:year", (req,res)=>{
 });
 
 // f) POST /traffic-injuries/XXX
-app.post(BASE_API_URL+"/traffic-injuries/:auto_com", (req,res)=>{
+app.post(BASE_API_URL+"/traffic-injuries/:auto_com/:year", (req,res)=>{
 	res.sendStatus(405, "METHOD NOT ALLOWED");
 });
 
