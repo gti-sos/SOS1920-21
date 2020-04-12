@@ -597,7 +597,7 @@ module.exports = function(app, express, bodyParser, path) {
             );
         });
     });
-	
+
     // d) DELETE /traffic-injuries/auto_com/year
     app.delete(BASE_API_URL + '/traffic-injuries/:auto_com/:year', (req, res) => {
         var auto_com = req.params.auto_com;
@@ -606,11 +606,12 @@ module.exports = function(app, express, bodyParser, path) {
         console.log('New DELETE .../traffic-injuries/madrid/2016');
 
         db.remove({ auto_com: auto_com, year: parseInt(year) }, {}, (err, trafficInjuries) => {
-			console.log()
+            console.log();
             res.send(JSON.stringify(trafficInjuries, null, 2));
-            console.log('\nDELETED: ' + JSON.stringify(trafficInjuries, null, 2) + '\nFINISHED DELETED');
+            console.log(
+                '\nDELETED: ' + JSON.stringify(trafficInjuries, null, 2) + '\nFINISHED DELETED'
+            );
         });
-
     });
 
     // f) POST /traffic-injuries/auto_com/
@@ -675,5 +676,5 @@ module.exports = function(app, express, bodyParser, path) {
         }
     });
 
-    console.log('Registered traffic-injuries API!');
+    console.log('Registered traffic-injuries API!\n');
 };
