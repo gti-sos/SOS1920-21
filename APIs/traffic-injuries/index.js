@@ -580,7 +580,7 @@ module.exports = function(app, express, bodyParser, path) {
         }
     });
 
-    // c) GET /traffic-injuries/auto_com/year
+    // NEW c) GET /traffic-injuries/auto_com/year
     app.get(BASE_API_URL + '/traffic-injuries/:auto_com/:year', (req, res) => {
         var auto_com = req.params.auto_com;
         var year = req.params.year;
@@ -598,7 +598,7 @@ module.exports = function(app, express, bodyParser, path) {
         });
     });
 
-    // d) DELETE /traffic-injuries/auto_com/year
+    // NEW d) DELETE /traffic-injuries/auto_com/year
     app.delete(BASE_API_URL + '/traffic-injuries/:auto_com/:year', (req, res) => {
         var auto_com = req.params.auto_com;
         var year = req.params.year;
@@ -612,6 +612,34 @@ module.exports = function(app, express, bodyParser, path) {
                 '\nDELETED: ' + JSON.stringify(trafficInjuries, null, 2) + '\nFINISHED DELETED'
             );
         });
+    });
+	
+    // NEW e) PUT /traffic-injuries/auto_com/year
+    app.put(BASE_API_URL + '/traffic-injuries/:auto_com/:year', (req, res) => {
+        var newTrafficInjury = req.body;
+        if (
+            newTrafficInjury.auto_com == null ||
+            newTrafficInjury.year == null ||
+            newTrafficInjury.accident == null ||
+            newTrafficInjury.dead == null ||
+            newTrafficInjury.injure == null ||
+            newTrafficInjury == ''
+        ) {
+            res.sendStatus(400, 'BAD REQUEST');
+            console.log('\n400 - BAD REQUEST');
+        } else {
+			
+			db.update({ auto_com: auto_com, year: parseInt(year) },{},{},{}
+			);
+			
+            //var filteredTrafficInjury = trafficInjuries.filter(v => {
+            //    return v.auto_com != newTrafficInjury.auto_com && v.year != newTrafficInjury.year;
+            //});
+            //trafficInjuries = filteredTrafficInjury;
+            //trafficInjuries.push(newTrafficInjury);
+            res.sendStatus(200, 'UPDATE OK');
+            console.log('\n200 - UPDATE OK');
+        }
     });
 
     // f) POST /traffic-injuries/auto_com/
@@ -646,34 +674,6 @@ module.exports = function(app, express, bodyParser, path) {
         //    res.sendStatus(400, 'BAD REQUEST');
         //    console.log('\n400 - BAD REQUEST NO DATA TO DELETE');
         //}
-    });
-
-    // ==================================================
-    // ==================== OLD =========================
-    // ==================================================
-
-    // e) PUT /traffic-injuries/auto_com/year
-    app.put(BASE_API_URL + '/traffic-injuries/:auto_com/:year', (req, res) => {
-        var newTrafficInjury = req.body;
-        if (
-            newTrafficInjury.auto_com == null ||
-            newTrafficInjury.year == null ||
-            newTrafficInjury.accident == null ||
-            newTrafficInjury.dead == null ||
-            newTrafficInjury.injure == null ||
-            newTrafficInjury == ''
-        ) {
-            res.sendStatus(400, 'BAD REQUEST');
-            console.log('\n400 - BAD REQUEST');
-        } else {
-            var filteredTrafficInjury = trafficInjuries.filter(v => {
-                return v.auto_com != newTrafficInjury.auto_com && v.year != newTrafficInjury.year;
-            });
-            trafficInjuries = filteredTrafficInjury;
-            trafficInjuries.push(newTrafficInjury);
-            res.sendStatus(200, 'UPDATE OK');
-            console.log('\200 - UPDATE OK');
-        }
     });
 
     console.log('Registered traffic-injuries API!\n');
