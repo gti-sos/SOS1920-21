@@ -537,7 +537,7 @@ module.exports = function(app, express, bodyParser, path) {
     app.get(BASE_API_URL + "/traffic-injuries/loadInitialData", (req, res) => {
         db.insert(initialTrafficInjuries);
 
-        res.sendStatus(200);
+		res.send(JSON.stringify(initialTrafficInjuries, null, 2));
         console.log(
             "START - LOAD INITIAL DATA\n" +
                 JSON.stringify(initialTrafficInjuries, null, 2) +
@@ -551,8 +551,8 @@ module.exports = function(app, express, bodyParser, path) {
             trafficInjuries.forEach(ti => {
                 delete ti._id;
             });
-
-            res.sendStatus(200);
+       		
+			res.send(JSON.stringify(trafficInjuries, null, 2));
 			console.log(
                 "\nSTART - SHOW ALL DATA ON DB\n" +
                     JSON.stringify(trafficInjuries, null, 2) +
@@ -606,7 +606,6 @@ module.exports = function(app, express, bodyParser, path) {
             { auto_com: auto_com_url, year: parseInt(year_url) },
             {},
             (err, trafficInjuries) => {
-                console.log();
                 res.send(JSON.stringify(trafficInjuries, null, 2));
                 console.log(
                     "\nSTART - DELETE THIS DATA FROM DB\n" +
@@ -645,12 +644,11 @@ module.exports = function(app, express, bodyParser, path) {
                 },
                 {},
                 (err, numReplaced) => {
-                    console.log(numReplaced);
                     res.sendStatus(200);
                     console.log(
-                        "\nSTART - UPDATE THIS DATA FROM DB\n" +
-                            JSON.stringify(newTrafficInjury, null, 2) +
-                            "\nEND - UPDATE THIS DATA FROM DB\n"
+                        "\nSTART - UPDATE THIS DATA FROM DB\n"
+						+ numReplaced
+						+ "\nEND - UPDATE THIS DATA FROM DB\n"
                     );
                 }
             );
@@ -661,24 +659,24 @@ module.exports = function(app, express, bodyParser, path) {
     // f.1) POST /traffic-injuries/auto_com/year
     app.post(BASE_API_URL + "/traffic-injuries/:auto_com", (req, res) => {
         res.sendStatus(405);
-		console.log("\nMETHOD NOT ALLOWED")
+		console.log("METHOD NOT ALLOWED\n")
     });
 
     app.post(BASE_API_URL + "/traffic-injuries/:auto_com/:year", (req, res) => {
         res.sendStatus(405);
-		console.log("\nMETHOD NOT ALLOWED")
+		console.log("METHOD NOT ALLOWED\n")
     });
 
     // g) PUT /traffic-injuries
     // g.1) PUT /traffic-injuries/auto_com
     app.put(BASE_API_URL + "/traffic-injuries", (req, res) => {
         res.sendStatus(405);
-		console.log("\nMETHOD NOT ALLOWED")
+		console.log("METHOD NOT ALLOWED\n")
     });
 
     app.put(BASE_API_URL + "/traffic-injuries/:auto_com", (req, res) => {
         res.sendStatus(405);
-		console.log("\nMETHOD NOT ALLOWED")
+		console.log("METHOD NOT ALLOWED")
     });
 
     // h) DELETE /traffic-injuries
@@ -687,7 +685,7 @@ module.exports = function(app, express, bodyParser, path) {
             res.sendStatus(200);
             console.log(
                 "\nSTART - DELETE ALL DATA FROM DB\n" +
-                    + numremoved +
+                    numremoved +
                     "\nEND - DELETE ALL DATA FROM DB\n"
             );
         });
