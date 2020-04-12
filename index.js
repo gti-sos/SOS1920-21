@@ -7,8 +7,8 @@ const trafficInjuriesAPI = require(path.join(__dirname, 'APIs/traffic-injuries')
 const publicTransportsAPI = require(path.join(__dirname, 'APIs/public-transports'));
 
 const port = process.env.PORT || 80;
-
 const app = express();
+
 app.use(bodyParser.json());
 
 app.use('/', express.static('./public'));
@@ -18,19 +18,19 @@ app.get('/cool', (request, response) => {
 });
 
 // ==================================================
-// =============== Start antpritag ==================
+// ================== antpritag =====================
 // ==================================================
 
 drivinglicensesAPI(app, express, bodyParser, path);
 
 // ==================================================
-// =============== Start juagommat ==================
+// ================== juagommat =====================
 // ==================================================
 
 trafficInjuriesAPI(app, express, bodyParser, path);
 
 // ==================================================
-// =============== Start josdeonc ===================
+// ================== josdeonc ======================
 // ==================================================
 
 publicTransportsAPI(app, express, bodyParser, path);
