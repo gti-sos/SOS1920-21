@@ -598,9 +598,9 @@ module.exports = function(app, express, bodyParser, path) {
 				}));
 				
                 console.log(
-                    '\nSTART - SHOW THIS DATA FROM DB\n' +
+                    '\nSTART - SHOW THOSE DATA FROM DB\n' +
                         JSON.stringify(docs, null, 2) +
-                        '\nEND - SHOW THIS DATA FROM DB\n'
+                        '\nEND - SHOW THOSE DATA FROM DB\n'
                 );
             } else {
                 res.sendStatus(404);
@@ -633,6 +633,25 @@ module.exports = function(app, express, bodyParser, path) {
         });
     });
 
+    // d) DELETE /traffic-injuries/auto_com
+    app.delete(BASE_API_URL + '/traffic-injuries/:auto_com', (req, res) => {
+        var auto_com_url = req.params.auto_com;
+
+        db.remove({ auto_com: auto_com_url }, { multi: true }, (err, numRemoved) => {
+            if (numRemoved == 0) {
+                res.sendStatus(404);
+                console.log('TRAFFIC INJURIES NOT FOUND');
+            } else {
+                res.sendStatus(200);
+                console.log(
+                    '\nSTART - DELETE THOSE DATA FROM DB\n' +
+                        numRemoved +
+                        '\nEND - DELETE THOSE DATA FROM DB\n'
+                );
+            }
+        });
+    });
+	
     // d) DELETE /traffic-injuries/auto_com/year
     app.delete(BASE_API_URL + '/traffic-injuries/:auto_com/:year', (req, res) => {
         var auto_com_url = req.params.auto_com;
