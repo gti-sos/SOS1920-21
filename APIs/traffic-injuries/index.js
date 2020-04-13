@@ -546,7 +546,21 @@ module.exports = function(app, express, bodyParser, path) {
 
     // a) GET /traffic-injuries
     app.get(BASE_API_URL + '/traffic-injuries', (req, res) => {
-        db.find({}, (err, docs) => {
+		
+		var query = {};
+        let offset = 0;
+        let limit = Number.MAX_SAFE_INTEGER;
+		
+        if (req.query.offset) {
+            offset = parseInt(req.query.offset);
+            delete req.query.offset;
+        }
+        if (req.query.limit) {
+            limit = parseInt(req.query.limit);
+            delete req.query.limit;
+        }
+		
+        db.find({}).sort({auto_com:1,year:-1}).skip(offset).limit(limit).exec((err, docs) => {
 			if(docs.length == 0){
 				res.sendStatus(204);
 				console.log('\nNO CONTENT TO SHOW');
