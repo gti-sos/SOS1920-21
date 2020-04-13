@@ -536,8 +536,7 @@ module.exports = function(app, express, bodyParser, path) {
     // GET LoadInitialData
     app.get(BASE_API_URL + '/traffic-injuries/loadInitialData', (req, res) => {
         db.insert(initialTrafficInjuries);
-
-        res.send(JSON.stringify(initialTrafficInjuries, null, 2));
+		res.send(initialTrafficInjuries);
         console.log(
             'START - LOAD INITIAL DATA\n' +
                 JSON.stringify(initialTrafficInjuries, null, 2) +
@@ -550,12 +549,12 @@ module.exports = function(app, express, bodyParser, path) {
         db.find({}, (err, docs) => {
 			if(docs.length == 0){
 				res.sendStatus(204);
-				console.log("\nNO CONTENT TO SHOW");
+				console.log('\nNO CONTENT TO SHOW');
 			}else{
-            docs.forEach(ti => {
-                delete ti._id;
-            });
-            res.send(JSON.stringify(docs, null, 2));
+			res.send(docs.map((ti)=>{
+					delete ti._id;
+					return(ti);
+				}));
             console.log(
                 '\nSTART - SHOW ALL DATA ON DB\n' +
                     JSON.stringify(docs, null, 2) +
@@ -586,6 +585,29 @@ module.exports = function(app, express, bodyParser, path) {
             );
         }
     });
+	
+	// c) GET /traffic-injuries/auto_com
+    app.get(BASE_API_URL + '/traffic-injuries/:auto_com', (req, res) => {
+        var auto_com_url = req.params.auto_com;
+
+        db.find({ auto_com: auto_com_url }, (err, docs) => {
+            if (docs.length >= 1) {
+			res.send(docs.map((ti)=>{
+					delete ti._id;
+					return(ti);
+				}));
+				
+                console.log(
+                    '\nSTART - SHOW THIS DATA FROM DB\n' +
+                        JSON.stringify(docs, null, 2) +
+                        '\nEND - SHOW THIS DATA FROM DB\n'
+                );
+            } else {
+                res.sendStatus(404);
+                console.log('\n404 - TRAFFIC INJURIES NOT FOUND');
+            }
+        });
+    });
 
     // c) GET /traffic-injuries/auto_com/year
     app.get(BASE_API_URL + '/traffic-injuries/:auto_com/:year', (req, res) => {
@@ -594,10 +616,11 @@ module.exports = function(app, express, bodyParser, path) {
 
         db.find({ auto_com: auto_com_url, year: parseInt(year_url) }, (err, docs) => {
             if (docs.length >= 1) {
-                docs.forEach(ti => {
-                    delete ti._id;
-                });
-                res.send(JSON.stringify(docs, null, 2));
+			res.send(docs.map((ti)=>{
+					delete ti._id;
+					return(ti);
+				})[0]);
+				
                 console.log(
                     '\nSTART - SHOW THIS DATA FROM DB\n' +
                         JSON.stringify(docs, null, 2) +
