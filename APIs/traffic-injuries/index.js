@@ -17,37 +17,37 @@ module.exports = function(app, express, bodyParser, path) {
         {
             auto_com: 'andalusia',
             year: 2018,
-            accident: 17.066,
+            accident: 17066,
             dead: 274,
-            injure: 24.2
+            injure: 242
         },
         {
             auto_com: 'aragon',
             year: 2018,
-            accident: 2.228,
+            accident: 2228,
             dead: 85,
-            injure: 2.915
+            injure: 2915
         },
         {
             auto_com: 'asturias',
             year: 2018,
-            accident: 2.103,
+            accident: 2103,
             dead: 43,
-            injure: 2.873
+            injure: 2873
         },
         {
             auto_com: 'balearic-islands',
             year: 2018,
-            accident: 3.501,
+            accident: 3501,
             dead: 53,
-            injure: 4.642
+            injure: 4642
         },
         {
             auto_com: 'canary-islands',
             year: 2018,
-            accident: 3.506,
+            accident: 3506,
             dead: 68,
-            injure: 4.96
+            injure: 496
         },
         {
             auto_com: 'cantabria',
@@ -59,58 +59,58 @@ module.exports = function(app, express, bodyParser, path) {
         {
             auto_com: 'castile-leon',
             year: 2018,
-            accident: 2.586,
+            accident: 2586,
             dead: 100,
-            injure: 3.649
+            injure: 3649
         },
         {
             auto_com: 'castile-la-mancha',
             year: 2018,
-            accident: 4.425,
+            accident: 4425,
             dead: 176,
-            injure: 5.869
+            injure: 5869
         },
         {
             auto_com: 'catalonia',
             year: 2018,
-            accident: 27.202,
+            accident: 27202,
             dead: 326,
-            injure: 35.426
+            injure: 35426
         },
         {
             auto_com: 'ceuta-melilla',
             year: 2018,
-            accident: 1.504,
+            accident: 1504,
             dead: 51,
-            injure: 2.068
+            injure: 2068
         },
         {
             auto_com: 'valencia',
             year: 2018,
-            accident: 4.519,
+            accident: 4519,
             dead: 144,
-            injure: 6.267
+            injure: 6267
         },
         {
             auto_com: 'extremadura',
             year: 2018,
-            accident: 16.724,
+            accident: 16724,
             dead: 114,
-            injure: 21.285
+            injure: 21285
         },
         {
             auto_com: 'galicia',
             year: 2018,
-            accident: 2.58,
+            accident: 258,
             dead: 66,
-            injure: 3.456
+            injure: 3456
         },
         {
             auto_com: 'madrid',
             year: 2018,
             accident: 855,
             dead: 35,
-            injure: 1.067
+            injure: 1067
         },
         {
             auto_com: 'murcia',
@@ -122,121 +122,121 @@ module.exports = function(app, express, bodyParser, path) {
         {
             auto_com: 'navarre',
             year: 2018,
-            accident: 8.36,
+            accident: 836,
             dead: 183,
-            injure: 10.96
+            injure: 1096
         },
         {
             auto_com: 'basque-country',
             year: 2018,
-            accident: 4.798,
+            accident: 4798,
             dead: 49,
-            injure: 6.151
+            injure: 6151
         },
         {
             auto_com: 'the-rioja',
             year: 2018,
             accident: 762,
             dead: 6,
-            injure: 1.031
+            injure: 1031
         },
         {
             auto_com: 'andalusia',
             year: 2017,
-            accident: 15.671,
+            accident: 15671,
             dead: 305,
-            injure: 22.303
+            injure: 22303
         },
         {
             auto_com: 'aragon',
             year: 2017,
-            accident: 2.483,
+            accident: 2483,
             dead: 80,
-            injure: 3.289
+            injure: 3289
         },
         {
             auto_com: 'asturias',
             year: 2017,
-            accident: 2.348,
+            accident: 2348,
             dead: 37,
-            injure: 3.197
+            injure: 3197
         },
         {
             auto_com: 'balearic-islands',
             year: 2017,
-            accident: 3.846,
+            accident: 3846,
             dead: 68,
-            injure: 5.017
+            injure: 5017
         },
         {
             auto_com: 'canary-islands',
             year: 2017,
-            accident: 3.58,
+            accident: 358,
             dead: 67,
-            injure: 5.133
+            injure: 5133
         },
         {
             auto_com: 'cantabria',
             year: 2017,
             accident: 734,
             dead: 22,
-            injure: 1.017
+            injure: 1017
         },
         {
             auto_com: 'castile-leon',
             year: 2017,
-            accident: 2.761,
+            accident: 2761,
             dead: 129,
-            injure: 3.783
+            injure: 3783
         },
         {
             auto_com: 'castile-la-mancha',
             year: 2017,
-            accident: 4.492,
+            accident: 4492,
             dead: 164,
-            injure: 5.877
+            injure: 5877
         },
         {
             auto_com: 'catalonia',
             year: 2017,
-            accident: 27.305,
+            accident: 27305,
             dead: 283,
-            injure: 35.884
+            injure: 35884
         },
         {
             auto_com: 'ceuta-melilla',
             year: 2017,
-            accident: 1.546,
+            accident: 1546,
             dead: 62,
-            injure: 2.137
+            injure: 2137
         },
         {
             auto_com: 'valencia',
             year: 2017,
-            accident: 4.741,
+            accident: 4741,
             dead: 117,
-            injure: 6.716
+            injure: 6716
         },
         {
             auto_com: 'extremadura',
             year: 2017,
-            accident: 16.364,
+            accident: 16364,
             dead: 125,
-            injure: 20.94
+            injure: 2094
         },
         {
             auto_com: 'galicia',
             year: 2017,
-            accident: 2.552,
+            accident: 2552,
             dead: 85,
-            injure: 3.453
+            injure: 3453
         },
         {
             auto_com: 'madrid',
             year: 2017,
             accident: 898,
             dead: 29,
-            injure: 1.156
+            injure: 1156
         },
         {
             auto_com: 'murcia',
@@ -248,114 +248,114 @@ module.exports = function(app, express, bodyParser, path) {
         {
             auto_com: 'navarre',
             year: 2017,
-            accident: 8.206,
+            accident: 8206,
             dead: 176,
-            injure: 10.882
+            injure: 10882
         },
         {
             auto_com: 'basque-country',
             year: 2017,
-            accident: 4.769,
+            accident: 4769,
             dead: 51,
-            injure: 6.213
+            injure: 6213
         },
         {
             auto_com: 'the-rioja',
             year: 2017,
             accident: 879,
             dead: 4,
-            injure: 1.248
+            injure: 1248
         },
         {
             auto_com: 'andalusia',
             year: 2016,
-            accident: 15.859,
+            accident: 15859,
             dead: 303,
-            injure: 22.988
+            injure: 22988
         },
         {
             auto_com: 'aragon',
             year: 2016,
-            accident: 2.239,
+            accident: 2239,
             dead: 73,
-            injure: 2.991
+            injure: 2991
         },
         {
             auto_com: 'asturias',
             year: 2016,
-            accident: 2.258,
+            accident: 2258,
             dead: 35,
-            injure: 3.156
+            injure: 3156
         },
         {
             auto_com: 'balearic-islands',
             year: 2016,
-            accident: 3.872,
+            accident: 3872,
             dead: 60,
-            injure: 5.276
+            injure: 5276
         },
         {
             auto_com: 'canary-islands',
             year: 2016,
-            accident: 3.639,
+            accident: 3639,
             dead: 71,
-            injure: 5.184
+            injure: 5184
         },
         {
             auto_com: 'cantabria',
             year: 2016,
             accident: 728,
             dead: 21,
-            injure: 1.068
+            injure: 1068
         },
         {
             auto_com: 'castile-leon',
             year: 2016,
-            accident: 2.928,
+            accident: 2928,
             dead: 118,
-            injure: 4.098
+            injure: 4098
         },
         {
             auto_com: 'castile-la-mancha',
             year: 2016,
-            accident: 4.735,
+            accident: 4735,
             dead: 175,
-            injure: 6.432
+            injure: 6432
         },
         {
             auto_com: 'catalonia',
             year: 2016,
-            accident: 27.244,
+            accident: 27244,
             dead: 282,
-            injure: 35.999
+            injure: 35999
         },
         {
             auto_com: 'ceuta-melilla',
             year: 2016,
-            accident: 1.366,
+            accident: 1366,
             dead: 62,
-            injure: 1.853
+            injure: 1853
         },
         {
             auto_com: 'valencia',
             year: 2016,
-            accident: 4.874,
+            accident: 4874,
             dead: 141,
-            injure: 6.848
+            injure: 6848
         },
         {
             auto_com: 'extremadura',
             year: 2016,
-            accident: 16.27,
+            accident: 1627,
             dead: 121,
-            injure: 20.659
+            injure: 20659
         },
         {
             auto_com: 'galicia',
             year: 2016,
-            accident: 2.354,
+            accident: 2354,
             dead: 58,
-            injure: 3.222
+            injure: 3222
         },
         {
             auto_com: 'madrid',
@@ -374,114 +374,114 @@ module.exports = function(app, express, bodyParser, path) {
         {
             auto_com: 'navarre',
             year: 2016,
-            accident: 8.388,
+            accident: 8388,
             dead: 180,
-            injure: 11.104
+            injure: 11104
         },
         {
             auto_com: 'basque-country',
             year: 2016,
-            accident: 4.92,
+            accident: 492,
             dead: 56,
-            injure: 6.369
+            injure: 6369
         },
         {
             auto_com: 'the-rioja',
             year: 2016,
             accident: 862,
             dead: 3,
-            injure: 1.241
+            injure: 1241
         },
         {
             auto_com: 'andalusia',
             year: 2015,
-            accident: 16.431,
+            accident: 16431,
             dead: 262,
-            injure: 23.897
+            injure: 23897
         },
         {
             auto_com: 'aragon',
             year: 2015,
-            accident: 2.264,
+            accident: 2264,
             dead: 71,
-            injure: 2.962
+            injure: 2962
         },
         {
             auto_com: 'asturias',
             year: 2015,
-            accident: 2.408,
+            accident: 2408,
             dead: 36,
-            injure: 3.425
+            injure: 3425
         },
         {
             auto_com: 'balearic-islands',
             year: 2015,
-            accident: 3.513,
+            accident: 3513,
             dead: 53,
-            injure: 4.724
+            injure: 4724
         },
         {
             auto_com: 'canary-islands',
             year: 2015,
-            accident: 3.33,
+            accident: 333,
             dead: 62,
-            injure: 4.669
+            injure: 4669
         },
         {
             auto_com: 'cantabria',
             year: 2015,
             accident: 723,
             dead: 22,
-            injure: 1.043
+            injure: 1043
         },
         {
             auto_com: 'castile-leon',
             year: 2015,
-            accident: 2.727,
+            accident: 2727,
             dead: 107,
-            injure: 3.776
+            injure: 3776
         },
         {
             auto_com: 'castile-la-mancha',
             year: 2015,
-            accident: 4.503,
+            accident: 4503,
             dead: 181,
-            injure: 6.192
+            injure: 6192
         },
         {
             auto_com: 'catalonia',
             year: 2015,
-            accident: 25.554,
+            accident: 25554,
             dead: 291,
-            injure: 33.675
+            injure: 33675
         },
         {
             auto_com: 'ceuta-melilla',
             year: 2015,
-            accident: 1.446,
+            accident: 1446,
             dead: 54,
-            injure: 2.03
+            injure: 203
         },
         {
             auto_com: 'valencia',
             year: 2015,
-            accident: 4.581,
+            accident: 4581,
             dead: 123,
-            injure: 6.526
+            injure: 6526
         },
         {
             auto_com: 'extremadura',
             year: 2015,
-            accident: 15.523,
+            accident: 15523,
             dead: 111,
-            injure: 20.003
+            injure: 20003
         },
         {
             auto_com: 'galicia',
             year: 2015,
-            accident: 1.796,
+            accident: 1796,
             dead: 44,
-            injure: 2.517
+            injure: 2517
         },
         {
             auto_com: 'madrid',
@@ -500,26 +500,26 @@ module.exports = function(app, express, bodyParser, path) {
         {
             auto_com: 'navarre',
             year: 2015,
-            accident: 7.787,
+            accident: 7787,
             dead: 154,
-            injure: 10.213
+            injure: 10213
         },
         {
             auto_com: 'basque-country',
             year: 2015,
-            accident: 4.613,
+            accident: 4613,
             dead: 67,
-            injure: 5.982
+            injure: 5982
         },
         {
             auto_com: 'the-rioja',
             year: 2015,
             accident: 918,
             dead: 5,
-            injure: 1.278
+            injure: 1278
         }
     ];
-
+	
     // README info
     app.use('/', express.static('./public'));
 
@@ -536,7 +536,7 @@ module.exports = function(app, express, bodyParser, path) {
     // GET LoadInitialData
     app.get(BASE_API_URL + '/traffic-injuries/loadInitialData', (req, res) => {
         db.insert(initialTrafficInjuries);
-		res.send(initialTrafficInjuries);
+        res.send(initialTrafficInjuries);
         console.log(
             'START - LOAD INITIAL DATA\n' +
                 JSON.stringify(initialTrafficInjuries, null, 2) +
@@ -546,47 +546,53 @@ module.exports = function(app, express, bodyParser, path) {
 
     // a) GET /traffic-injuries
     app.get(BASE_API_URL + '/traffic-injuries', (req, res) => {
+		var limit = parseInt(req.query.limit);
+		var offset = parseInt(req.query.offset);
+		var search = {};
 		
-		var query = {};
-        let offset = 0;
-        let limit = Number.MAX_SAFE_INTEGER;
+		if(req.query.auto_com) search["auto_com"] = req.query.auto_com;
+		if(req.query.year) search["year"] = parseInt(req.query.year);
+		if(req.query.accident) search["accident"] = parseInt(req.query.accident);
+		if(req.query.dead) search["dead"] = parseInt(req.query.dead);
+		if(req.query.injure) search["injure"] = parseInt(req.query.injure);
 		
-        if (req.query.offset) {
-            offset = parseInt(req.query.offset);
-            delete req.query.offset;
-        }
-        if (req.query.limit) {
-            limit = parseInt(req.query.limit);
-            delete req.query.limit;
-        }
-		
-        db.find({}).sort({auto_com:1,year:-1}).skip(offset).limit(limit).exec((err, docs) => {
-			if(docs.length == 0){
-				res.sendStatus(204);
-				console.log('\nNO CONTENT TO SHOW');
-			}else{
-			res.send(docs.map((ti)=>{
-					delete ti._id;
-					return(ti);
-				}));
-            console.log(
-                '\nSTART - SHOW ALL DATA ON DB\n' +
-                    JSON.stringify(docs, null, 2) +
-                    '\nEND - SHOW ALL DATA ON DB');	
-			}
-        });
+        db
+            .find(search)
+            .sort({ auto_com: 1, year: -1 , accident: -2, dead: -3, injure: -4})
+            .skip(offset)
+            .limit(limit)
+            .exec((err, docs) => {
+                if (docs.length == 0) {
+                    res.sendStatus(204);
+                    console.log('\nNO CONTENT TO SHOW');
+                } else {
+                    res.send(
+                        docs.map(ti => {
+                            delete ti._id;
+                            return ti;
+                        })
+                    );
+                    console.log(
+                        '\nSTART - SHOW ALL DATA OR AVAILABLE ON DB\n' +
+                            JSON.stringify(docs, null, 2) +
+                            '\nEND - SHOW ALL DATA OR AVAILABLE ON DB'
+                    );
+                }
+            });
     });
 
     // b) POST /traffic-injuries
     app.post(BASE_API_URL + '/traffic-injuries', (req, res) => {
         var newTrafficInjury = req.body;
 
-        if (newTrafficInjury.auto_com == null ||
+        if (
+            newTrafficInjury.auto_com == null ||
             newTrafficInjury.year == null ||
             newTrafficInjury.accident == null ||
             newTrafficInjury.dead == null ||
             newTrafficInjury.injure == null ||
-            newTrafficInjury == '') {
+            newTrafficInjury == ''
+        ) {
             res.sendStatus(400);
             console.log('\n400 - TRAFFIC INJURY CAN NOT BE EMPTY OR NULL');
         } else {
@@ -599,18 +605,20 @@ module.exports = function(app, express, bodyParser, path) {
             );
         }
     });
-	
-	// c) GET /traffic-injuries/auto_com
+
+    // c) GET /traffic-injuries/auto_com
     app.get(BASE_API_URL + '/traffic-injuries/:auto_com', (req, res) => {
         var auto_com_url = req.params.auto_com;
 
         db.find({ auto_com: auto_com_url }, (err, docs) => {
             if (docs.length >= 1) {
-			res.send(docs.map((ti)=>{
-					delete ti._id;
-					return(ti);
-				}));
-				
+                res.send(
+                    docs.map(ti => {
+                        delete ti._id;
+                        return ti;
+                    })
+                );
+
                 console.log(
                     '\nSTART - SHOW THOSE DATA FROM DB\n' +
                         JSON.stringify(docs, null, 2) +
@@ -630,11 +638,13 @@ module.exports = function(app, express, bodyParser, path) {
 
         db.find({ auto_com: auto_com_url, year: parseInt(year_url) }, (err, docs) => {
             if (docs.length >= 1) {
-			res.send(docs.map((ti)=>{
-					delete ti._id;
-					return(ti);
-				})[0]);
-				
+                res.send(
+                    docs.map(ti => {
+                        delete ti._id;
+                        return ti;
+                    })[0]
+                );
+
                 console.log(
                     '\nSTART - SHOW THIS DATA FROM DB\n' +
                         JSON.stringify(docs, null, 2) +
@@ -665,7 +675,7 @@ module.exports = function(app, express, bodyParser, path) {
             }
         });
     });
-	
+
     // d) DELETE /traffic-injuries/auto_com/year
     app.delete(BASE_API_URL + '/traffic-injuries/:auto_com/:year', (req, res) => {
         var auto_com_url = req.params.auto_com;
