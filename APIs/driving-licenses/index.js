@@ -25,7 +25,7 @@ module.exports = function(app, express, bodyParser, path) {
             mot_women: 782,
             total_cars: 95064,
             total_mot: 7287,
-            rel_cars: 103.92,
+            rel_cars: 103.92, 
             rel_mot: 831.84
         },
         {
@@ -748,10 +748,10 @@ app.get(BASE_API_URL + '/driving-licenses/loadInitialData', (req, res) => {
 		if(req.query.cars_women) search["cars_women"] = parseInt(req.query.cars_women);
 		if(req.query.mot_men) search["mot_men"] = parseInt(req.query.mot_men);
 		if(req.query.mot_women) search["mot_women"] = parseInt(req.query.mot_women);
-		if(req.query.total_cars) search["total_cars"] = parseInt(req.query.to);
+		if(req.query.total_cars) search["total_cars"] = parseInt(req.query.total_cars);
 		if(req.query.total_mot) search["total_mot"] = parseInt(req.query.total_mot);
-		if(req.query.rel_cars) search["rel_cars"] = parseInt(req.query.rel_cars);
-		if(req.query.rel_mot) search["rel_mot"] = parseInt(req.query.rel_mot);
+		if(req.query.rel_cars) search["rel_cars"] = parseFloat(req.query.rel_cars);
+		if(req.query.rel_mot) search["rel_mot"] = parseFloat(req.query.rel_mot);
 		
         db
             .find(search)
