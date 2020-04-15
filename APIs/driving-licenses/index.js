@@ -720,15 +720,12 @@ module.exports = function(app, express, bodyParser, path) {
 
     // NEW GET LoadInitialData
     app.get(BASE_API_URL + '/driving-licenses/loadInitialData', (req, res) => {
-        console.log('New GET .../loadInitialData');
-
         db.insert(initialDrivingLicenses);
-        res.sendStatus(200);
-
+        res.send(initialDrivingLicenses);
         console.log(
-            'INITIAL DRIVING-LICENSES LOADED:' +
+            'START - LOAD INITIAL DATA\n' +
                 JSON.stringify(initialDrivingLicenses, null, 2) +
-                '\nFINISHED LOADING DRIVING-LICENSES'
+                '\nEND - LOAD INITIAL DATA'
         );
     });
 
@@ -741,18 +738,44 @@ app.get(BASE_API_URL + '/driving-licenses/loadInitialData', (req, res) => {
 
     // NEW a) GET /driving-licenses
     app.get(BASE_API_URL + '/driving-licenses', (req, res) => {
-        console.log('New GET .../driving-licenses');
-
-        db.find({}, (err, drivingLicenses) => {
-            drivingLicenses.forEach(dl => {
-                delete dl._id;
+		var limit = parseInt(req.query.limit);
+		var offset = parseInt(req.query.offset);
+		var search = {};
+		
+		if(req.query.auto_com) search["auto_com"] = req.query.auto_com;
+		if(req.query.year) search["year"] = parseInt(req.query.year);
+		if(req.query.cars_men) search["cars_men"] = parseInt(req.query.cars_men);
+		if(req.query.cars_women) search["cars_women"] = parseInt(req.query.cars_women);
+		if(req.query.mot_men) search["mot_men"] = parseInt(req.query.mot_men);
+		if(req.query.mot_women) search["mot_women"] = parseInt(req.query.mot_women);
+		if(req.query.total_cars) search["total_cars"] = parseInt(req.query.to);
+		if(req.query.total_mot) search["total_mot"] = parseInt(req.query.total_mot);
+		if(req.query.rel_cars) search["rel_cars"] = parseInt(req.query.rel_cars);
+		if(req.query.rel_mot) search["rel_mot"] = parseInt(req.query.rel_mot);
+		
+        db
+            .find(search)
+            .sort({ auto_com: 1, year: -1 , cars_men: -2, cars_women: -3, mot_men: -4, mot_women: -5, total_cars: -6, total_cars: -7, total_mot: -8, rel_cars: -9, rel_mot: -10})
+            .skip(offset)
+            .limit(limit)
+            .exec((err, docs) => {
+                if (docs.length == 0) {
+                    res.sendStatus(204);
+                    console.log('\nNO CONTENT TO SHOW');
+                } else {
+                    res.send(
+                        docs.map(dl => {
+                            delete dl._id;
+                            return dl;
+                        })
+                    );
+                    console.log(
+                        '\nSTART - SHOW ALL DATA OR AVAILABLE ON DB\n' +
+                            JSON.stringify(docs, null, 2) +
+                            '\nEND - SHOW ALL DATA OR AVAILABLE ON DB'
+                    );
+                }
             });
-
-            res.send(JSON.stringify(drivingLicenses, null, 2));
-            console.log(
-                '\nDATA SENT: ' + JSON.stringify(drivingLicenses, null, 2) + '\nFINISHED DATA SENT'
-            );
-        });
     });
 
     /*// GET DRIVING-LICENSES
@@ -764,21 +787,33 @@ app.get(BASE_API_URL + '/driving-licenses', (req, res) => {
 
     // NEW b) POST /traffic-injuries
     app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
-        console.log('New POST .../driving-licenses');
+        var newDrivingLicense = req.body;
 
-        var newDrivingLicenses = req.body;
-
-        if (newDrivingLicenses == '' || newDrivingLicenses.auto_com == null) {
-            res.sendStatus(400, 'BAD REQUEST');
-            console.log('\n400 - BAD REQUEST');
+        if (
+            newDrivingLicense.auto_com == null ||
+            newDrivingLicense.year == null ||
+            newDrivingLicense.cars_men == null ||
+            newDrivingLicense.cars_women == null ||
+            newDrivingLicense.mot_men == null ||
+			newDrivingLicense.mot_women == null ||
+			newDrivingLicense.total_cars == null ||
+			newDrivingLicense.total_mot == null ||
+			newDrivingLicense.rel_cars == null ||
+			newDrivingLicense.rel_mot == null ||
+            newDrivingLicense == ''
+        ) {
+            res.sendStatus(400);
+            console.log('\n400 - DRIVING LICENSE CAN NOT BE EMPTY OR NULL');
         } else {
-            db.insert(newDrivingLicenses);
-            console.log(newDrivingLicenses);
-            res.sendStatus(201, 'DRIVING LICENSE CREATED');
-            console.log('\n201 - DRIVING LICENSE CREATED');
+            db.insert(newDrivingLicense);
+            res.sendStatus(201);
+            console.log(
+                '\nSTART - ADD NEW DATA TO DB\n' +
+                    JSON.stringify(newDrivingLicense, null, 2) +
+                    '\nEND - ADD NEW DATA TO DB'
+            );
         }
     });
-
     /*// POST DRIVING-LICENSES
 
 app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
@@ -791,8 +826,191 @@ app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
         res.sendStatus(201, 'CREATED');
     }
 });*/
+	
+	    // c) GET /traffic-injuries/auto_com
+    app.get(BASE_API_URL + '/driving-licenses/:auto_com', (req, res) => {
+        var auto_com_url = req.params.auto_com;
 
-    // POST DRIVING-LICENSES/XXX (ERROR)
+        db.find({ auto_com: auto_com_url }, (err, docs) => {
+            if (docs.length >= 1) {
+                res.send(
+                    docs.map(dl => {
+                        delete dl._id;
+                        return dl;
+                    })
+                );
+
+                console.log(
+                    '\nSTART - SHOW THOSE DATA FROM DB\n' +
+                        JSON.stringify(docs, null, 2) +
+                        '\nEND - SHOW THOSE DATA FROM DB\n'
+                );
+            } else {
+                res.sendStatus(404);
+                console.log('\n404 - DRIVING LICENSES NOT FOUND');
+            }
+        });
+    });
+
+    // c) GET /traffic-injuries/auto_com/year
+    app.get(BASE_API_URL + '/driving-licenses/:auto_com/:year', (req, res) => {
+        var auto_com_url = req.params.auto_com;
+        var year_url = req.params.year;
+
+        db.find({ auto_com: auto_com_url, year: parseInt(year_url) }, (err, docs) => {
+            if (docs.length >= 1) {
+                res.send(
+                    docs.map(dl => {
+                        delete dl._id;
+                        return dl;
+                    })[0]
+                );
+
+                console.log(
+                    '\nSTART - SHOW THIS DATA FROM DB\n' +
+                        JSON.stringify(docs, null, 2) +
+                        '\nEND - SHOW THIS DATA FROM DB\n'
+                );
+            } else {
+                res.sendStatus(404);
+                console.log('\n404 - DRIVING LICENSES NOT FOUND');
+            }
+        });
+    });
+	
+	
+	 // d) DELETE /traffic-injuries/auto_com
+    app.delete(BASE_API_URL + '/driving-licenses/:auto_com', (req, res) => {
+        var auto_com_url = req.params.auto_com;
+
+        db.remove({ auto_com: auto_com_url }, { multi: true }, (err, numRemoved) => {
+            if (numRemoved == 0) {
+                res.sendStatus(404);
+                console.log('DRIVING LICENSES NOT FOUND');
+            } else {
+                res.sendStatus(200);
+                console.log(
+                    '\nSTART - DELETE THOSE DATA FROM DB\n' +
+                        numRemoved +
+                        '\nEND - DELETE THOSE DATA FROM DB\n'
+                );
+            }
+        });
+    });
+
+    // d) DELETE /traffic-injuries/auto_com/year
+    app.delete(BASE_API_URL + '/driving-licenses/:auto_com/:year', (req, res) => {
+        var auto_com_url = req.params.auto_com;
+        var year_url = req.params.year;
+
+        db.remove({ auto_com: auto_com_url, year: parseInt(year_url) }, {}, (err, numRemoved) => {
+            if (numRemoved == 0) {
+                res.sendStatus(404);
+                console.log('DRIVING LICENSE NOT FOUND');
+            } else {
+                res.sendStatus(200);
+                console.log(
+                    '\nSTART - DELETE THIS DATA FROM DB\n' +
+                        numRemoved +
+                        '\nEND - DELETE THIS DATA FROM DB\n'
+                );
+            }
+        });
+    });
+	
+	
+	 // e) PUT /driving-licenses/auto_com/year
+    app.put(BASE_API_URL + '/driving-licenses/:auto_com/:year', (req, res) => {
+        var newDrivingLicense = req.body;
+        var auto_com_url = req.params.auto_com;
+        var year_url = req.params.year;
+
+        if (
+            newDrivingLicense.auto_com == null ||
+            newDrivingLicense.year == null ||
+            newDrivingLicense.cars_men == null ||
+            newDrivingLicense.cars_women == null ||
+            newDrivingLicense.mot_men == null ||
+			newDrivingLicense.mot_women == null ||
+			newDrivingLicense.total_cars == null ||
+			newDrivingLicense.total_mot == null ||
+			newDrivingLicense.rel_cars == null ||
+			newDrivingLicense.rel_mot == null ||
+            newDrivingLicense == ''
+        ) {
+            res.sendStatus(400);
+            console.log('\n400 - DRIVING LICENSE CAN NOT BE EMPTY OR NULL');
+        } else {
+            db.update(
+                { auto_com: auto_com_url, year: parseInt(year_url) },
+                {
+                    auto_com: newDrivingLicense.auto_com,
+                    year: newDrivingLicense.year,
+                    cars_men: newDrivingLicense.cars_men,
+                    cars_women: newDrivingLicense.cars_women,
+                    mot_men: newDrivingLicense.mot_men,
+					mot_women: newDrivingLicense.mot_women,
+					total_cars: newDrivingLicense.total_cars,
+					total_mot: newDrivingLicense.total_mot,
+					rel_cars: newDrivingLicense.rel_cars,
+					rel_mot: newDrivingLicense.rel_mot
+                },
+                {},
+                (err, numReplaced) => {
+                    res.sendStatus(200);
+                    console.log(
+                        '\nSTART - UPDATE THIS DATA FROM DB\n' +
+                            numReplaced +
+                            '\nEND - UPDATE THIS DATA FROM DB\n'
+                    );
+                }
+            );
+        }
+    });
+	
+	    // f.1) POST /driving-licenses/auto_com/year
+    app.post(BASE_API_URL + '/driving-licenses/:auto_com', (req, res) => {
+        res.sendStatus(405);
+        console.log('METHOD NOT ALLOWED\n');
+    });
+
+    app.post(BASE_API_URL + '/driving-licenses/:auto_com/:year', (req, res) => {
+        res.sendStatus(405);
+        console.log('METHOD NOT ALLOWED\n');
+    });
+
+    // g) PUT /driving-licenses
+    // g.1) PUT /driving-licenses/auto_com
+    app.put(BASE_API_URL + '/driving-licenses', (req, res) => {
+        res.sendStatus(405);
+        console.log('METHOD NOT ALLOWED\n');
+    });
+
+    app.put(BASE_API_URL + '/driving-licenses/:auto_com', (req, res) => {
+        res.sendStatus(405);
+        console.log('METHOD NOT ALLOWED');
+    });
+
+    // h) DELETE /driving-licenses
+    app.delete(BASE_API_URL + '/driving-licenses', (req, res) => {
+        db.remove({}, { multi: true }, function(err, numRemoved) {
+            if (numRemoved >= 1) {
+                res.sendStatus(200);
+                console.log(
+                    '\nSTART - DELETE ALL DATA FROM DB\n' +
+                        numRemoved +
+                        '\nEND - DELETE ALL DATA FROM DB\n'
+                );
+            } else {
+                res.sendStatus(404);
+                console.log('NO DATA TO REMOVE');
+            }
+        });
+    });
+
+	//// OLD CODE //////
+	
+    /*// POST DRIVING-LICENSES/XXX (ERROR)
 
     app.post(BASE_API_URL + '/driving-licenses/:aut_com', (req, res) => {
         res.sendStatus(405, 'METHOD NOT ALLOW');
@@ -876,7 +1094,7 @@ app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
         } else {
             res.sendStatus(404, 'DRIVING LICENSES NOT FOUND');
         }
-    });
+    });*/
 
     console.log('Registered driving-licenses API!\n');
 };
