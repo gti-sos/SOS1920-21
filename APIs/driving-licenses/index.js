@@ -785,7 +785,7 @@ app.get(BASE_API_URL + '/driving-licenses', (req, res) => {
     console.log('Data sent:' + JSON.stringify(driving_licenses, null, 2));
 });*/
 
-    // NEW b) POST /traffic-injuries
+    // NEW b) POST /driving-licenses
     app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
         var newDrivingLicense = req.body;
 
@@ -827,7 +827,7 @@ app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
     }
 });*/
 	
-	    // c) GET /traffic-injuries/auto_com
+	    // c) GET /driving-licenses/auto_com
     app.get(BASE_API_URL + '/driving-licenses/:auto_com', (req, res) => {
         var auto_com_url = req.params.auto_com;
 
@@ -852,7 +852,7 @@ app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
         });
     });
 
-    // c) GET /traffic-injuries/auto_com/year
+    // c) GET /driving-licenses/auto_com/year
     app.get(BASE_API_URL + '/driving-licenses/:auto_com/:year', (req, res) => {
         var auto_com_url = req.params.auto_com;
         var year_url = req.params.year;
@@ -879,7 +879,7 @@ app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
     });
 	
 	
-	 // d) DELETE /traffic-injuries/auto_com
+	 // d) DELETE /driving-licenses/auto_com
     app.delete(BASE_API_URL + '/driving-licenses/:auto_com', (req, res) => {
         var auto_com_url = req.params.auto_com;
 
@@ -898,7 +898,7 @@ app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
         });
     });
 
-    // d) DELETE /traffic-injuries/auto_com/year
+    // d) DELETE /driving-licenses/auto_com/year
     app.delete(BASE_API_URL + '/driving-licenses/:auto_com/:year', (req, res) => {
         var auto_com_url = req.params.auto_com;
         var year_url = req.params.year;
