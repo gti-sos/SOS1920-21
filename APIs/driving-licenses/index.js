@@ -742,7 +742,7 @@ app.get(BASE_API_URL + '/driving-licenses/loadInitialData', (req, res) => {
 		var offset = parseInt(req.query.offset);
 		var search = {};
 		
-		if(req.query.auto_com) search["auto_com"] = req.query.auto_com;
+		if(req.query.aut_com) search["aut_com"] = req.query.aut_com;
 		if(req.query.year) search["year"] = parseInt(req.query.year);
 		if(req.query.cars_men) search["cars_men"] = parseInt(req.query.cars_men);
 		if(req.query.cars_women) search["cars_women"] = parseInt(req.query.cars_women);
@@ -755,7 +755,7 @@ app.get(BASE_API_URL + '/driving-licenses/loadInitialData', (req, res) => {
 		
         db
             .find(search)
-            .sort({ auto_com: 1, year: -1 , cars_men: -2, cars_women: -3, mot_men: -4, mot_women: -5, total_cars: -6, total_cars: -7, total_mot: -8, rel_cars: -9, rel_mot: -10})
+            .sort({ aut_com: 1, year: -1 , cars_men: -2, cars_women: -3, mot_men: -4, mot_women: -5, total_cars: -6, total_cars: -7, total_mot: -8, rel_cars: -9, rel_mot: -10})
             .skip(offset)
             .limit(limit)
             .exec((err, docs) => {
@@ -790,7 +790,7 @@ app.get(BASE_API_URL + '/driving-licenses', (req, res) => {
         var newDrivingLicense = req.body;
 
         if (
-            newDrivingLicense.auto_com == null ||
+            newDrivingLicense.aut_com == null ||
             newDrivingLicense.year == null ||
             newDrivingLicense.cars_men == null ||
             newDrivingLicense.cars_women == null ||
@@ -827,11 +827,11 @@ app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
     }
 });*/
 	
-	    // c) GET /driving-licenses/auto_com
-    app.get(BASE_API_URL + '/driving-licenses/:auto_com', (req, res) => {
-        var auto_com_url = req.params.auto_com;
+	    // c) GET /driving-licenses/aut_com
+    app.get(BASE_API_URL + '/driving-licenses/:aut_com', (req, res) => {
+        var aut_com_url = req.params.aut_com;
 
-        db.find({ auto_com: auto_com_url }, (err, docs) => {
+        db.find({ aut_com: aut_com_url }, (err, docs) => {
             if (docs.length >= 1) {
                 res.send(
                     docs.map(dl => {
@@ -852,12 +852,12 @@ app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
         });
     });
 
-    // c) GET /driving-licenses/auto_com/year
-    app.get(BASE_API_URL + '/driving-licenses/:auto_com/:year', (req, res) => {
-        var auto_com_url = req.params.auto_com;
+    // c) GET /driving-licenses/aut_com/year
+    app.get(BASE_API_URL + '/driving-licenses/:aut_com/:year', (req, res) => {
+        var aut_com_url = req.params.aut_com;
         var year_url = req.params.year;
 
-        db.find({ auto_com: auto_com_url, year: parseInt(year_url) }, (err, docs) => {
+        db.find({ aut_com: aut_com_url, year: parseInt(year_url) }, (err, docs) => {
             if (docs.length >= 1) {
                 res.send(
                     docs.map(dl => {
@@ -879,11 +879,11 @@ app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
     });
 	
 	
-	 // d) DELETE /driving-licenses/auto_com
-    app.delete(BASE_API_URL + '/driving-licenses/:auto_com', (req, res) => {
-        var auto_com_url = req.params.auto_com;
+	 // d) DELETE /driving-licenses/aut_com
+    app.delete(BASE_API_URL + '/driving-licenses/:aut_com', (req, res) => {
+        var aut_com_url = req.params.aut_com;
 
-        db.remove({ auto_com: auto_com_url }, { multi: true }, (err, numRemoved) => {
+        db.remove({ aut_com: aut_com_url }, { multi: true }, (err, numRemoved) => {
             if (numRemoved == 0) {
                 res.sendStatus(404);
                 console.log('DRIVING LICENSES NOT FOUND');
@@ -898,12 +898,12 @@ app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
         });
     });
 
-    // d) DELETE /driving-licenses/auto_com/year
-    app.delete(BASE_API_URL + '/driving-licenses/:auto_com/:year', (req, res) => {
-        var auto_com_url = req.params.auto_com;
+    // d) DELETE /driving-licenses/aut_com/year
+    app.delete(BASE_API_URL + '/driving-licenses/:aut_com/:year', (req, res) => {
+        var aut_com_url = req.params.aut_com;
         var year_url = req.params.year;
 
-        db.remove({ auto_com: auto_com_url, year: parseInt(year_url) }, {}, (err, numRemoved) => {
+        db.remove({ aut_com: aut_com_url, year: parseInt(year_url) }, {}, (err, numRemoved) => {
             if (numRemoved == 0) {
                 res.sendStatus(404);
                 console.log('DRIVING LICENSE NOT FOUND');
@@ -919,14 +919,14 @@ app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
     });
 	
 	
-	 // e) PUT /driving-licenses/auto_com/year
-    app.put(BASE_API_URL + '/driving-licenses/:auto_com/:year', (req, res) => {
+	 // e) PUT /driving-licenses/aut_com/year
+    app.put(BASE_API_URL + '/driving-licenses/:aut_com/:year', (req, res) => {
         var newDrivingLicense = req.body;
-        var auto_com_url = req.params.auto_com;
+        var aut_com_url = req.params.aut_com;
         var year_url = req.params.year;
 
         if (
-            newDrivingLicense.auto_com == null ||
+            newDrivingLicense.aut_com == null ||
             newDrivingLicense.year == null ||
             newDrivingLicense.cars_men == null ||
             newDrivingLicense.cars_women == null ||
@@ -940,11 +940,11 @@ app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
         ) {
             res.sendStatus(400);
             console.log('\n400 - DRIVING LICENSE CAN NOT BE EMPTY OR NULL');
-        } else {
+        } else  {
             db.update(
-                { auto_com: auto_com_url, year: parseInt(year_url) },
+                { aut_com: aut_com_url, year: parseInt(year_url) },
                 {
-                    auto_com: newDrivingLicense.auto_com,
+                    aut_com: newDrivingLicense.aut_com,
                     year: newDrivingLicense.year,
                     cars_men: newDrivingLicense.cars_men,
                     cars_women: newDrivingLicense.cars_women,
@@ -968,25 +968,25 @@ app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
         }
     });
 	
-	    // f.1) POST /driving-licenses/auto_com/year
-    app.post(BASE_API_URL + '/driving-licenses/:auto_com', (req, res) => {
+	    // f.1) POST /driving-licenses/aut_com/year
+    app.post(BASE_API_URL + '/driving-licenses/:aut_com', (req, res) => {
         res.sendStatus(405);
         console.log('METHOD NOT ALLOWED\n');
     });
 
-    app.post(BASE_API_URL + '/driving-licenses/:auto_com/:year', (req, res) => {
+    app.post(BASE_API_URL + '/driving-licenses/:aut_com/:year', (req, res) => {
         res.sendStatus(405);
         console.log('METHOD NOT ALLOWED\n');
     });
 
     // g) PUT /driving-licenses
-    // g.1) PUT /driving-licenses/auto_com
+    // g.1) PUT /driving-licenses/aut_com
     app.put(BASE_API_URL + '/driving-licenses', (req, res) => {
         res.sendStatus(405);
         console.log('METHOD NOT ALLOWED\n');
     });
 
-    app.put(BASE_API_URL + '/driving-licenses/:auto_com', (req, res) => {
+    app.put(BASE_API_URL + '/driving-licenses/:aut_com', (req, res) => {
         res.sendStatus(405);
         console.log('METHOD NOT ALLOWED');
     });
@@ -1007,6 +1007,20 @@ app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
             }
         });
     });
+	
+	function existDrivingLicense(aut_com_url,year_url){
+		var result;
+		
+		        db.find({ aut_com: aut_com_url, year: parseInt(year_url) }, (err, docs) => {
+            if (docs.length >= 1) {
+				result = 1;
+            } else {
+				result =0;
+            }
+        });
+		//console.log(result);
+		return result;
+	}
 
 	//// OLD CODE //////
 	
