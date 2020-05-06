@@ -8,18 +8,18 @@
 
 	import Home from './Home.svelte';
 	import GUI1 from './GUI1/Home.svelte';
-
+	import GUI2 from './GUI2/Home.svelte';
 
 	const routes = {
 		"/": Home,
 		"/contact/:contactName": EditContact,
 		"/gui1": GUI1,
-		"/gui2": GUI1,
+		"/gui2": GUI2,
 		"*": NotFound
 	};
 </script>
 
 <main>
-	<h1>Contact Manager</h1>
+	<h1>Contenido</h1>
 	<Router {routes} />
 </main>

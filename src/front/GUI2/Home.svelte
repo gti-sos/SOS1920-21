@@ -1,1 +1,3 @@
-This is GUI2
+<main>
+    This is GUI 2
+</main>
