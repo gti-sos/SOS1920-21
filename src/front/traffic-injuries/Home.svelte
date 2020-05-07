@@ -19,10 +19,10 @@
 	let moreData = true; 
 
 	// Search
-	let campo1 = "";
-	let valor1 = "";
-	let campo2 = "";
-	let valor2 = "";
+	let firstField = "";
+	let firstValue = "";
+	let secondField = "";
+	let secondValue = "";
 
 	// Alerts
 	let infoAlertStatus="";
@@ -134,20 +134,20 @@
 		});
 	}
 	
-	async function search(campo1, valor1, campo2, valor2) {
+	async function search(firstField, firstValue, secondField, secondValue) {
 		offset = 0;
 		currentPage = 1; 
 		moreData = false;
-		console.log("Searching data " + campo1 + " = " + valor1 + " and " + campo2 + " = " + valor2);
+		console.log("Searching data " + firstField + " = " + firstValue + " and " + secondField + " = " + secondValue);
 		
 		var url = "/api/v2/traffic-injuries";
 		
-		if (campo1 != "" && campo2 != "" && valor1 != "" && valor2 != "") {
-			url = url + "?" + campo1 + "=" + valor1 + "&" + campo2 + "=" + valor2; 
-		}else if(campo1 == "" && campo2 != "" && valor2 != ""){
-			url = url + "?" + campo2 + "=" + valor2;
-		}else if(campo1 != "" && campo2 == "" && valor1 != ""){
-			url = url + "?" + campo1 + "=" + valor1;
+		if (firstField != "" && secondField != "" && firstValue != "" && secondValue != "") {
+			url = url + "?" + firstField + "=" + firstValue + "&" + secondField + "=" + secondValue; 
+		}else if(firstField == "" && secondField != "" && secondValue != ""){
+			url = url + "?" + secondField + "=" + secondValue;
+		}else if(firstField != "" && secondField == "" && firstValue != ""){
+			url = url + "?" + firstField + "=" + firstValue;
 		}
 			
 		console.log("Preview search url " + url);
@@ -192,7 +192,7 @@
 			<tr>
 				<td>
 					<label>Buscar por:</label>
-					<Input type="select" name="inputCampo" id="inputCampo" bind:value="{campo1}">
+					<Input type="select" name="inputCampo" id="inputCampo" bind:value="{firstField}">
 						<option disabled selected></option>
 						<option value="auto_com">Comunidad Autónoma</option>
 						<option value="year">Año</option>
@@ -203,14 +203,14 @@
 				</td>
 				<td>
 					<label>Valor:</label>
-					<Input type="text"  name="inputValor" id="inputValor" bind:value="{valor1}"></Input>
+					<Input type="text"  name="inputValor" id="inputValor" bind:value="{firstValue}"></Input>
 				
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<label>Buscar por:</label>
-					<Input type="select" name="inputCampo" id="inputCampo" bind:value="{campo2}">
+					<Input type="select" name="inputCampo" id="inputCampo" bind:value="{secondField}">
 						<option disabled selected></option>
 						<option value="auto_com">Comunidad Autónoma</option>
 						<option value="year">Año</option>
@@ -221,7 +221,7 @@
 				</td>
 				<td>
 					<label>Valor:</label>
-					<Input type="text"  name="inputValor" id="inputValor" bind:value="{valor2}"></Input>
+					<Input type="text"  name="inputValor" id="inputValor" bind:value="{secondValue}"></Input>
 				
 				</td>
 			</tr>
@@ -229,7 +229,7 @@
 		</table>
 	</FormGroup>
 
-	<Button style="margin-bottom:3%;" color="primary" on:click="{search(campo1, valor1,campo2, valor2)}" class="button-search" >Buscar </Button>
+	<Button style="margin-bottom:3%;" color="primary" on:click="{search(firstField, firstValue,secondField, secondValue)}" class="button-search" >Buscar </Button>
 		
 	<h3>Recursos</h3>
 		<Table responsive bordered>

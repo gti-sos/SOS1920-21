@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {"auto_com":"murcia","year":2016,"accident":733,"dead":25,"injure":958,"_id":"0mdCkiryeb7LFCOU"}
 {"auto_com":"castile-la-mancha","year":2015,"accident":4503,"dead":181,"injure":6192,"_id":"1iqcOFcEWf7KnNBf"}
 {"auto_com":"castile-la-mancha","year":2017,"accident":4492,"dead":164,"injure":5877,"_id":"2IFs0hCJRdplCDaC"}
@@ -70,3 +71,5 @@
 {"auto_com":"asturias","year":2016,"accident":2258,"dead":35,"injure":3156,"_id":"ySIqPkHQlGXYDYeE"}
 {"auto_com":"aragon","year":2016,"accident":2239,"dead":73,"injure":2991,"_id":"zLn8LZKE8z0YCcDj"}
 {"auto_com":"castile-la-mancha","year":2018,"accident":4425,"dead":176,"injure":5869,"_id":"zzJhP1LBpDObC8he"}
+=======
+>>>>>>> 505c0cc9e851d5def8ebb55f8c9c22665dc4b504
