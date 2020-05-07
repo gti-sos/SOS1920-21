@@ -704,14 +704,6 @@ module.exports = function(app, express, bodyParser, path) {
 
     var driving_licenses_aux = initialDrivingLicenses;
 
-    // README info
-    app.use('/', express.static('./public'));
-
-    // Testing Cool
-    app.get('/cool', (request, response) => {
-        response.send('<html>' + cool() + '</html>');
-    });
-
     ////// POSTMAN /////////////////////////
 
     app.get('/api/v1/driving-licenses/docs', (req, res) => {

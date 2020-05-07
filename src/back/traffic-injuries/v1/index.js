@@ -519,14 +519,6 @@ module.exports = function(app, express, bodyParser, path) {
             injure: 1278
         }
     ];
-	
-    // README info
-    app.use('/', express.static('./public'));
-
-    // Testing Cool
-    app.get('/cool', (request, response) => {
-        response.send('<html>' + cool() + '</html>');
-    });
 
     // Redirect to postman url
     app.get('/api/v1/traffic-injuries/docs', (req, res) => {

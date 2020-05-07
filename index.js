@@ -14,10 +14,6 @@ app.use(bodyParser.json());
 
 app.use('/', express.static('./public'));
 
-app.get('/cool', (request, response) => {
-    response.send('<html>' + cool() + '</html>');
-});
-
 // ==================================================
 // ================== antpritag =====================
 // ==================================================

@@ -3,7 +3,7 @@ module.exports = function(app, express, bodyParser, path) {
 
     const dataStore = require('nedb');
 
-    const dbFileName = path.join(__dirname, '/traffic-injuries.db');
+    const dbFileName = path.join(__dirname, '/traffic-injuries.json');
     const BASE_API_URL = '/api/v2';
 
     app.use(bodyParser.json());
@@ -519,14 +519,6 @@ module.exports = function(app, express, bodyParser, path) {
             injure: 1278
         }
     ];
-	
-    // README info
-    app.use('/', express.static('./public'));
-
-    // Testing Cool
-    app.get('/cool', (request, response) => {
-        response.send('<html>' + cool() + '</html>');
-    });
 
     // Redirect to postman url
     app.get('/api/v2/traffic-injuries/docs', (req, res) => {
