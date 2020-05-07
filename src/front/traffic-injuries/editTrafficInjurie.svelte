@@ -21,7 +21,6 @@
         const res = await fetch("/api/v2/traffic-injuries/" + params.auto_com + "/" + params.year);
 		
         if (res.ok) {
-            console.log("Ok:");
             const json = await res.json();
             trafficInjury = json;
             updatedAutoCom = params.auto_com;
@@ -29,7 +28,7 @@
             updatedAccident = trafficInjury.accident;
 			updatedDead = trafficInjury.dead;
             updatedInjure = trafficInjury.injure;
-            console.log("Received traffic-injury.");	
+            console.log("Received traffic-injury");	
 		}
 		else if(res.status == 404){
 			window.alert("El recurso: " + params.auto_com + " " + params.year + " no existe");
@@ -38,14 +37,13 @@
 
 
     async function updateTrafficInjury() {
-		infoAlertStatus = ""
-        console.log("Updating traffic-injury..." + JSON.stringify(params.auto_com));
+        console.log("Updating traffic-injury (auto_com = " + params.auto_com + " and year = " + params.year +  ")");
 		
         const res = await fetch("/api/v2/traffic-injuries/" + params.auto_com + "/" + params.year, {
             method: "PUT",
             body: JSON.stringify({
                 auto_com: params.auto_com,
-                year: params.year,
+                year: parseInt(params.year),
                 accident: updatedAccident,
 				dead: updatedDead,
 				injure: updatedInjure
@@ -56,11 +54,12 @@
         }).then(function (res) {
             getTrafficInjury();
 			if(res.ok){	
-				infoAlertStatus = res.status + ": " + res.statusText + ". Dato actualizado con éxito";
-				console.log("OK!" + infoAlertStatus);
+                infoAlertStatus = res.status + " - " + res.statusText;
+			    infoAlertText =  "Recurso actualizado correctamente.";
+				console.log("Resource modified");
 
 			}else if(res.status == 400){
-				window.alert("Los datos que se intentan insertar no son válidos");
+				window.alert("No es posible realizar el cambio deseado.");
 			} 
         });
     }

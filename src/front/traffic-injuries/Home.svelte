@@ -58,7 +58,8 @@
 	}
 
 	async function insertTrafficInjury() {
-
+		infoAlertStatus="";
+		infoAlertText="";
 		console.log("Inserting trafficInjury..." + JSON.stringify(newTrafficInjury));
 
 		const res = await fetch("/api/v2/traffic-injuries", {
@@ -69,9 +70,28 @@
 			}
 		}).then(function (res) {
 			getTrafficInjuries();
-		});
-
-	}
+			if(res.ok){
+				newTrafficInjury = {
+					auto_com: "",
+					year: "",
+					accident: "",
+					dead: "",
+					injure: ""
+				};
+				infoAlertStatus = res.status + " - " + res.statusText;
+				infoAlertText =  "Recurso insertado correctamente.";
+			}
+			else if (res.status == 400) {
+           		window.alert("ERROR: Debe completar todos los campos");
+				
+			}
+			else if (res.status == 409) {
+				window.alert("ERROR: el dato " + newTrafficInjury.auto_com+ " " + newTrafficInjury.year + " ya existe.");
+				
+			}
+        });
+ 
+    }
 
 	async function deleteTrafficInjuries(auto_com) {
 		const res = await fetch("/api/v2/traffic-injuries/" + auto_com, {

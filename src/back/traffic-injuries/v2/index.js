@@ -527,6 +527,7 @@ module.exports = function(app, express, bodyParser, path) {
 
     // GET LoadInitialData
     app.get(BASE_API_URL + '/traffic-injuries/loadInitialData', (req, res) => {
+        db.remove({},{multi:true});
         db.insert(initialTrafficInjuries);
         res.send(initialTrafficInjuries);
         console.log(
@@ -580,28 +581,26 @@ module.exports = function(app, express, bodyParser, path) {
 
     // b) POST /traffic-injuries
     app.post(BASE_API_URL + '/traffic-injuries', (req, res) => {
-        var newTrafficInjury = req.body;
+		var newTrafficInjury = req.body;
+		var auto_com = req.body.auto_com;
+		var year = parseInt(req.body.year);
 
-        if (
-            newTrafficInjury.auto_com == null ||
-            newTrafficInjury.year == null ||
-            newTrafficInjury.accident == null ||
-            newTrafficInjury.dead == null ||
-            newTrafficInjury.injure == null ||
-            newTrafficInjury == ''
-        ) {
-            res.sendStatus(400);
-            console.log('\n400 - TRAFFIC INJURY CAN NOT BE EMPTY OR NULL');
-        } else {
-            db.insert(newTrafficInjury);
-            res.sendStatus(201);
-            console.log(
-                '\nSTART - ADD NEW DATA TO DB\n' +
-                    JSON.stringify(newTrafficInjury, null, 2) +
-                    '\nEND - ADD NEW DATA TO DB'
-            );
-        }
-    });
+		db.find({"auto_com": auto_com, "year": year},(error, docs)=>{
+			if(docs.length != 0){	//Si docs es distinto de 0 es que ya existe algun recurso con esa provincia y año
+				console.log("409. El objeto ya existe");
+				res.sendStatus(409);
+			}else if(!newTrafficInjury.auto_com || !newTrafficInjury.year || !newTrafficInjury.accident || !newTrafficInjury.dead 
+					  || !newTrafficInjury.injure || Object.keys(newTrafficInjury).length != 5){
+				
+				console.log("El número de campos no es 5");
+				res.sendStatus(400);
+			}else{
+				console.log("Los datos que se desean insertar son correctos");
+				db.insert(newTrafficInjury);
+				res.sendStatus(201);
+			}
+		});
+	});
 
     // c) GET /traffic-injuries/auto_com
     app.get(BASE_API_URL + '/traffic-injuries/:auto_com', (req, res) => {
