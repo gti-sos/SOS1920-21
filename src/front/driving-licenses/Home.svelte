@@ -46,6 +46,8 @@
 	let search = "";
     let value = "";
 
+    let combinada = "";
+
 	onMount(getDrivingLicenses);
 
 	async function getDrivingLicenses() {
@@ -215,7 +217,7 @@
                     </tr>
                 </tbody>
             </table>	
-
+            {/if}
 	{#await drivingLicenses}
 		Loading drivingLicenses...
 	{:then drivingLicenses}

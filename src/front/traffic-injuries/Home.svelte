@@ -51,10 +51,10 @@
 		}
 	}
 
-	function incrementOffset(valor) {
+	function upOffset(valor) {
 		offset += valor;
 		currentPage += valor;
-		getTourism();
+		getTrafficInjuries();
 	}
 
 	async function insertTrafficInjury() {
@@ -256,16 +256,16 @@
 		</Table>
 	{/await}
 
-	<Pagination ariaLabel="Cambiar de página">
+	<br><div><Pagination ariaLabel="Cambiar de página">
 
 		<PaginationItem class="{currentPage === 1 ? 'disabled' : ''}">
-		  <PaginationLink previous href="#/traffic-injuries" on:click="{() => incrementOffset(-1)}" />
+		  <PaginationLink previous href="#/traffic-injuries" on:click="{() => upOffset(-1)}" />
 		</PaginationItem>
 		
 		<!-- If we are not in the first page-->
 		{#if currentPage != 1}
 		<PaginationItem>
-			<PaginationLink href="#/traffic-injuries" on:click="{() => incrementOffset(-1)}" >{currentPage - 1}</PaginationLink>
+			<PaginationLink href="#/traffic-injuries" on:click="{() => upOffset(-1)}" >{currentPage - 1}</PaginationLink>
 		</PaginationItem>
 		{/if}
 		<PaginationItem active>
@@ -275,14 +275,14 @@
 		<!-- If there are more elements-->
 		{#if moreData}
 		<PaginationItem >
-			<PaginationLink href="#/traffic-injuries" on:click="{() => incrementOffset(1)}">{currentPage + 1}</PaginationLink>
+			<PaginationLink href="#/traffic-injuries" on:click="{() => upOffset(1)}">{currentPage + 1}</PaginationLink>
 		</PaginationItem>
 		{/if}
 
 		<PaginationItem class="{moreData ? '' : 'disabled'}">
-			<PaginationLink next href="#/traffic-injuries" on:click="{() => incrementOffset(1)}"/>
+			<PaginationLink next href="#/traffic-injuries" on:click="{() => upOffset(1)}"/>
 		</PaginationItem>
 
 	</Pagination>
-
+	</div>
 </main>

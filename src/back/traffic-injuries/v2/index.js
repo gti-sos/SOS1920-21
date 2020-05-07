@@ -555,7 +555,12 @@ module.exports = function(app, express, bodyParser, path) {
             .limit(limit)
             .exec((err, docs) => {
                 if (docs.length == 0) {
-                    res.sendStatus(204);
+                    res.send(
+                        docs.map(ti => {
+                            delete ti._id;
+                            return ti;
+                        })
+                    );
                     console.log('\nNO CONTENT TO SHOW');
                 } else {
                     res.send(
