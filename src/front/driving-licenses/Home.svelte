@@ -4,7 +4,9 @@
 	} from "svelte";
 
 	import { Table, Button } from 'sveltestrap';
-
+	import {Pagination, PaginationItem, PaginationLink} from 'sveltestrap';
+	import Input from "sveltestrap/src/Input.svelte";
+	import FormGroup from "sveltestrap/src/FormGroup.svelte";
 	let drivingLicenses = [];
 	let newDrivingLicense = {
 		aut_com: "",
@@ -19,22 +21,69 @@
         rel_mot: ""
 	};
 
+	let SearchDrivingLicense = {
+		aut_com: "",
+		year: "",
+		cars_men: "",
+		cars_women: "",
+		mot_men: "",
+        mot_women: "",
+        total_cars: "",
+        total_mot: "",
+        rel_cars: "",
+        rel_mot: ""
+	};
+
+	let numObject = 10;
+    let offset = 0;
+	let currentPage = 1; 
+	let moreData = true; 
+
+	let successMsg = "";
+    let success = "";
+    let errorMsg = "";
+	
+	let search = "";
+    let value = "";
+
 	onMount(getDrivingLicenses);
 
 	async function getDrivingLicenses() {
+		const res = await fetch("/api/v2/driving-licenses?offset=" + numObject * offset + "&limit=" + numObject);
+        const resNext = await fetch("/api/v2/driving-licenses?offset="  + numObject * (offset + 1) + "&limit=" + numObject);
 
 		console.log("Fetching DrivingLicenses...");
-		const res = await fetch("/api/v2/driving-licenses");
+		
+		 if (res.ok && resNext.ok) {
+            console.log("OK: ");
+            const json = await res.json();
+            const jsonNext = await resNext.json();
+            drivingLicenses = json;
+            if (jsonNext.length == 0) {
+                moreData = false;
+            } else {
+                moreData = true;
+            }
+            console.log("Received " + drivingLicenses.length + "drivingLicenses.")
+        } else {
+            console.log("ERROR!");
+        }
+    }
 
-		if (res.ok) {
-			console.log("Ok:");
-			const json = await res.json();
-			drivingLicenses = json;
-			console.log("Received " + drivingLicenses.length + " drivingLicenses.");
-		} else {
-			console.log("ERROR!");
-		}
-	}
+	    async function loadInitialData() {
+        const res = await fetch("/api/v2/driving-licenses/loadInitialData", {
+            method: "GET"
+        }).then(function (res) {
+            getDrivingLicenses();
+            if (res.ok) {
+                successMsg = res.status + ": " + res.statusText;
+                console.log(successMsg);
+                success = "Los datos iniciales se han introducido correctamente."
+            };
+        });
+    }
+
+
 
 	async function insertDrivingLicense() {
 
@@ -48,22 +97,125 @@
 			}
 		}).then(function (res) {
 			getDrivingLicenses();
-		});
+ if (res.ok) {
+                successMsg = res.status + ": " + res.statusText;
+                console.log(successMsg);
+                success = "El dato " +newDrivingLicense.aut_com + " " + newDrivingLicense.year + " ha sido insertado con exito.";
+            } else if (res.status == 400){
+                errorMsg = res.status + ": " + res.statusText;
+                window.alert("Error! Rellene todos los campos.");
+                console.log(errorMsg);
+				            } else if (res.status == 409) {
+                errorMsg = res.status + ": " + res.statusText;
+                window.alert("Error! El recurso " + newDrivingLicense.aut_com + " " + newDrivingLicense.year + " ya existe.");
+                console.log(errorMsg);
+            };
+        });
 
 	}
-	async function deleteDrivingLicense(name) {
-		const res = await fetch("/api/v2/driving-licenses/" + name, {
+    async function deleteDrivingLicense(aut_com, year) {
+        console.log("Deleting DrivingLicenses...");
+		const res = await fetch("/api/v2/driving-licenses/"+aut_com+"/"+year, {
 			method: "DELETE"
 		}).then(function (res) {
-			getDrivingLicenses();
+            getDrivingLicenses();
+            if (res.ok) {
+                successMsg = res.status + ": " + res.statusText;
+                console.log(successMsg);
+                success = "El dato " + aut_com + " " + year + " se ha borrado correctamente."
+            } else if (res.status == 404) {
+                errorMsg = res.status + ": " + res.statusText;
+                window.alert("Error! El dato " + aut_com + " " + year + " no se ha podido borrar.");
+                console.log(errorMsg);
+            };
 		});
+    }
+		    async function deleteAllDrivingLicenses() {
+	    console.log("Deleting All DrivingLicenses ...");
+		const res = await fetch("/api/v2/driving-licenses", {
+			method: "DELETE"
+		}).then(function (res) {
+            getDrivingLicenses();
+            if (res.ok) {
+                successMsg = res.status + ": " + res.statusText;
+                console.log(successMsg);
+                success = "Los datos se han borrado correctamente."
+            };
+		});
+    }
+
+	    function upOffset (numPag) {
+		offset += numPag;
+		currentPage += numPag;
+		getDrivingLicenses();
 	}
+
+	    async function findAutCom(search, value) {
+        offset = 0;
+		currentPage = 1; 
+        moreData = false;
+        
+        console.log("Searching " + value + " for " + search + " DrivingLicenses...");
+        var url = "/api/v2/driving-licenses";
+        if (search != "" && value != "") {
+            url = url + "?" + search + "=" + value;
+        }
+        const res = await fetch(url);
+        if (res.ok) {
+            console.log("OK: ");
+            const json = await res.json();
+            DrivingLicenses = json;
+            successMsg = res.status + ": " + res.statusText;
+            console.log(successMsg);
+            success = "Se han encontrado " + DrivingLicenses.length + " datos en la busqueda."
+            console.log("Found " + DrivingLicenses.length + "driving-licenses.")
+        } else {
+            window.alert("ERROR: Introduzca correctamente los value para la busqueda.");
+            errorMsg = res.status + ": " + res.statusText;
+            console.log("ERROR!" + errorMsg);
+        }
+    }
+
+	    
 </script>
 
 <main>
     <h1>Bienvenido a driving-licenses</h1>
     <br><p><Button color="info" outline href="/">Volver a Inicio</Button></p>
-    
+	<br><p><Button  color="primary" on:click="{loadInitialData}">Cargar valores predeterminados</Button></p>
+	<br><p><Button  color="primary" on:click="{deleteAllDrivingLicenses}">Borrar todo</Button></p>
+    <br><input type=checkbox bind:checked={combinada}> <strong>Hacer busqueda con 2 parametros</strong><br>
+        {#if combinada}
+            <table style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th><label>Buscar por:</label></th>
+                        <th><label>Valor:</label></th>
+                        <th><label>Buscar por:</label></th>
+                        <th><label>Valor:</label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <Input type="select" name="busqueda" id="busqueda" bind:value="{search}">
+                                <option disabled selected></option>
+                                <option value="aut_com">Comunidad Autónoma</option>
+								<option value="year">Año</option>
+							</Input>
+						</td>	
+						<td>
+                                <Input type="text" name="valor" id="valor" bind:value="{value}"></Input>
+                        </td>
+					</tr>
+                    <tr>
+                        <td style="width: 25%;">
+                            <Button color="primary" on:click="{findAutCom(search, value)}" class="button-search">Buscar</Button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>	
+
 	{#await drivingLicenses}
 		Loading drivingLicenses...
 	{:then drivingLicenses}
@@ -111,12 +263,35 @@
                         <td>{drivingLicense.total_mot}</td>
                         <td>{drivingLicense.rel_cars}</td>
                         <td>{drivingLicense.rel_mot}</td>
-						<td><Button outline color="danger" on:click="{deleteDrivingLicense(drivingLicense.aut_com)}">Eliminar</Button></td>
+						<td><Button outline color="danger" on:click="{deleteDrivingLicense(drivingLicense.aut_com,drivingLicense.year)}">Eliminar</Button></td>
 					</tr>
 				{/each}
 			</tbody>
 		</Table>
 	{/await}
+	 <Pagination ariaLabel="Cambiar de página" style="padding-left: 45%;">
 
+        <PaginationItem class="{currentPage === 1 ? 'disabled' : ''}">
+            <PaginationLink previous href="#/driving-licenses" on:click="{() => upOffset(-1)}" />
+        </PaginationItem>
+        
+        {#if currentPage != 1}
+            <PaginationItem>
+                <PaginationLink href="#/driving-licenses" on:click="{() => upOffset(-1)}" >{currentPage - 1}</PaginationLink>
+            </PaginationItem>
+        {/if}
+        <PaginationItem active>
+            <PaginationLink href="#/driving-licenses" >{currentPage}</PaginationLink>
+        </PaginationItem>
+        
+        {#if moreData}
+            <PaginationItem >
+                <PaginationLink href="#/driving-licenses" on:click="{() => upOffset(1)}">{currentPage + 1}</PaginationLink>
+            </PaginationItem>
+        {/if}
+        <PaginationItem class="{moreData ? '' : 'disabled'}">
+            <PaginationLink next href="#/driving-licenses" on:click="{() => upOffset(1)}"/>
+        </PaginationItem>  
+    </Pagination>
 
 </main>

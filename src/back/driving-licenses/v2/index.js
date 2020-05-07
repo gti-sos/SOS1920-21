@@ -3,7 +3,7 @@ module.exports = function(app, express, bodyParser, path) {
 
     const dataStore = require('nedb');
 
-    const dbFileName = path.join(__dirname, '/driving-licenses.db');
+    const dbFileName = path.join(__dirname, '/driving-licenses.json');
     const BASE_API_URL = '/api/v2';
 
     app.use(bodyParser.json());
@@ -778,34 +778,40 @@ app.get(BASE_API_URL + '/driving-licenses', (req, res) => {
 });*/
 
     // NEW b) POST /driving-licenses
-    app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
+	app.post(BASE_API_URL+"/driving-licenses",(req,res) =>{
         var newDrivingLicense = req.body;
+        var aut_com = req.body.aut_com;
+        var year = req.body.year;
 
-        if (
-            newDrivingLicense.aut_com == null ||
-            newDrivingLicense.year == null ||
-            newDrivingLicense.cars_men == null ||
-            newDrivingLicense.cars_women == null ||
-            newDrivingLicense.mot_men == null ||
-			newDrivingLicense.mot_women == null ||
-			newDrivingLicense.total_cars == null ||
-			newDrivingLicense.total_mot == null ||
-			newDrivingLicense.rel_cars == null ||
-			newDrivingLicense.rel_mot == null ||
-            newDrivingLicense == ''
-        ) {
-            res.sendStatus(400);
-            console.log('\n400 - DRIVING LICENSE CAN NOT BE EMPTY OR NULL');
-        } else {
-            db.insert(newDrivingLicense);
-            res.sendStatus(201);
-            console.log(
-                '\nSTART - ADD NEW DATA TO DB\n' +
-                    JSON.stringify(newDrivingLicense, null, 2) +
-                    '\nEND - ADD NEW DATA TO DB'
-            );
-        }
-    });
+		db.find({"aut_com":aut_com,"year":year}, (err, drivingLicense) => {
+			if(drivingLicense!=0){
+				res.sendStatus(409,"OBJECT ALREADY EXISTS");
+				console.log("El dato ya existe");
+            } else if(newDrivingLicense.aut_com=="" || newDrivingLicense.year=="" || newDrivingLicense.cars_men=="" || 
+                newDrivingLicense.cars_women=="" ||  newDrivingLicense.mot_men=="" || newDrivingLicense.mot_women==""
+                || newDrivingLicense.total_cars=="" ||  newDrivingLicense.total_mot=="" || newDrivingLicense.rel_cars==""
+                || newDrivingLicense.rel_mot=="") {
+				res.sendStatus(400,"BAD REQUEST");
+				console.log("The format is incorrect");
+			} else {
+				db.insert(newAccident);
+				res.sendStatus(201,"CREATED");
+				console.log("Objet created with exit");
+			}
+		})
+	});
+
+    /*newDrivingLicense.aut_com == null ||
+    newDrivingLicense.year == null ||
+    newDrivingLicense.cars_men == null ||
+    newDrivingLicense.cars_women == null ||
+    newDrivingLicense.mot_men == null ||
+    newDrivingLicense.mot_women == null ||
+    newDrivingLicense.total_cars == null ||
+    newDrivingLicense.total_mot == null ||
+    newDrivingLicense.rel_cars == null ||
+    newDrivingLicense.rel_mot == null ||
+    newDrivingLicense == ''*/
     /*// POST DRIVING-LICENSES
 
 app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
