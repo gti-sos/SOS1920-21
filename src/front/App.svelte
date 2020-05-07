@@ -4,12 +4,14 @@
 
 	import Home from './Home.svelte';
 	import Info from './Info.svelte';
+	import DL from './driving-licenses/Home.svelte';
 	import TI from './traffic-injuries/Home.svelte';
 	import NotFound from './NotFound.svelte';
 
 	const routes = {
 		"/": Home,
 		"/info": Info,
+		"/driving-licenses": DL,
 		"/traffic-injuries": TI,
 		"*": NotFound
 	};
