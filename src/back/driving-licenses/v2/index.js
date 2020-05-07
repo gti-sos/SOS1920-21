@@ -1091,7 +1091,7 @@ app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
         }
     });
 
-    // DELETE DRIVING-LICENSES/XXX
+    // DELETE DRIVING-LICENSES/XXXX
 
     app.delete(BASE_API_URL + '/driving-licenses/:aut_com', (req, res) => {
         var aut_com = req.params.aut_com;
