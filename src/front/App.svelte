@@ -6,6 +6,7 @@
 	import Info from './Info.svelte';
 	import DL from './driving-licenses/Home.svelte';
 	import TI from './traffic-injuries/Home.svelte';
+	import EditTI from './traffic-injuries/editTrafficInjurie.svelte';
 	import NotFound from './NotFound.svelte';
 
 	const routes = {
@@ -13,6 +14,7 @@
 		"/info": Info,
 		"/driving-licenses": DL,
 		"/traffic-injuries": TI,
+		"/traffic-injuries/:auto_com/:year": EditTI,
 		"*": NotFound
 	};
 </script>
