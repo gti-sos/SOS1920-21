@@ -3,7 +3,7 @@ module.exports = function(app, express, bodyParser, path) {
 
     const dataStore = require('nedb');
 
-    const dbFileName = path.join(__dirname, '/driving-licenses.json');
+    const dbFileName = path.join(__dirname, '/driving-licenses.db');
     const BASE_API_URL = '/api/v2';
 
     app.use(bodyParser.json());
