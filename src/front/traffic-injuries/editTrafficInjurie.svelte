@@ -31,10 +31,9 @@
             console.log("Received traffic-injury");	
 		}
 		else if(res.status == 404){
-			window.alert("El recurso: " + params.auto_com + " " + params.year + " no existe");
+			window.alert("El recurso " + params.auto_com + " " + params.year + " no existe");
 		}
     }
-
 
     async function updateTrafficInjury() {
         console.log("Updating traffic-injury (auto_com = " + params.auto_com + " and year = " + params.year +  ")");
@@ -59,7 +58,7 @@
 				console.log("Resource modified");
 
 			}else if(res.status == 400){
-				window.alert("No es posible realizar el cambio deseado.");
+				window.alert("Hay un problema con los valores insertados.");
 			} 
         });
     }

@@ -3,7 +3,7 @@ module.exports = function(app, express, bodyParser, path) {
 
     const dataStore = require('nedb');
 
-    const dbFileName = path.join(__dirname, '/traffic-injuries.json');
+    const dbFileName = path.join(__dirname, '/traffic-injuries.db');
     const BASE_API_URL = '/api/v2';
 
     app.use(bodyParser.json());
@@ -586,18 +586,22 @@ module.exports = function(app, express, bodyParser, path) {
 		var year = parseInt(req.body.year);
 
 		db.find({"auto_com": auto_com, "year": year},(error, docs)=>{
-			if(docs.length != 0){	//Si docs es distinto de 0 es que ya existe algun recurso con esa provincia y año
-				console.log("409. El objeto ya existe");
+			if(docs.length != 0){
+				console.log("RESOURCE ALREADY EXISTS");
 				res.sendStatus(409);
 			}else if(!newTrafficInjury.auto_com || !newTrafficInjury.year || !newTrafficInjury.accident || !newTrafficInjury.dead 
 					  || !newTrafficInjury.injure || Object.keys(newTrafficInjury).length != 5){
 				
-				console.log("El número de campos no es 5");
+				console.log("RESOURCE SIZE MUST BE 5");
 				res.sendStatus(400);
 			}else{
-				console.log("Los datos que se desean insertar son correctos");
-				db.insert(newTrafficInjury);
-				res.sendStatus(201);
+                db.insert(newTrafficInjury);
+                res.sendStatus(201);
+                console.log(
+                    '\nSTART - ADD NEW DATA TO DB\n' +
+                        JSON.stringify(newTrafficInjury, null, 2) +
+                        '\nEND - ADD NEW DATA TO DB'
+                );
 			}
 		});
 	});
@@ -693,43 +697,36 @@ module.exports = function(app, express, bodyParser, path) {
     });
 
     // e) PUT /traffic-injuries/auto_com/year
-    app.put(BASE_API_URL + '/traffic-injuries/:auto_com/:year', (req, res) => {
-        var newTrafficInjury = req.body;
-        var auto_com_url = req.params.auto_com;
-        var year_url = req.params.year;
+    app.put(BASE_API_URL+"/traffic-injuries/:auto_com/:year", (req, res) =>{
 
-        if (
-            newTrafficInjury.auto_com == null ||
-            newTrafficInjury.year == null ||
-            newTrafficInjury.accident == null ||
-            newTrafficInjury.dead == null ||
-            newTrafficInjury.injure == null ||
-            newTrafficInjury == ''
-        ) {
-            res.sendStatus(400);
-            console.log('\n400 - TRAFFIC INJURY CAN NOT BE EMPTY OR NULL');
-        } else {
-            db.update(
-                { auto_com: auto_com_url, year: parseInt(year_url) },
-                {
-                    auto_com: newTrafficInjury.auto_com,
-                    year: newTrafficInjury.year,
-                    accident: newTrafficInjury.accident,
-                    dead: newTrafficInjury.dead,
-                    injure: newTrafficInjury.injure
-                },
-                {},
-                (err, numReplaced) => {
-                    res.sendStatus(200);
-                    console.log(
-                        '\nSTART - UPDATE THIS DATA FROM DB\n' +
-                            numReplaced +
-                            '\nEND - UPDATE THIS DATA FROM DB\n'
-                    );
-                }
-            );
-        }
-    });
+		var auto_com = req.params.auto_com;
+		var year = parseInt(req.params.year);
+		var updateTrafficInjury = req.body;
+		
+		db.find({"auto_com":auto_com, "year": year},(error,numReplaced)=>{
+			console.log(numReplaced);
+			if(numReplaced.length == 0){
+                res.sendStatus(404);
+                console.log('\n404 - TRAFFIC INJURY NOT FOUND');
+			}else if(!updateTrafficInjury.auto_com || !updateTrafficInjury.year ||!updateTrafficInjury.accident || !updateTrafficInjury.dead
+		  			 || !updateTrafficInjury.injure || Object.keys(updateTrafficInjury).length != 5){
+				
+                    res.sendStatus(400);
+                    console.log('\n400 - TRAFFIC INJURY WITH WRONG VALUES');
+			}else if(updateTrafficInjury.auto_com != auto_com || updateTrafficInjury.year != year){
+                res.sendStatus(409);
+                console.log('\n409 - AUTO_COM AND YEAR MUST BE SAME');
+			}else{
+				db.update({"auto_com":auto_com,"year":year},{$set: updateTrafficInjury});
+                res.sendStatus(200);
+                console.log(
+                    '\nSTART - UPDATE THIS DATA FROM DB\n' +
+                        numReplaced +
+                        '\nEND - UPDATE THIS DATA FROM DB\n'
+                );
+			}
+		});
+	});
 
     // f) POST /traffic-injuries/auto_com/
     // f.1) POST /traffic-injuries/auto_com/year

@@ -24,17 +24,20 @@
 	let campo2 = "";
 	let valor2 = "";
 
+	// Alerts
+	let infoAlertStatus="";
+	let infoAlertText="";
+
 	onMount(getTrafficInjuries);
 
 	async function getTrafficInjuries() {
 
-		console.log("Fetching trafficInjuries...");
+		console.log("Fetching traffic-injuries...");
 
         const res = await fetch("/api/v2/traffic-injuries?offset="  + numeroRecursos * offset + "&limit=" + numeroRecursos);
 		const resNext = await fetch("/api/v2/traffic-injuries?offset="  + numeroRecursos * (offset + 1) + "&limit=" + numeroRecursos);
 
 		if (res.ok  && resNext.ok) {
-			console.log("Ok:");
 			const json = await res.json();
 			const jsonNext = await resNext.json();
 			trafficInjuries = json;
@@ -45,9 +48,9 @@
 				moreData = true;
 			}
 			
-			console.log("Received " + trafficInjuries.length + " trafficInjuries.");
+			console.log("Received " + trafficInjuries.length + " traffic-injuries");
 		} else {
-			console.log("ERROR!");
+			console.log("Can't fetch data from DB");
 		}
 	}
 
@@ -57,11 +60,18 @@
 		getTrafficInjuries();
 	}
 
-	async function insertTrafficInjury() {
-		infoAlertStatus="";
-		infoAlertText="";
-		console.log("Inserting trafficInjury..." + JSON.stringify(newTrafficInjury));
+	async function loadInitialData() {
+        const res = await fetch("/api/v2/traffic-injuries/loadInitialData", {
+            method: "GET"
+        }).then(function (res) {
+			getTrafficInjuries();
+			infoAlertStatus = res.status + " - " + res.statusText;
+			infoAlertText =  "Recursos cargados correctamente.";
+        });
+	}
 
+	async function insertTrafficInjury() {
+		console.log("Inserting traffic-injury (" + JSON.stringify(newTrafficInjury) + ")");
 		const res = await fetch("/api/v2/traffic-injuries", {
 			method: "POST",
 			body: JSON.stringify(newTrafficInjury),
@@ -123,24 +133,12 @@
 			}
 		});
 	}
-
-	async function loadInitialData() {
-        const res = await fetch("/api/v2/traffic-injuries/loadInitialData", {
-            method: "GET"
-        }).then(function (res) {
-			getTrafficInjuries();
-			infoAlertStatus = res.status + " - " + res.statusText;
-			infoAlertText =  "Recursos cargados correctamente.";
-        });
-	}
 	
-	async function busqueda(campo1, valor1, campo2, valor2) {
+	async function search(campo1, valor1, campo2, valor2) {
 		offset = 0;
 		currentPage = 1; 
 		moreData = false;
-		infoAlertStatus="";
-		infoAlertText="";
-		console.log("Searching data: " + campo1 + ": " + valor1 + ", " + campo2 + ": " + valor2);
+		console.log("Searching data " + campo1 + " = " + valor1 + " and " + campo2 + " = " + valor2);
 		
 		var url = "/api/v2/traffic-injuries";
 		
@@ -152,26 +150,21 @@
 			url = url + "?" + campo1 + "=" + valor1;
 		}
 			
-		console.log(url);
+		console.log("Preview search url " + url);
 		
 		const res = await fetch(url);
 		
 		if (res.ok) {
-			console.log("Ok:");
 			const json = await res.json();
 			trafficInjuries = json;			
-			console.log("Found " + trafficInjuries.length + " traffic-injuries.");
+			console.log("Found " + trafficInjuries.length + " traffic-injuries");
 			infoAlertStatus = res.status + " - " + res.statusText;
 			infoAlertText =  "Búsqueda realizada con éxito. Se han encontrado " + trafficInjuries.length + " recursos.";
 		} else {
-			window.alert("ERROR: Compruebe que ha insertado valores correctos para la búsqueda");
-			console.log("ERROR!");
+			window.alert("Hay un problema con los valores insertados.");
+			console.log("Error check value types");
 		}
 	}
-	
-	let infoAlertStatus="";
-	let infoAlertText="";
-
 </script>
 
 <main>
@@ -236,7 +229,7 @@
 		</table>
 	</FormGroup>
 
-	<Button style="margin-bottom:3%;" color="primary" on:click="{busqueda(campo1, valor1,campo2, valor2)}" class="button-search" >Buscar </Button>
+	<Button style="margin-bottom:3%;" color="primary" on:click="{search(campo1, valor1,campo2, valor2)}" class="button-search" >Buscar </Button>
 		
 	<h3>Recursos</h3>
 		<Table responsive bordered>
