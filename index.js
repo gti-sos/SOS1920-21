@@ -1,4 +1,3 @@
-const cool = require('cool-ascii-faces');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -40,4 +39,3 @@ app.listen(port, () => {
 });
 
 console.log('Starting server...');
-console.log(cool());

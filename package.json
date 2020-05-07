@@ -1,7 +1,7 @@
 {
-  "name": "sos1920-l04",
-  "version": "0.0.0",
-  "description": "Lab04",
+  "name": "sos1920-21",
+  "version": "2.0.0",
+  "description": "Development of SOS1929-21",
   "main": "index.js",
   "scripts": {
     "build": "rollup -c",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/juanillo62gm/SOS1920-Labs.git"
+    "url": "git+https://github.com/gti-sos/SOS1920-21.git"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.0",
@@ -24,9 +24,9 @@
   "author": "juanillo62gm",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/juanillo62gm/SOS1920-Labs/issues"
+    "url": "https://github.com/gti-sos/SOS1920-21/issues"
   },
-  "homepage": "https://github.com/juanillo62gm/SOS1920-Labs#readme",
+  "homepage": "https://github.com/gti-sos/SOS1920-21#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
