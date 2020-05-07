@@ -7,7 +7,7 @@
 	import DL from './driving-licenses/Home.svelte';
 	import TI from './traffic-injuries/Home.svelte';
 	import EditDL from './driving-licenses/editDrivingLicense.svelte';
-	import EditTI from './traffic-injuries/editTrafficInjurie.svelte';
+	import EditTI from './traffic-injuries/editTrafficInjury.svelte';
 	import NotFound from './NotFound.svelte';
 
 	const routes = {
