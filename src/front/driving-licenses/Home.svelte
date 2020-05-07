@@ -166,11 +166,11 @@
         if (res.ok) {
             console.log("OK: ");
             const json = await res.json();
-            DrivingLicenses = json;
+            drivingLicenses = json;
             successMsg = res.status + ": " + res.statusText;
             console.log(successMsg);
-            success = "Se han encontrado " + DrivingLicenses.length + " datos en la busqueda."
-            console.log("Found " + DrivingLicenses.length + "driving-licenses.")
+            success = "Se han encontrado " + drivingLicenses.length + " datos en la busqueda."
+            console.log("Found " + drivingLicenses.length + "driving-licenses.")
         } else {
             window.alert("ERROR: Introduzca correctamente los value para la busqueda.");
             errorMsg = res.status + ": " + res.statusText;
@@ -185,14 +185,10 @@
     <h1>Bienvenido a driving-licenses</h1>
     <br><p><Button color="info" outline href="/">Volver a Inicio</Button></p>
 	<br><p><Button  color="primary" on:click="{loadInitialData}">Cargar valores predeterminados</Button></p>
-	<br><p><Button  color="primary" on:click="{deleteAllDrivingLicenses}">Borrar todo</Button></p>
-    <br><input type=checkbox bind:checked={combinada}> <strong>Hacer busqueda con 2 parametros</strong><br>
-        {#if combinada}
+	<br><p><Button outline  color="primary" on:click="{deleteAllDrivingLicenses}">Borrar todo</Button></p>
             <table style="width: 100%;">
                 <thead>
                     <tr>
-                        <th><label>Buscar por:</label></th>
-                        <th><label>Valor:</label></th>
                         <th><label>Buscar por:</label></th>
                         <th><label>Valor:</label></th>
                     </tr>
@@ -217,7 +213,7 @@
                     </tr>
                 </tbody>
             </table>	
-            {/if}
+
 	{#await drivingLicenses}
 		Loading drivingLicenses...
 	{:then drivingLicenses}
@@ -254,7 +250,7 @@
 				{#each drivingLicenses as drivingLicense}
 					<tr>
 						<td>
-							<a href="#/drivingLicense/{drivingLicense.aut_com}">{drivingLicense.aut_com}</a>
+							<a href="#/driving-licenses/{drivingLicense.aut_com}/{drivingLicense.year}">{drivingLicense.aut_com}</a>
 						</td>
 						<td>{drivingLicense.year}</td>
 						<td>{drivingLicense.cars_men}</td>

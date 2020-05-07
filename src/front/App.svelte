@@ -6,6 +6,7 @@
 	import Info from './Info.svelte';
 	import DL from './driving-licenses/Home.svelte';
 	import TI from './traffic-injuries/Home.svelte';
+	import EditDL from './driving-licenses/editDrivingLicense.svelte';
 	import EditTI from './traffic-injuries/editTrafficInjurie.svelte';
 	import NotFound from './NotFound.svelte';
 
@@ -14,6 +15,7 @@
 		"/info": Info,
 		"/driving-licenses": DL,
 		"/traffic-injuries": TI,
+		"/driving-licenses/:aut_com/:year": EditDL,
 		"/traffic-injuries/:auto_com/:year": EditTI,
 		"*": NotFound
 	};
