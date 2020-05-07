@@ -24,6 +24,10 @@
 	let campo2 = "";
 	let valor2 = "";
 
+	// Alerts
+	let infoAlertStatus="";
+	let infoAlertText="";
+
 	onMount(getTrafficInjuries);
 
 	async function getTrafficInjuries() {
@@ -56,9 +60,17 @@
 		getTrafficInjuries();
 	}
 
+	async function loadInitialData() {
+        const res = await fetch("/api/v2/traffic-injuries/loadInitialData", {
+            method: "GET"
+        }).then(function (res) {
+			getTrafficInjuries();
+			infoAlertStatus = res.status + " - " + res.statusText;
+			infoAlertText =  "Recursos cargados correctamente.";
+        });
+	}
+
 	async function insertTrafficInjury() {
-		infoAlertStatus="";
-		infoAlertText="";
 		console.log("Inserting traffic-injury (" + JSON.stringify(newTrafficInjury) + ")");
 		const res = await fetch("/api/v2/traffic-injuries", {
 			method: "POST",
@@ -121,23 +133,11 @@
 			}
 		});
 	}
-
-	async function loadInitialData() {
-        const res = await fetch("/api/v2/traffic-injuries/loadInitialData", {
-            method: "GET"
-        }).then(function (res) {
-			getTrafficInjuries();
-			infoAlertStatus = res.status + " - " + res.statusText;
-			infoAlertText =  "Recursos cargados correctamente.";
-        });
-	}
 	
-	async function busqueda(campo1, valor1, campo2, valor2) {
+	async function search(campo1, valor1, campo2, valor2) {
 		offset = 0;
 		currentPage = 1; 
 		moreData = false;
-		infoAlertStatus="";
-		infoAlertText="";
 		console.log("Searching data " + campo1 + " = " + valor1 + " and " + campo2 + " = " + valor2);
 		
 		var url = "/api/v2/traffic-injuries";
@@ -165,10 +165,6 @@
 			console.log("Error check value types");
 		}
 	}
-	
-	let infoAlertStatus="";
-	let infoAlertText="";
-
 </script>
 
 <main>
@@ -233,7 +229,7 @@
 		</table>
 	</FormGroup>
 
-	<Button style="margin-bottom:3%;" color="primary" on:click="{busqueda(campo1, valor1,campo2, valor2)}" class="button-search" >Buscar </Button>
+	<Button style="margin-bottom:3%;" color="primary" on:click="{search(campo1, valor1,campo2, valor2)}" class="button-search" >Buscar </Button>
 		
 	<h3>Recursos</h3>
 		<Table responsive bordered>
