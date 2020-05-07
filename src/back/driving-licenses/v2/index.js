@@ -787,14 +787,14 @@ app.get(BASE_API_URL + '/driving-licenses', (req, res) => {
 			if(drivingLicense!=0){
 				res.sendStatus(409,"OBJECT ALREADY EXISTS");
 				console.log("El dato ya existe");
-            } else if(newDrivingLicense.aut_com=="" || newDrivingLicense.year=="" || newDrivingLicense.cars_men=="" || 
-                newDrivingLicense.cars_women=="" ||  newDrivingLicense.mot_men=="" || newDrivingLicense.mot_women==""
-                || newDrivingLicense.total_cars=="" ||  newDrivingLicense.total_mot=="" || newDrivingLicense.rel_cars==""
-                || newDrivingLicense.rel_mot=="") {
+            } else if(!newDrivingLicense.aut_com || !newDrivingLicense.year || !newDrivingLicense.cars_men || 
+                !newDrivingLicense.cars_women ||  !newDrivingLicense.mot_men || !newDrivingLicense.mot_women
+                || !newDrivingLicense.total_cars ||  !newDrivingLicense.total_mot || !newDrivingLicense.rel_cars
+                || !newDrivingLicense.rel_mot || Object.keys(newDrivingLicense).length!=10) {
 				res.sendStatus(400,"BAD REQUEST");
 				console.log("The format is incorrect");
 			} else {
-				db.insert(newAccident);
+				db.insert(newDrivingLicense);
 				res.sendStatus(201,"CREATED");
 				console.log("Objet created with exit");
 			}
