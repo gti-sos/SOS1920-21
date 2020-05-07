@@ -28,13 +28,12 @@
 
 	async function getTrafficInjuries() {
 
-		console.log("Fetching trafficInjuries...");
+		console.log("Fetching traffic-injuries...");
 
         const res = await fetch("/api/v2/traffic-injuries?offset="  + numeroRecursos * offset + "&limit=" + numeroRecursos);
 		const resNext = await fetch("/api/v2/traffic-injuries?offset="  + numeroRecursos * (offset + 1) + "&limit=" + numeroRecursos);
 
 		if (res.ok  && resNext.ok) {
-			console.log("Ok:");
 			const json = await res.json();
 			const jsonNext = await resNext.json();
 			trafficInjuries = json;
@@ -45,9 +44,9 @@
 				moreData = true;
 			}
 			
-			console.log("Received " + trafficInjuries.length + " trafficInjuries.");
+			console.log("Received " + trafficInjuries.length + " traffic-injuries.");
 		} else {
-			console.log("ERROR!");
+			console.log("Can't fetch data from DB");
 		}
 	}
 
@@ -60,7 +59,7 @@
 	async function insertTrafficInjury() {
 		infoAlertStatus="";
 		infoAlertText="";
-		console.log("Inserting trafficInjury..." + JSON.stringify(newTrafficInjury));
+		console.log("Inserting traffic-injury..." + JSON.stringify(newTrafficInjury));
 
 		const res = await fetch("/api/v2/traffic-injuries", {
 			method: "POST",
@@ -140,7 +139,7 @@
 		moreData = false;
 		infoAlertStatus="";
 		infoAlertText="";
-		console.log("Searching data: " + campo1 + ": " + valor1 + ", " + campo2 + ": " + valor2);
+		console.log("Searching data " + campo1 + " = " + valor1 + " and " + campo2 + " = " + valor2);
 		
 		var url = "/api/v2/traffic-injuries";
 		
@@ -152,20 +151,19 @@
 			url = url + "?" + campo1 + "=" + valor1;
 		}
 			
-		console.log(url);
+		console.log("Preview search url " + url);
 		
 		const res = await fetch(url);
 		
 		if (res.ok) {
-			console.log("Ok:");
 			const json = await res.json();
 			trafficInjuries = json;			
 			console.log("Found " + trafficInjuries.length + " traffic-injuries.");
 			infoAlertStatus = res.status + " - " + res.statusText;
 			infoAlertText =  "Búsqueda realizada con éxito. Se han encontrado " + trafficInjuries.length + " recursos.";
 		} else {
-			window.alert("ERROR: Compruebe que ha insertado valores correctos para la búsqueda");
-			console.log("ERROR!");
+			window.alert("Hay un problema con los valores insertados.");
+			console.log("Error check value types");
 		}
 	}
 	

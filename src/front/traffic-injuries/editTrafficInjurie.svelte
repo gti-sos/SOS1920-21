@@ -59,7 +59,7 @@
 				console.log("Resource modified");
 
 			}else if(res.status == 400){
-				window.alert("No es posible realizar el cambio deseado.");
+				window.alert("Hay un problema con los valores insertados.");
 			} 
         });
     }
