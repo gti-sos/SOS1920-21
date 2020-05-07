@@ -31,10 +31,9 @@
             console.log("Received traffic-injury");	
 		}
 		else if(res.status == 404){
-			window.alert("El recurso: " + params.auto_com + " " + params.year + " no existe");
+			window.alert("El recurso " + params.auto_com + " " + params.year + " no existe");
 		}
     }
-
 
     async function updateTrafficInjury() {
         console.log("Updating traffic-injury (auto_com = " + params.auto_com + " and year = " + params.year +  ")");

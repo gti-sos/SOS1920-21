@@ -44,7 +44,7 @@
 				moreData = true;
 			}
 			
-			console.log("Received " + trafficInjuries.length + " traffic-injuries.");
+			console.log("Received " + trafficInjuries.length + " traffic-injuries");
 		} else {
 			console.log("Can't fetch data from DB");
 		}
@@ -59,8 +59,7 @@
 	async function insertTrafficInjury() {
 		infoAlertStatus="";
 		infoAlertText="";
-		console.log("Inserting traffic-injury..." + JSON.stringify(newTrafficInjury));
-
+		console.log("Inserting traffic-injury (" + JSON.stringify(newTrafficInjury) + ")");
 		const res = await fetch("/api/v2/traffic-injuries", {
 			method: "POST",
 			body: JSON.stringify(newTrafficInjury),
@@ -158,7 +157,7 @@
 		if (res.ok) {
 			const json = await res.json();
 			trafficInjuries = json;			
-			console.log("Found " + trafficInjuries.length + " traffic-injuries.");
+			console.log("Found " + trafficInjuries.length + " traffic-injuries");
 			infoAlertStatus = res.status + " - " + res.statusText;
 			infoAlertText =  "Búsqueda realizada con éxito. Se han encontrado " + trafficInjuries.length + " recursos.";
 		} else {
