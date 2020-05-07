@@ -3,7 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const drivinglicensesAPI = require(path.join(__dirname, 'src/back/driving-licenses'));
-const trafficInjuriesAPI = require(path.join(__dirname, 'src/back/traffic-injuries'));
+const trafficInjuriesAPIV1 = require(path.join(__dirname, 'src/back/traffic-injuries/v1'));
+const trafficInjuriesAPIV2 = require(path.join(__dirname, 'src/back/traffic-injuries/v2'));
 const publicTransportsAPI = require(path.join(__dirname, 'src/back/public-transports'));
 
 const port = process.env.PORT || 80;
@@ -27,7 +28,8 @@ drivinglicensesAPI(app, express, bodyParser, path);
 // ================== juagommat =====================
 // ==================================================
 
-trafficInjuriesAPI(app, express, bodyParser, path);
+trafficInjuriesAPIV1(app, express, bodyParser, path);
+trafficInjuriesAPIV2(app, express, bodyParser, path);
 
 // ==================================================
 // ================== josdeonc ======================
