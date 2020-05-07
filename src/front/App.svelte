@@ -16,7 +16,6 @@
 </script>
 
 <main>
-	<div {navbar-primary} class="navbar"></div>
 	<h1>SOS1920-21</h1>
 	<Router {routes} />
 </main>
