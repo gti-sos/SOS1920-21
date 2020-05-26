@@ -6,7 +6,7 @@ const drivinglicensesAPIV2 = require(path.join(__dirname, 'src/back/driving-lice
 const trafficInjuriesAPIV1 = require(path.join(__dirname, 'src/back/traffic-injuries/v1'));
 const trafficInjuriesAPIV2 = require(path.join(__dirname, 'src/back/traffic-injuries/v2'));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3002;
 const app = express();
 
 app.use(bodyParser.json());
