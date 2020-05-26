@@ -7,3 +7,6 @@ install:
 before_script:
   - npm run build
   - npm start &
+#script:
+#  - npm test
+#  - npm run report-coverage
