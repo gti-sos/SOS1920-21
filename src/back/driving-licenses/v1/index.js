@@ -1,5 +1,5 @@
 module.exports = function(app, express, bodyParser, path) {
-    console.log('Registering driving-licenses API...');
+    console.log('Registering driving-licenses API V1...');
 
     const dataStore = require('nedb');
 
@@ -1102,5 +1102,5 @@ app.post(BASE_API_URL + '/driving-licenses', (req, res) => {
         }
     });*/
 
-    console.log('Registered driving-licenses API!\n');
+    console.log('Registered driving-licenses API V1!\n');
 };

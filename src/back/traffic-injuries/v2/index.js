@@ -1,5 +1,5 @@
 module.exports = function(app, express, bodyParser, path) {
-    console.log('Registering traffic-injuries API...');
+    console.log('Registering traffic-injuries API V2...');
 
     const dataStore = require('nedb');
 
@@ -769,5 +769,5 @@ module.exports = function(app, express, bodyParser, path) {
         });
     });
 
-    console.log('Registered traffic-injuries API!\n');
+    console.log('Registered traffic-injuries API V2!\n');
 };
