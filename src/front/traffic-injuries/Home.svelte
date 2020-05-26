@@ -246,10 +246,10 @@
 			<tbody>
 				<tr>
 					<td><input bind:value="{newTrafficInjury.auto_com}"></td>
-					<td><input bind:value="{newTrafficInjury.year}"></td>
-					<td><input bind:value="{newTrafficInjury.accident}"></td>
-					<td><input bind:value="{newTrafficInjury.dead}"></td>
-					<td><input bind:value="{newTrafficInjury.injure}"></td>
+					<td><input type="number" bind:value="{newTrafficInjury.year}"></td>
+					<td><input type="number" bind:value="{newTrafficInjury.accident}"></td>
+					<td><input type="number" bind:value="{newTrafficInjury.dead}"></td>
+					<td><input type="number" bind:value="{newTrafficInjury.injure}"></td>
 					<td> <Button outline  color="primary" on:click={insertTrafficInjury}>Insertar</Button> </td>
 				</tr>
 
