@@ -8,4 +8,6 @@ before_script:
   - "npm run build"
   - "npm start &"
 script:
+  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
+  - codecov
   - "npm test"
