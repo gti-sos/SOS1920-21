@@ -6,7 +6,9 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "node index"
+    "start": "node index",
+    "test": "nyc mocha ./index.js --exit --timeout 5000",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov -t 5cbe7896-534a-42e8-bb5e-c9af9726fe57"
   },
   "repository": {
     "type": "git",
