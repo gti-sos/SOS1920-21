@@ -236,15 +236,15 @@
 			<tbody>
 				<tr>
 					<td><input bind:value="{newDrivingLicense.aut_com}"></td>
-					<td><input bind:value="{newDrivingLicense.year}"></td>
-					<td><input bind:value="{newDrivingLicense.cars_men}"></td>
-					<td><input bind:value="{newDrivingLicense.cars_women}"></td>
-					<td><input bind:value="{newDrivingLicense.mot_men}"></td>
-                    <td><input bind:value="{newDrivingLicense.mot_women}"></td>
-                    <td><input bind:value="{newDrivingLicense.total_cars}"></td>
-                    <td><input bind:value="{newDrivingLicense.total_mot}"></td>
-                    <td><input bind:value="{newDrivingLicense.rel_cars}"></td>
-                    <td><input bind:value="{newDrivingLicense.rel_mot}"></td>
+					<td><input type="number" bind:value="{newDrivingLicense.year}"></td>
+					<td><input type="number" bind:value="{newDrivingLicense.cars_men}"></td>
+					<td><input type="number" bind:value="{newDrivingLicense.cars_women}"></td>
+					<td><input type="number" bind:value="{newDrivingLicense.mot_men}"></td>
+                    <td><input type="number" bind:value="{newDrivingLicense.mot_women}"></td>
+                    <td><input type="number" bind:value="{newDrivingLicense.total_cars}"></td>
+                    <td><input type="number" bind:value="{newDrivingLicense.total_mot}"></td>
+                    <td><input type="number" bind:value="{newDrivingLicense.rel_cars}"></td>
+                    <td><input type="number" bind:value="{newDrivingLicense.rel_mot}"></td>
 					<td> <Button outline  color="primary" on:click={insertDrivingLicense}>Insertar</Button> </td>
 				</tr>
 
