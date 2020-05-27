@@ -57,7 +57,6 @@
 		console.log("Fetching DrivingLicenses...");
 		
 		 if (res.ok && resNext.ok) {
-            console.log("OK: ");
             const json = await res.json();
             const jsonNext = await resNext.json();
             drivingLicenses = json;
