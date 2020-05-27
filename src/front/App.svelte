@@ -1,6 +1,5 @@
 <script>
 	import Router from 'svelte-spa-router';
-	import { Navbar } from 'sveltestrap';
 
 	import Home from './Home.svelte';
 	import Info from './Info.svelte';
@@ -11,7 +10,8 @@
 	import NotFound from './NotFound.svelte';
 
 	const routes = {
-		"/": Home,
+		"/": Home ,
+		"/svelte": Home,
 		"/info": Info,
 		"/driving-licenses": DL,
 		"/traffic-injuries": TI,
