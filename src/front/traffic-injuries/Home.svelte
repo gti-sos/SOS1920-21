@@ -1,6 +1,5 @@
 <script>
 	import { onMount } from "svelte";
-	import { pop } from "svelte-spa-router";
 	import { Table, Button, Alert, Pagination, PaginationItem, PaginationLink, Input, FormGroup } from 'sveltestrap';
 
 	let trafficInjuries = [];
@@ -170,7 +169,7 @@
 <main>
 	<h2>Bienvenido a traffic-injuries</h2>
 	<h3>Acciones</h3>
-    <p><Button color="info" outline on:click="{pop}">Volver a Inicio</Button></p>
+    <p><a href="/"><Button color="info">Volver a Inicio</Button></a></p>
 	<p><Button color="success" on:click="{loadInitialData}">Cargar Datos Iniciales</Button></p>
 	<p><Button color="danger" on:click="{deleteAllTrafficInjuries}">Elimina Todos los Recursos</Button></p>
 
