@@ -1,3 +1,3 @@
 <main>
-    <h1>La pagina no existe!</h1>
+    <h2>La pagina no existe!</h2>
 </main>
