@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
 const drivinglicensesAPIV1 = require(path.join(__dirname, 'src/back/driving-licenses/v1'));
 const drivinglicensesAPIV2 = require(path.join(__dirname, 'src/back/driving-licenses/v2'))
 const trafficInjuriesAPIV1 = require(path.join(__dirname, 'src/back/traffic-injuries/v1'));
@@ -8,6 +9,8 @@ const trafficInjuriesAPIV2 = require(path.join(__dirname, 'src/back/traffic-inju
 
 const port = process.env.PORT || 3000;
 const app = express();
+
+app.use(cors());
 
 app.use(bodyParser.json());
 
