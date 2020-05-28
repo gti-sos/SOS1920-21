@@ -31,6 +31,7 @@ trafficInjuriesAPIV2(app, express, bodyParser, path);
 
 app.listen(port, () => {
     console.log('Server ready!');
+    console.log('Running on http://localhost:3000')
 });
 
 console.log('Starting server...');

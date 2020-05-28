@@ -16,5 +16,3 @@ Our source of information is oriented to analyze relation between victims on tra
     - [https://sos1920-21.herokuapp.com/api/v2/driving-licenses/docs](https://sos1920-21.herokuapp.com/api/v2/driving-licenses/docs) (developed by [Antonio Prieto Tagua](https://github.com/antonio98pt))
     - [https://sos1920-21.herokuapp.com/api/v2/traffic-injuries/docs](https://sos1920-21.herokuapp.com/api/v1/traffic-injuries/docs) (developed by [Juan Gómez Mateos](https://github.com/juanillo62gm))
     - [https://sos1920-21.herokuapp.com/api/v2/traffic-injuries/docs](https://sos1920-21.herokuapp.com/api/v2/traffic-injuries/docs) (developed by [Juan Gómez Mateos](https://github.com/juanillo62gm))
-
-Test
