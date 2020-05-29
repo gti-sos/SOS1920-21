@@ -1,0 +1,924 @@
+{
+	"info": {
+		"_postman_id": "0eb469fe-ac50-4dbc-92a3-eaa8f71c93ca",
+		"name": "SOS1920-21-traffic-injuries (V1)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "a) Lista todos los recursos (Vacía)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "68eaeade-944c-4ed8-b470-71ef6265bfe3",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries"
+					]
+				},
+				"description": "GET a la ruta base /traffic-injuries devuelve una lista con todos los recursos actuales.\nIntenta listar todos los recursos cuando no hay ninguno."
+			},
+			"response": []
+		},
+		{
+			"name": "loadInitialData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "187a1801-f447-42fe-8286-0d515d59784b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"There are more than 1 traffic injury\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.lengthOf.above(1);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries/loadInitialData",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries",
+						"loadInitialData"
+					]
+				},
+				"description": "GET a la ruta /traffic-injuries/loadInitialData carga los recursos en la base de datos."
+			},
+			"response": []
+		},
+		{
+			"name": "a) Lista todos los recursos (Lleno)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "68eaeade-944c-4ed8-b470-71ef6265bfe3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"There are 72 traffic injuries\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.lengthOf(72);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries"
+					]
+				},
+				"description": "GET a la ruta base /traffic-injuries devuelve una lista con todos los recursos actuales.\nLista todos los recursos ahora que la base de datos está llena."
+			},
+			"response": []
+		},
+		{
+			"name": "Comprobar la paginación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "68eaeade-944c-4ed8-b470-71ef6265bfe3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"There are 4 traffic injuries\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.lengthOf(4);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries?limit=4&offset=10",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "4"
+						},
+						{
+							"key": "offset",
+							"value": "10"
+						}
+					]
+				},
+				"description": "GET a la ruta base /traffic-injuries?limit=4&offset=10 devuelve una lista con 4 recursos y con un offset de 10."
+			},
+			"response": []
+		},
+		{
+			"name": "Comprobar la búsqueda",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "68eaeade-944c-4ed8-b470-71ef6265bfe3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries?auto_com=madrid&year=2016&accident=756&dead=26&injure=944",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries"
+					],
+					"query": [
+						{
+							"key": "auto_com",
+							"value": "madrid"
+						},
+						{
+							"key": "year",
+							"value": "2016"
+						},
+						{
+							"key": "accident",
+							"value": "756"
+						},
+						{
+							"key": "dead",
+							"value": "26"
+						},
+						{
+							"key": "injure",
+							"value": "944"
+						}
+					]
+				},
+				"description": "GET a la ruta base /traffic-injuries?auto_com=madrid&year=2016&accident=756&dead=26&injure=944 devuelve una lista con todos los recursos que cumplen los parámetros de búsqueda."
+			},
+			"response": []
+		},
+		{
+			"name": "b) Crea un nuevo recurso (Bien)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "836807a9-af45-4440-8a26-ad54dc5c09c7",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {                                                                                                                           \r\n    \"auto_com\": \"TestNew\",\r\n    \"year\": 2015,\r\n    \"accident\": 1234,\r\n    \"dead\": 1234,\r\n    \"injure\": 1234\r\n  }  ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries"
+					]
+				},
+				"description": "POST a la ruta base /traffic-injuries crea un nuevo recurso.\nLos datos del body son correctos."
+			},
+			"response": []
+		},
+		{
+			"name": "b) Crea un nuevo recurso (Mal)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "836807a9-af45-4440-8a26-ad54dc5c09c7",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {                                                                                                                           \r\n    \"auto_com\": \"TestNew\",\r\n    \"year\": null,\r\n    \"accident\": 1234,\r\n    \"dead\": 1234,\r\n    \"injure\": 1234\r\n  }  ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries"
+					]
+				},
+				"description": "POST a la ruta base /traffic-injuries crea un nuevo recurso.\nUn dato del body es incorrecto."
+			},
+			"response": []
+		},
+		{
+			"name": "c) Devuelve ese recurso (Bien)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f49c5e6-c926-4e94-a4c7-9205778fbd74",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Object has autonomous community value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property(\"auto_com\"); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries/madrid/2016",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries",
+						"madrid",
+						"2016"
+					]
+				},
+				"description": "GET a un recurso /traffic-injuries/madrid/2016 devuelve ese recurso.\nSolicitud de un recurso existente."
+			},
+			"response": []
+		},
+		{
+			"name": "c) Devuelve ese recurso (Mal)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f49c5e6-c926-4e94-a4c7-9205778fbd74",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries/madrid/2020",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries",
+						"madrid",
+						"2020"
+					]
+				},
+				"description": "GET a un recurso /traffic-injuries/madrid/2020 devuelve ese recurso.\nSolicitud de un recurso inexistente."
+			},
+			"response": []
+		},
+		{
+			"name": "d) Borra ese recurso (Bien)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "429cf50c-8555-47e1-91b5-141e39444007",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries/madrid/2016",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries",
+						"madrid",
+						"2016"
+					]
+				},
+				"description": "DEL a un recurso /traffic-injuries/madrid/2016 borra ese recurso.\nBorra un recurso existente."
+			},
+			"response": []
+		},
+		{
+			"name": "d) Borra ese recurso (Mal)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "429cf50c-8555-47e1-91b5-141e39444007",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries/madrid/2020",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries",
+						"madrid",
+						"2020"
+					]
+				},
+				"description": "DEL a un recurso /traffic-injuries/madrid/2020 borra ese recurso.\nIntenta borrar un recurso inexistente."
+			},
+			"response": []
+		},
+		{
+			"name": "c) Devuelve esos recursos (Bien)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f49c5e6-c926-4e94-a4c7-9205778fbd74",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"There are 3 traffic injuries\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.lengthOf(3);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries/madrid/",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries",
+						"madrid",
+						""
+					]
+				},
+				"description": "GET a un recurso /traffic-injuries/madrid devuelve esos recursos.\nSolicitud de un recursos existentes."
+			},
+			"response": []
+		},
+		{
+			"name": "c) Devuelve esos recursos (Mal)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f49c5e6-c926-4e94-a4c7-9205778fbd74",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries/venus/",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries",
+						"venus",
+						""
+					]
+				},
+				"description": "GET a un recurso /traffic-injuries/venus devuelve esos recursos.\nSolicitud de un recursos inexistentes."
+			},
+			"response": []
+		},
+		{
+			"name": "d) Borra esos recursos (Bien)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "429cf50c-8555-47e1-91b5-141e39444007",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries/madrid/",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries",
+						"madrid",
+						""
+					]
+				},
+				"description": "DEL a un recurso /traffic-injuries/madrid borra esos recursos.\nBorra esos recurso existentes."
+			},
+			"response": []
+		},
+		{
+			"name": "d) Borra esos recursos (Mal)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "429cf50c-8555-47e1-91b5-141e39444007",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries/venus/",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries",
+						"venus",
+						""
+					]
+				},
+				"description": "DEL a un recurso /traffic-injuries/venus borra esos recursos.\nIntenta borrar esos recursos inexistentes."
+			},
+			"response": []
+		},
+		{
+			"name": "e) Actualiza ese recurso (Bien)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6df4edac-2f6a-4f8a-a05f-954e5221ff13",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {                                                                                                                           \r\n    \"auto_com\": \"TestUpdate\",\r\n    \"year\": 2016,\r\n    \"accident\": 5678,\r\n    \"dead\": 5678,\r\n    \"injure\": 5678\r\n  }  ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries/TestNew/2015",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries",
+						"TestNew",
+						"2015"
+					]
+				},
+				"description": "PUT a un recurso /traffic-injuries/madrid actualiza ese recurso.\nLos datos del body son correctos."
+			},
+			"response": []
+		},
+		{
+			"name": "e) Actualiza ese recurso (Mal)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6df4edac-2f6a-4f8a-a05f-954e5221ff13",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {                                                                                                                           \r\n    \"auto_com\": \"TestUpdate\",\r\n    \"year\": null,\r\n    \"accident\": 5678,\r\n    \"dead\": 5678,\r\n    \"injure\": 5678\r\n  }  ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries/TestNew/2015",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries",
+						"TestNew",
+						"2015"
+					]
+				},
+				"description": "PUT a un recurso /traffic-injuries/madrid actualiza ese recurso.\nUn dato del body es incorrecto."
+			},
+			"response": []
+		},
+		{
+			"name": "f) Error método no permitido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f0d65e7b-1fd5-4d8d-8710-ef01f251816d",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries/madrid/",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries",
+						"madrid",
+						""
+					]
+				},
+				"description": "POST a un recurso /traffic-injuries/madrid debe dar un error de método no permitido."
+			},
+			"response": []
+		},
+		{
+			"name": "f.1) Error método no permitido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f0d65e7b-1fd5-4d8d-8710-ef01f251816d",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries/madrid/2016",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries",
+						"madrid",
+						"2016"
+					]
+				},
+				"description": "POST a un recurso /traffic-injuries/madrid/2016 debe dar un error de método no permitido."
+			},
+			"response": []
+		},
+		{
+			"name": "g) Error método no permitido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "deea4aa9-31cc-4cc6-b9da-6fc32cdf7202",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries"
+					]
+				},
+				"description": "PUT a la ruta base /traffic-injuries debe dar un error de método no permitido."
+			},
+			"response": []
+		},
+		{
+			"name": "g.1) Error método no permitido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "deea4aa9-31cc-4cc6-b9da-6fc32cdf7202",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries/madrid",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries",
+						"madrid"
+					]
+				},
+				"description": "PUT a la ruta base /traffic-injuries/2016 debe dar un error de método no permitido."
+			},
+			"response": []
+		},
+		{
+			"name": "h) Borra todos los recursos (Lleno)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "20353e16-2c6f-443e-8be9-19bf3d15c7c8",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries"
+					]
+				},
+				"description": "DEL a la ruta base /traffic-injuries borra todos los recursos.\nBorra todos los recursos ahora que la base de datos está llena."
+			},
+			"response": []
+		},
+		{
+			"name": "h) Borra todos los recursos (Vacío)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "20353e16-2c6f-443e-8be9-19bf3d15c7c8",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/traffic-injuries",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"traffic-injuries"
+					]
+				},
+				"description": "DEL a la ruta base /traffic-injuries borra todos los recursos.\nIntenta borrar todos los recursos cuando no hay ninguno."
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

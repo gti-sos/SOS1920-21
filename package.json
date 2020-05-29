@@ -7,7 +7,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "node index",
-    "testTI": "newman run tests/traffic-injuries/postmanTestsAPIV2.json",
+    "testsTI": "newman run tests/traffic-injuries/postmanTestsAPIV1.json && newman run tests/traffic-injuries/postmanTestsAPIV2.json",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
