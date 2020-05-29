@@ -1,17 +1,10 @@
 <svelte:head>
-	<!-- Font Awesome icons (free version)-->
 	<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-	<!-- Third party plugin CSS-->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
-		rel="stylesheet" />
 </svelte:head>
 
 <body>
-
-
-
 	<!-- Masthead-->
-	<header class="masthead">
+	<br><br><header class="masthead">
 		<div class="container h-100">
 			<div class="row h-100 align-items-center justify-content-center text-center">
 				<div class="col-lg-10 align-self-end">
@@ -145,6 +138,3 @@
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
 </body>
-<footer>
-	<div class="container"></div>
-</footer>
