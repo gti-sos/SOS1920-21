@@ -7,7 +7,9 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "node index",
-    "testTI": "newman run tests/traffic-injuries/postmanTestsAPIV2.json"
+    "testTI": "newman run tests/traffic-injuries/postmanTestsAPIV2.json",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -39,6 +41,8 @@
     "newman": "^5.0.1",
     "path": "^0.12.7",
     "svelte-spa-router": "^2.1.0",
-    "sveltestrap": "^3.3.3"
-  }
+    "sveltestrap": "^3.3.3",
+    "snyk": "^1.332.0"
+  },
+  "snyk": true
 }
