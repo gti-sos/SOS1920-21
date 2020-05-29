@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "node index"
+    "start": "node index",
+    "testTI": "newman run tests/traffic-injuries/postmanTestsAPIV2.json"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "nedb": "^1.8.0",
+    "newman": "^5.0.1",
     "path": "^0.12.7",
     "svelte-spa-router": "^2.1.0",
     "sveltestrap": "^3.3.3"
