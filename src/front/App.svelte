@@ -3,6 +3,9 @@
 
 	import Home from './Home.svelte';
 	import Info from './Info.svelte';
+	import About from './About.svelte';
+	import Integrations from './Integrations.svelte';
+	import Analytics from './Analytics.svelte';
 	import NotFound from './NotFound.svelte';
 
 	// traffic-injuries
@@ -17,6 +20,9 @@
 	const routes = {
 		"/": Home,
 		"/info": Info,
+		"/about": About,
+		"/integrations": Integrations,
+		"/analytics": Analytics,
 		"/traffic-injuries": TI,
 		"/traffic-injuries/:auto_com/:year": EditTI,
 		"/traffic-injuries/d3js": D3JS,
@@ -53,6 +59,15 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="svelte.html#/info">Información</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="svelte.html#/about">Acerca de</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="svelte.html#/integrations">Integraciones</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="svelte.html#/analytics">Analíticas</a>
 					</li>
 					<!-- Dropdown -->
 					<li class="nav-item dropdown">
