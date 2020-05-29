@@ -32,7 +32,7 @@
 	};
 </script>
 
-<body>
+<body id="page-top">
 	<header>
 		<!--Navbar-->
 		<nav class="navbar navbar-expand-lg navbar-light primary-color">
@@ -52,29 +52,29 @@
 				<!-- Links -->
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="svelte.html#/traffic-injuries">Accidentes de Tráfico</a>
+						<a class="nav-link" href="#/traffic-injuries">Accidentes de Tráfico</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="svelte.html#/driving-licenses">Licencias de Conducir</a>
+						<a class="nav-link" href="#/driving-licenses">Licencias de Conducir</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="svelte.html#/info">Información</a>
+						<a class="nav-link" href="#/info">Información</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="svelte.html#/about">Acerca de</a>
+						<a class="nav-link" href="#/about">Acerca de</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="svelte.html#/integrations">Integraciones</a>
+						<a class="nav-link" href="#/integrations">Integraciones</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="svelte.html#/analytics">Analíticas</a>
+						<a class="nav-link" href="#/analytics">Analíticas</a>
 					</li>
 					<!-- Dropdown -->
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">Extras</a>
 						<div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="svelte.html#/traffic-injuries/d3js">Accidentes de Tráfico
+							<a class="dropdown-item" href="#/traffic-injuries/d3js">Accidentes de Tráfico
 								(Librería D3JS) </a>
 						</div>
 					</li>
@@ -82,8 +82,6 @@
 		</nav>
 	</header>
 
-	<div class="container">
-		<Router {routes} />
-	</div>
+	<Router {routes}/>
 
 </body>
