@@ -11,7 +11,8 @@
 	// traffic-injuries
 	import TI from './traffic-injuries/Home.svelte';
 	import EditTI from './traffic-injuries/editTrafficInjury.svelte';
-	import D3JS from './traffic-injuries/d3js.svelte';
+	import D3JS from './traffic-injuries/D3JS.svelte';
+	import Highcharts from './traffic-injuries/Highcharts.svelte';
 
 	// driving-licenses
 	import DL from './driving-licenses/Home.svelte';
@@ -25,14 +26,16 @@
 		"/analytics": Analytics,
 		"/traffic-injuries": TI,
 		"/traffic-injuries/:auto_com/:year": EditTI,
-		"/traffic-injuries/d3js": D3JS,
+		"/traffic-injuries/D3JS": D3JS,
+		"/traffic-injuries/Highcharts": Highcharts,
 		"/driving-licenses": DL,
 		"/driving-licenses/:aut_com/:year": EditDL,
 		"*": NotFound
 	};
+
 </script>
 
-<body id="page-top">
+<body>
 	<header>
 		<!--Navbar-->
 		<nav class="navbar navbar-expand-lg navbar-light primary-color">
@@ -51,8 +54,14 @@
 
 				<!-- Links -->
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="#/traffic-injuries">Accidentes de Tráfico</a>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Accidentes de Tráfico</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#/traffic-injuries/">Accidentes de Tráfico</a>
+							<a class="dropdown-item" href="#/traffic-injuries/Highcharts">Gráfico (Highcharts)</a>
+							<a class="dropdown-item" href="#/traffic-injuries/D3JS">Puntos Extra (Librería D3JS)</a>
+						</div>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#/driving-licenses">Licencias de Conducir</a>
@@ -69,19 +78,10 @@
 					<li class="nav-item">
 						<a class="nav-link" href="#/analytics">Analíticas</a>
 					</li>
-					<!-- Dropdown -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Extras</a>
-						<div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#/traffic-injuries/d3js">Accidentes de Tráfico
-								(Librería D3JS) </a>
-						</div>
-					</li>
 				</ul>
 		</nav>
 	</header>
 
-	<Router {routes}/>
+	<Router {routes} />
 
 </body>
