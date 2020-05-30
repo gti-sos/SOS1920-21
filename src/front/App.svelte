@@ -11,7 +11,7 @@
 	// traffic-injuries
 	import TI from './traffic-injuries/Home.svelte';
 	import EditTI from './traffic-injuries/editTrafficInjury.svelte';
-	import D3JS from './traffic-injuries/D3JS.svelte';
+	import D3JS from './traffic-injuries/d3js.svelte';
 	import Highcharts from './traffic-injuries/Highcharts.svelte';
 
 	// driving-licenses
@@ -26,7 +26,7 @@
 		"/analytics": Analytics,
 		"/traffic-injuries": TI,
 		"/traffic-injuries/:auto_com/:year": EditTI,
-		"/traffic-injuries/D3JS": D3JS,
+		"/traffic-injuries/d3js": D3JS,
 		"/traffic-injuries/Highcharts": Highcharts,
 		"/driving-licenses": DL,
 		"/driving-licenses/:aut_com/:year": EditDL,

@@ -1,3 +1,7 @@
+<svelte:head>
+<link rel='stylesheet' href='css/d3js.css'>
+</svelte:head>
+
 <h2>Usando la librería D3JS</h2>
 <h3>Accidentes entre 2018 - 2015</h3>
 
