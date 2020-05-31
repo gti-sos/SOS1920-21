@@ -18,6 +18,7 @@
 	// driving-licenses
 	import DL from './driving-licenses/Home.svelte';
 	import EditDL from './driving-licenses/editDrivingLicense.svelte';
+	import HighchartsDL from './driving-licenses/HighchartsDL.svelte';
 
 	const routes = {
 		"/": Home,
@@ -32,6 +33,7 @@
 		"/integrations/traffic-injuries": IntegrationsTI,
 		"/driving-licenses": DL,
 		"/driving-licenses/:aut_com/:year": EditDL,
+		"/driving-licenses/Highcharts": HighchartsDL,
 		"*": NotFound
 	};
 
@@ -65,8 +67,14 @@
 							<a class="dropdown-item" href="#/traffic-injuries/Apexcharts">Gráfica (Apexcharts)</a>
 						</div>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#/driving-licenses">Licencias de Conducir</a>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Licencias de Conducir </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#/driving-licenses/">API</a>
+							<a class="dropdown-item" href="#/driving-licenses/Highcharts">Gráfica (Highcharts)</a>
+							
+						</div>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#/info">Información</a>
