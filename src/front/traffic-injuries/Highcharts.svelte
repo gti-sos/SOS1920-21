@@ -5,9 +5,16 @@
 <script>
     document.addEventListener('DOMContentLoaded', async function () {
         let res = [];
+        console.log("Fetching traffic-injuries...");
         const data = await fetch("/api/v2/traffic-injuries");
-        let DataConverted = await data.json();
-        console.log(DataConverted);
+        let jsonData = await data.json();
+        console.log(jsonData);
+
+        var higchartsData = jsonData.filter(function(x){
+            return x.auto_com && parseInt(x.year)==2018;
+            }).map((dato)=> { 
+                return {'name': dato.auto_com, 'data': [parseInt(dato.accident), parseInt(dato.dead), parseInt(dato.injure)]}
+        });
 
         Highcharts.chart('container', {
             chart: {
@@ -33,18 +40,10 @@
                     stacking: 'normal'
                 }
             },
-            series: [{
-                name: 'Comunidad Autónoma 1',
-                data: [5, 3, 4]
-            }, {
-                name: 'Comunidad Autónoma 2',
-                data: [2, 2, 3]
-            }, {
-                name: 'Comunidad Autónoma 3',
-                data: [3, 4, 4]
-            }]
-        });
-    })
+            series: higchartsData
+    });
+})
+
 </script>
 
 <h2>Gráfico (Highcharts)</h2>
