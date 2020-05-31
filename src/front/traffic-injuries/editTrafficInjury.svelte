@@ -1,17 +1,17 @@
 <script>
     import { onMount } from "svelte";
     import { pop } from "svelte-spa-router";
-	import { Table, Button, Alert } from 'sveltestrap';
+    import { Table, Button, Alert } from 'sveltestrap';
 
     export let params = {};
     let trafficInjury = {};
     let updatedAutoCom = "";
     let updatedYear = 0;
-	let updatedAccident = 0;
-	let updatedDead = 0;
-	let updatedInjure = 0;
+    let updatedAccident = 0;
+    let updatedDead = 0;
+    let updatedInjure = 0;
     let infoAlertStatus = "";
-	let infoAlertText="";
+    let infoAlertText = "";
 
     onMount(getTrafficInjury);
 
@@ -19,47 +19,47 @@
 
         console.log("Fetching traffic-injury...");
         const res = await fetch("/api/v2/traffic-injuries/" + params.auto_com + "/" + params.year);
-		
+
         if (res.ok) {
             const json = await res.json();
             trafficInjury = json;
             updatedAutoCom = params.auto_com;
             updatedYear = params.year;
             updatedAccident = trafficInjury.accident;
-			updatedDead = trafficInjury.dead;
+            updatedDead = trafficInjury.dead;
             updatedInjure = trafficInjury.injure;
-            console.log("Received traffic-injury");	
-		}
-		else if(res.status == 404){
-			window.alert("El recurso " + params.auto_com + " " + params.year + " no existe");
-		}
+            console.log("Received traffic-injury");
+        }
+        else if (res.status == 404) {
+            window.alert("El recurso " + params.auto_com + " " + params.year + " no existe");
+        }
     }
 
     async function updateTrafficInjury() {
-        console.log("Updating traffic-injury (auto_com = " + params.auto_com + " and year = " + params.year +  ")");
-		
+        console.log("Updating traffic-injury (auto_com = " + params.auto_com + " and year = " + params.year + ")");
+
         const res = await fetch("/api/v2/traffic-injuries/" + params.auto_com + "/" + params.year, {
             method: "PUT",
             body: JSON.stringify({
                 auto_com: params.auto_com,
                 year: parseInt(params.year),
                 accident: updatedAccident,
-				dead: updatedDead,
-				injure: updatedInjure
+                dead: updatedDead,
+                injure: updatedInjure
             }),
             headers: {
                 "Content-Type": "application/json"
             }
         }).then(function (res) {
             getTrafficInjury();
-			if(res.ok){	
+            if (res.ok) {
                 infoAlertStatus = res.status + " - " + res.statusText;
-			    infoAlertText =  "Recurso actualizado correctamente.";
-				console.log("Resource modified");
+                infoAlertText = "Recurso actualizado correctamente.";
+                console.log("Resource modified");
 
-			}else if(res.status == 400){
-				window.alert("Hay un problema con los valores insertados.");
-			} 
+            } else if (res.status == 400) {
+                window.alert("Hay un problema con los valores insertados.");
+            }
         });
     }
 
@@ -68,7 +68,7 @@
     <h2>Se encuentra dentro de traffic-injuries</h2>
     <p><Button color="info" outline on:click="{pop}">Volver a traffic-injuries</Button></p>
 
-	{#if infoAlertStatus}
+    {#if infoAlertStatus}
 	<Alert>
 		<h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
 		{infoAlertText}
