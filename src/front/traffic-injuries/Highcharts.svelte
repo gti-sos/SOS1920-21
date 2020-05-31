@@ -13,6 +13,7 @@
         const res = await fetch("/api/v2/traffic-injuries/loadInitialData", {
             method: "GET"
         }).then(function (res) {
+            higchartsGraph();
             infoAlertStatus = res.status + " - " + res.statusText;
             infoAlertText = "Recursos cargados correctamente.";
         });
@@ -26,6 +27,7 @@
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "No hay recursos que eliminar.";
             } else {
+                higchartsGraph();
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "Se han eliminado todos los recursos correctamente.";
             }
@@ -71,7 +73,7 @@
             series: higchartsData
         });
     }
-    higchartsGraph()
+    higchartsGraph();
 </script>
 
 <main>
@@ -84,7 +86,6 @@
 		{infoAlertText}
 	</Alert>
     {/if}
-    <p><Button color="primary" on:click="{refreshPage}">Recargar</Button></p>
     <p><a href="/"><Button color="info">Volver a Inicio</Button></a></p>
     <p><Button color="success" on:click="{loadInitialData}">Cargar Datos Iniciales</Button></p>
     <p><Button color="danger" on:click="{deleteAllTrafficInjuries}">Elimina Todos los Recursos</Button></p>
