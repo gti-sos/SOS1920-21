@@ -752,7 +752,12 @@ app.get(BASE_API_URL + '/driving-licenses/loadInitialData', (req, res) => {
             .limit(limit)
             .exec((err, docs) => {
                 if (docs.length == 0) {
-                    res.sendStatus(204);
+                    res.send(
+                        docs.map(dl => {
+                            delete dl._id;
+                            return dl;
+                        })
+                    );
                     console.log('\nNO CONTENT TO SHOW');
                 } else {
                     res.send(
