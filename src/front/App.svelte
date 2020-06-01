@@ -11,7 +11,6 @@
 	// traffic-injuries
 	import TI from './traffic-injuries/Home.svelte';
 	import EditTI from './traffic-injuries/editTrafficInjury.svelte';
-	import D3JS from './traffic-injuries/d3js.svelte';
 	import HighchartsTI from './traffic-injuries/Highcharts.svelte';
 	import ApexchartsTI from './traffic-injuries/Apexcharts.svelte';
 	import IntegrationsTI from './traffic-injuries/Integrations.svelte';
@@ -29,7 +28,6 @@
 		"/analytics": Analytics,
 		"/traffic-injuries": TI,
 		"/traffic-injuries/:auto_com/:year": EditTI,
-		"/traffic-injuries/d3js": D3JS,
 		"/traffic-injuries/Highcharts": HighchartsTI,
 		"/traffic-injuries/Apexcharts": ApexchartsTI,
 		"/integrations/traffic-injuries": IntegrationsTI,
@@ -67,7 +65,6 @@
 							<a class="dropdown-item" href="#/traffic-injuries/">API</a>
 							<a class="dropdown-item" href="#/traffic-injuries/Highcharts">Gráfica (Highcharts)</a>
 							<a class="dropdown-item" href="#/traffic-injuries/Apexcharts">Gráfica (Apexcharts)</a>
-							<a class="dropdown-item" href="#/traffic-injuries/D3JS">Puntos Extra (Librería D3JS)</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
