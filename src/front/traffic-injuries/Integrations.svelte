@@ -10,7 +10,7 @@
         const res = await fetch("https://sos1920-01.herokuapp.com/api/v2/poverty-stats/loadInitialData", {
             method: "GET"
         }).then(function (res) {
-            higchartsGraphG1();
+            highchartsGraphG1();
             infoAlertStatus = res.status + " - " + res.statusText;
             infoAlertText = "Recursos cargados correctamente.";
         });
@@ -24,7 +24,7 @@
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "No hay recursos que eliminar.";
             } else {
-                higchartsGraphG1();
+                highchartsGraphG1();
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "Se han eliminado todos los recursos correctamente.";
             }
@@ -36,7 +36,7 @@
         const res = await fetch("https://sos1920-02.herokuapp.com/api/v2/rural-tourism-stats/loadInitialData", {
             method: "GET"
         }).then(function (res) {
-            higchartsGraphG2();
+            highchartsGraphG2();
             infoAlertStatus = res.status + " - " + res.statusText;
             infoAlertText = "Recursos cargados correctamente.";
         });
@@ -50,7 +50,7 @@
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "No hay recursos que eliminar.";
             } else {
-                higchartsGraphG2();
+                highchartsGraphG2();
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "Se han eliminado todos los recursos correctamente.";
             }
@@ -62,7 +62,7 @@
         const res = await fetch("https://sos1920-05.herokuapp.com/api/v1/books-exports/loadInitialData", {
             method: "GET"
         }).then(function (res) {
-            higchartsGraphG5();
+            highchartsGraphG5();
             infoAlertStatus = res.status + " - " + res.statusText;
             infoAlertText = "Recursos cargados correctamente.";
         });
@@ -76,7 +76,7 @@
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "No hay recursos que eliminar.";
             } else {
-                higchartsGraphG5();
+                highchartsGraphG5();
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "Se han eliminado todos los recursos correctamente.";
             }
@@ -88,7 +88,7 @@
         const res = await fetch("https://sos1920-09.herokuapp.com/api/v3/oil-coal-nuclear-energy-consumption-stats/loadInitialData", {
             method: "GET"
         }).then(function (res) {
-            higchartsGraphG9();
+            highchartsGraphG9();
             infoAlertStatus = res.status + " - " + res.statusText;
             infoAlertText = "Recursos cargados correctamente.";
         });
@@ -102,7 +102,7 @@
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "No hay recursos que eliminar.";
             } else {
-                higchartsGraphG9();
+                highchartsGraphG9();
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "Se han eliminado todos los recursos correctamente.";
             }
@@ -114,7 +114,7 @@
         const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/loadInitialData", {
             method: "GET"
         }).then(function (res) {
-            higchartsGraphG10();
+            highchartsGraphG10();
             infoAlertStatus = res.status + " - " + res.statusText;
             infoAlertText = "Recursos cargados correctamente.";
         });
@@ -128,7 +128,7 @@
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "No hay recursos que eliminar.";
             } else {
-                higchartsGraphG10();
+                highchartsGraphG10();
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "Se han eliminado todos los recursos correctamente.";
             }
@@ -137,16 +137,42 @@
 
     // G22 - og-basket-stats
     async function loadInitialDataOgBasketStats() {
-        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/loadInitialData", {
+        const res = await fetch("https://sos1920-10.herokuapp.com/api/v1/og-basket-stats/loadInitialData", {
             method: "GET"
         }).then(function (res) {
-            higchartsGraphG10();
+            highchartsGraphG22();
             infoAlertStatus = res.status + " - " + res.statusText;
             infoAlertText = "Recursos cargados correctamente.";
         });
     }
 
     async function deleteAllOgBasketStats() {
+        const res = await fetch("https://sos1920-10.herokuapp.com/api/v1/og-basket-stats/", {
+            method: "DELETE"
+        }).then(function (res) {
+            if (res.status == 404) {
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "No hay recursos que eliminar.";
+            } else {
+                highchartsGraphG22();
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "Se han eliminado todos los recursos correctamente.";
+            }
+        });
+    }
+
+    // G24 - univregs-stats
+    async function loadInitialDataUnivregsStats() {
+        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/loadInitialData", {
+            method: "GET"
+        }).then(function (res) {
+            highchartsGraphG10();
+            infoAlertStatus = res.status + " - " + res.statusText;
+            infoAlertText = "Recursos cargados correctamente.";
+        });
+    }
+
+    async function deleteAllUnivregsStats() {
         const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/", {
             method: "DELETE"
         }).then(function (res) {
@@ -154,14 +180,92 @@
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "No hay recursos que eliminar.";
             } else {
-                higchartsGraphG10();
+                highchartsGraphG10();
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "Se han eliminado todos los recursos correctamente.";
             }
         });
     }
 
-    async function higchartsGraphG1() {
+    // G26 - goalscorers
+    async function loadInitialDataGoalscorers() {
+        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/loadInitialData", {
+            method: "GET"
+        }).then(function (res) {
+            highchartsGraphG10();
+            infoAlertStatus = res.status + " - " + res.statusText;
+            infoAlertText = "Recursos cargados correctamente.";
+        });
+    }
+
+    async function deleteAllGoalscorers() {
+        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/", {
+            method: "DELETE"
+        }).then(function (res) {
+            if (res.status == 404) {
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "No hay recursos que eliminar.";
+            } else {
+                highchartsGraphG10();
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "Se han eliminado todos los recursos correctamente.";
+            }
+        });
+    }
+
+    // G28 - ppas
+    async function loadInitialDataPpas() {
+        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/loadInitialData", {
+            method: "GET"
+        }).then(function (res) {
+            highchartsGraphG10();
+            infoAlertStatus = res.status + " - " + res.statusText;
+            infoAlertText = "Recursos cargados correctamente.";
+        });
+    }
+
+    async function deleteAllPpas() {
+        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/", {
+            method: "DELETE"
+        }).then(function (res) {
+            if (res.status == 404) {
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "No hay recursos que eliminar.";
+            } else {
+                highchartsGraphG10();
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "Se han eliminado todos los recursos correctamente.";
+            }
+        });
+    }
+
+    // G30 - indice_de_masa_corporal
+    async function loadInitialDataIndiceMasaCorporal() {
+        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/loadInitialData", {
+            method: "GET"
+        }).then(function (res) {
+            highchartsGraphG10();
+            infoAlertStatus = res.status + " - " + res.statusText;
+            infoAlertText = "Recursos cargados correctamente.";
+        });
+    }
+
+    async function deleteAllIndiceMasaCorporal() {
+        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/", {
+            method: "DELETE"
+        }).then(function (res) {
+            if (res.status == 404) {
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "No hay recursos que eliminar.";
+            } else {
+                highchartsGraphG10();
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "Se han eliminado todos los recursos correctamente.";
+            }
+        });
+    }
+
+    async function highchartsGraphG1() {
         console.log("Fetching poverty-stats...");
         const data = await fetch("https://sos1920-01.herokuapp.com/api/v2/poverty-stats");
         let jsonData = await data.json();
@@ -209,9 +313,9 @@
             series: UK
         });
     }
-    higchartsGraphG1();
+    highchartsGraphG1();
 
-    async function higchartsGraphG2() {
+    async function highchartsGraphG2() {
         console.log("Fetching rural-tourism-stats...");
         const data = await fetch("https://sos1920-02.herokuapp.com/api/v2/rural-tourism-stats");
         let jsonData = await data.json();
@@ -260,9 +364,9 @@
             }]
         });
     }
-    higchartsGraphG2();
+    highchartsGraphG2();
 
-    async function higchartsGraphG5() {
+    async function highchartsGraphG5() {
         console.log("Fetching books-exports...");
         const data = await fetch("https://sos1920-05.herokuapp.com/api/v1/books-exports");
         let jsonData = await data.json();
@@ -315,9 +419,9 @@
             series: cadiz
         });
     }
-    higchartsGraphG5();
+    highchartsGraphG5();
 
-    async function higchartsGraphG9() {
+    async function highchartsGraphG9() {
         console.log("Fetching oil-coal-nuclear-energy-consumption-stats...");
         const data = await fetch("https://sos1920-09.herokuapp.com/api/v3/oil-coal-nuclear-energy-consumption-stats");
         let jsonData = await data.json();
@@ -379,21 +483,19 @@
         });
 
     }
-    higchartsGraphG9();
+    highchartsGraphG9();
 
-    async function higchartsGraphG10() {
+    async function highchartsGraphG10() {
         console.log("Fetching global-marriages...");
         const data = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/");
         let jsonData = await data.json();
         console.log(jsonData);
 
-        var renovable = jsonData.filter(function (x) {
+        var marriages = jsonData.filter(function (x) {
             return x.country && parseInt(x.year) == 2018;
         }).map((dato) => {
             return { 'name': dato.country, 'data': [{ 'name': "Mujeres - " + dato.avg_wm + " y Hombres - " + dato.avg_m, 'value': dato.marriages }] }
         });
-
-        console.log(renovable)
 
         Highcharts.chart('container10', {
             chart: {
@@ -435,11 +537,116 @@
                     }
                 }
             },
-            series: renovable
+            series: marriages
         });
 
     }
-    higchartsGraphG10();
+    highchartsGraphG10();
+
+    async function highchartsGraphG22() {
+        console.log("Fetching og-basket-stats...");
+        const data = await fetch("https://sos1920-10.herokuapp.com/api/v1/og-basket-stats/");
+        let jsonData = await data.json();
+        console.log(jsonData);
+
+        var basket = jsonData.filter(function (x) {
+            return x.country && parseInt(x.year);
+        }).map((dato) => {
+            return { 'name': dato.country +  " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
+        });
+
+        Highcharts.chart('container22', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Ranking de puntuaciones de baloncesto por países'
+            },
+            subtitle: {
+                text: '(2000 - 2016)'
+            },
+            xAxis: {
+                categories: ['Puntos', 'Rebotes', 'Triples']
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Puntos totales'
+                }
+            },
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                shared: true
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'percent'
+                }
+            },
+            series: basket
+        });
+    }
+    highchartsGraphG22();
+
+    async function highchartsGraphG24() {
+        console.log("Fetching univregs-stats...");
+        const data = await fetch("https://sos1920-24.herokuapp.com/api/v2/univregs-stats/");
+        let jsonData = await data.json();
+        console.log(jsonData);
+
+        var goals = jsonData.filter(function (x) {
+            return x.country && parseInt(x.year);
+        }).map((dato) => {
+            return { 'name': dato.country +  " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
+        });
+
+    }
+    highchartsGraphG24();
+
+    async function highchartsGraphG26() {
+        console.log("Fetching goalscorers...");
+        const data = await fetch("https://sos1920-26.herokuapp.com/api/v3/goalscorers/");
+        let jsonData = await data.json();
+        console.log(jsonData);
+
+        var goals = jsonData.filter(function (x) {
+            return x.country && parseInt(x.year);
+        }).map((dato) => {
+            return { 'name': dato.country +  " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
+        });
+
+    }
+    highchartsGraphG26();
+
+    async function highchartsGraphG28() {
+        console.log("Fetching ppas...");
+        const data = await fetch("https://sos1920-28.herokuapp.com/api/v1/ppas");
+        let jsonData = await data.json();
+        console.log(jsonData);
+
+        var goals = jsonData.filter(function (x) {
+            return x.country && parseInt(x.year);
+        }).map((dato) => {
+            return { 'name': dato.country +  " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
+        });
+
+    }
+    highchartsGraphG28();
+
+    async function highchartsGraphG30() {
+        console.log("Fetching indice-de-masa-corporal...");
+        const data = await fetch("https://sos1920-30.herokuapp.com/api/v3/indice_de_masa_corporal");
+        let jsonData = await data.json();
+        console.log(jsonData);
+
+        var goals = jsonData.filter(function (x) {
+            return x.country && parseInt(x.year);
+        }).map((dato) => {
+            return { 'name': dato.country +  " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
+        });
+
+    }
+    highchartsGraphG30();
 
 </script>
 
@@ -471,7 +678,7 @@
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
                     href="#list-26" role="tab" aria-controls="profile">Integración con Grupo 26 <br>(goalscorers)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-28" role="tab" aria-controls="profile">Integración con Grupo 28 <br>(ppas)</a>
+                    href="#list-28" role="tab" aria-controls="profile">Integración con Grupo 28 - Usando Proxy<br>(ppas)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
                     href="#list-30" role="tab" aria-controls="profile">Integración con Grupo 30
                     <br>(indice_de_masa_corporal)</a>
@@ -580,8 +787,8 @@
                     {/if}
                     <p><a href="/"><Button color="info">Volver</Button></a></p>
                     <p><a href="https://sos1920-22.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
-                    <p><Button color="success" on:click="{loadInitialDataGlobalMarriages}">Cargar Datos Iniciales</Button></p>
-                    <p><Button color="danger" on:click="{deleteAllGlobalMarriages}">Elimina Todos los Recursos</Button></p>
+                    <p><Button color="success" on:click="{loadInitialDataOgBasketStats}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllOgBasketStats}">Elimina Todos los Recursos</Button></p>
                     <figure class="highcharts-figure">
                         <div id="container22"></div>
                     </figure>
