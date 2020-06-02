@@ -20,6 +20,7 @@
 	import EditDL from './driving-licenses/editDrivingLicense.svelte';
 	import HighchartsDL from './driving-licenses/HighchartsDL.svelte';
 	import BillBoard from './driving-licenses/BillBoard.svelte';
+	import IntegrationsDL from './driving-licenses/Integrations.svelte';
 
 	const routes = {
 		"/": Home,
@@ -36,6 +37,7 @@
 		"/driving-licenses/:aut_com/:year": EditDL,
 		"/driving-licenses/Highcharts": HighchartsDL,
 		"/driving-licenses/BillBoard" : BillBoard,
+		"/integrations/driving-licenses": IntegrationsDL,
 		"*": NotFound
 	};
 
