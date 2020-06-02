@@ -1,11 +1,3 @@
-<svelte:head>
-	<!-- FontAwesome-->
-	<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-	<!-- Bootstrap core JS-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-</svelte:head>
-
 <body>
 	<!-- Masthead-->
 	<br><br><header class="masthead">
