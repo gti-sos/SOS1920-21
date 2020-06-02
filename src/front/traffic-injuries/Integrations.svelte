@@ -163,24 +163,24 @@
 
     // G24 - univregs-stats
     async function loadInitialDataUnivregsStats() {
-        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/loadInitialData", {
+        const res = await fetch("https://sos1920-24.herokuapp.com/api/v2/univregs-stats/loadInitialData", {
             method: "GET"
         }).then(function (res) {
-            highchartsGraphG10();
+            highchartsGraphG24();
             infoAlertStatus = res.status + " - " + res.statusText;
             infoAlertText = "Recursos cargados correctamente.";
         });
     }
 
     async function deleteAllUnivregsStats() {
-        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/", {
+        const res = await fetch("https://sos1920-24.herokuapp.com/api/v2/univregs-stats/", {
             method: "DELETE"
         }).then(function (res) {
             if (res.status == 404) {
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "No hay recursos que eliminar.";
             } else {
-                highchartsGraphG10();
+                highchartsGraphG24();
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "Se han eliminado todos los recursos correctamente.";
             }
@@ -265,6 +265,7 @@
         });
     }
 
+    // Graphs
     async function highchartsGraphG1() {
         console.log("Fetching poverty-stats...");
         const data = await fetch("https://sos1920-01.herokuapp.com/api/v2/poverty-stats");
@@ -552,7 +553,7 @@
         var basket = jsonData.filter(function (x) {
             return x.country && parseInt(x.year);
         }).map((dato) => {
-            return { 'name': dato.country +  " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
+            return { 'name': dato.country + " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
         });
 
         Highcharts.chart('container22', {
@@ -594,12 +595,49 @@
         let jsonData = await data.json();
         console.log(jsonData);
 
-        var goals = jsonData.filter(function (x) {
-            return x.country && parseInt(x.year);
+        var univ = jsonData.filter(function (x) {
+            return x.community && parseInt(x.year);
         }).map((dato) => {
-            return { 'name': dato.country +  " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
+            return { 'name': dato.community, 'y': parseInt(dato.univreg_offer) }
         });
 
+        Highcharts.chart('container24', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Oferta de plazas universitarias en España'
+            },
+            subtitle: {
+                text: '(2018)'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                name: 'Oferta',
+                colorByPoint: true,
+                data: univ
+            }]
+        });
     }
     highchartsGraphG24();
 
@@ -612,7 +650,7 @@
         var goals = jsonData.filter(function (x) {
             return x.country && parseInt(x.year);
         }).map((dato) => {
-            return { 'name': dato.country +  " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
+            return { 'name': dato.country + " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
         });
 
     }
@@ -627,7 +665,7 @@
         var goals = jsonData.filter(function (x) {
             return x.country && parseInt(x.year);
         }).map((dato) => {
-            return { 'name': dato.country +  " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
+            return { 'name': dato.country + " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
         });
 
     }
@@ -642,7 +680,7 @@
         var goals = jsonData.filter(function (x) {
             return x.country && parseInt(x.year);
         }).map((dato) => {
-            return { 'name': dato.country +  " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
+            return { 'name': dato.country + " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
         });
 
     }
@@ -678,7 +716,8 @@
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
                     href="#list-26" role="tab" aria-controls="profile">Integración con Grupo 26 <br>(goalscorers)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-28" role="tab" aria-controls="profile">Integración con Grupo 28 - Usando Proxy<br>(ppas)</a>
+                    href="#list-28" role="tab" aria-controls="profile">Integración con Grupo 28 - Usando
+                    Proxy<br>(ppas)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
                     href="#list-30" role="tab" aria-controls="profile">Integración con Grupo 30
                     <br>(indice_de_masa_corporal)</a>
@@ -804,8 +843,8 @@
                     {/if}
                     <p><a href="/"><Button color="info">Volver</Button></a></p>
                     <p><a href="https://sos1920-24.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
-                    <!--<p><Button color="success" on:click="{loadInitialDataGlobalMarriages}">Cargar Datos Iniciales</Button></p>
-                    <p><Button color="danger" on:click="{deleteAllGlobalMarriages}">Elimina Todos los Recursos</Button></p>-->
+                    <p><Button color="success" on:click="{loadInitialDataUnivregsStats}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllUnivregsStats}">Elimina Todos los Recursos</Button></p>
                     <figure class="highcharts-figure">
                         <div id="container24"></div>
                     </figure>
