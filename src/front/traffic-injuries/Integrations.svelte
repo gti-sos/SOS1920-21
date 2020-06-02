@@ -192,7 +192,7 @@
         const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/loadInitialData", {
             method: "GET"
         }).then(function (res) {
-            highchartsGraphG10();
+            highchartsGraphG26();
             infoAlertStatus = res.status + " - " + res.statusText;
             infoAlertText = "Recursos cargados correctamente.";
         });
@@ -206,7 +206,7 @@
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "No hay recursos que eliminar.";
             } else {
-                highchartsGraphG10();
+                highchartsGraphG26();
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "Se han eliminado todos los recursos correctamente.";
             }
@@ -218,7 +218,7 @@
         const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/loadInitialData", {
             method: "GET"
         }).then(function (res) {
-            highchartsGraphG10();
+            highchartsGraphG28();
             infoAlertStatus = res.status + " - " + res.statusText;
             infoAlertText = "Recursos cargados correctamente.";
         });
@@ -232,7 +232,7 @@
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "No hay recursos que eliminar.";
             } else {
-                highchartsGraphG10();
+                highchartsGraphG28();
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "Se han eliminado todos los recursos correctamente.";
             }
@@ -244,7 +244,7 @@
         const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/loadInitialData", {
             method: "GET"
         }).then(function (res) {
-            highchartsGraphG10();
+            highchartsGraphG30();
             infoAlertStatus = res.status + " - " + res.statusText;
             infoAlertText = "Recursos cargados correctamente.";
         });
@@ -258,7 +258,7 @@
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "No hay recursos que eliminar.";
             } else {
-                highchartsGraphG10();
+                highchartsGraphG30();
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "Se han eliminado todos los recursos correctamente.";
             }
@@ -860,8 +860,8 @@
                     {/if}
                     <p><a href="/"><Button color="info">Volver</Button></a></p>
                     <p><a href="https://sos1920-26.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
-                    <!--<p><Button color="success" on:click="{loadInitialDataGlobalMarriages}">Cargar Datos Iniciales</Button></p>
-                    <p><Button color="danger" on:click="{deleteAllGlobalMarriages}">Elimina Todos los Recursos</Button></p> -->
+                    <p><Button color="success" on:click="{loadInitialDataGoalscorers}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllGoalscorers}">Elimina Todos los Recursos</Button></p>
                     <figure class="highcharts-figure">
                         <div id="container26"></div>
                     </figure>
@@ -877,8 +877,8 @@
                     {/if}
                     <p><a href="/"><Button color="info">Volver</Button></a></p>
                     <p><a href="https://sos1920-28.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
-                    <!--<p><Button color="success" on:click="{loadInitialDataGlobalMarriages}">Cargar Datos Iniciales</Button></p>
-                    <p><Button color="danger" on:click="{deleteAllGlobalMarriages}">Elimina Todos los Recursos</Button></p> -->
+                    <p><Button color="success" on:click="{loadInitialDataPpas}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllPpas}">Elimina Todos los Recursos</Button></p>
                     <figure class="highcharts-figure">
                         <div id="container28"></div>
                     </figure>
@@ -893,9 +893,9 @@
                     </Alert>
                     {/if}
                     <p><a href="/"><Button color="info">Volver</Button></a></p>
-                    <p><a href="https://sos1920-10.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
-                    <!--<p><Button color="success" on:click="{loadInitialDataGlobalMarriages}">Cargar Datos Iniciales</Button></p>
-                    <p><Button color="danger" on:click="{deleteAllGlobalMarriages}">Elimina Todos los Recursos</Button></p>-->
+                    <p><a href="https://sos1920-30.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
+                    <p><Button color="success" on:click="{loadInitialDataIndiceMasaCorporal}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllIndiceMasaCorporal}">Elimina Todos los Recursos</Button></p>
                     <figure class="highcharts-figure">
                         <div id="container30"></div>
                     </figure>
