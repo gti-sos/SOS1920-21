@@ -4,7 +4,7 @@
 
 <div>
     <h2>Información</h2>
-    <p><a href="/"><Button color="info">Volver a Inicio</Button></a></p>
+    <p><a href="/"><Button color="info">Volver</Button></a></p>
     <ul>
     <li><strong>Team</strong>
     <ul>
