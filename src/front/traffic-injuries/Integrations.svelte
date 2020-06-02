@@ -1,6 +1,92 @@
-<h2>Integraciones - Accidentes de Tráfico</h2>
+<script>
+    import { Button, Alert } from 'sveltestrap';
+
+    // Alerts
+    let infoAlertStatus = "";
+    let infoAlertText = "";
+
+    function refreshPage() {
+        window.location.reload();
+    }
+
+    async function loadInitialData() {
+        const res = await fetch("https://sos1920-01.herokuapp.com/api/v2/poverty-stats/loadInitialData", {
+            method: "GET"
+        }).then(function (res) {
+            higchartsGraphG1();
+            infoAlertStatus = res.status + " - " + res.statusText;
+            infoAlertText = "Recursos cargados correctamente.";
+        });
+    }
+
+    async function deleteAllTrafficInjuries() {
+        const res = await fetch("/api/v2/traffic-injuries", {
+            method: "DELETE"
+        }).then(function (res) {
+            if (res.status == 404) {
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "No hay recursos que eliminar.";
+            } else {
+                higchartsGraphG1();
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "Se han eliminado todos los recursos correctamente.";
+            }
+        });
+    }
+
+    async function higchartsGraphG1() {
+        console.log("Fetching traffic-injuries...");
+        const data = await fetch("https://sos1920-01.herokuapp.com/api/v2/poverty-stats");
+        let jsonData = await data.json();
+        console.log(jsonData);
+        var UK = jsonData.filter(function (x) {
+            return x.country == "unitedKingdom" && parseInt(x.year) || x.country == "spain" && parseInt(x.year);
+        }).map((dato) => {
+            return { 'name': dato.country + ' - ' + dato.year, 'data': [parseInt(dato.poverty_ht), parseInt(dato.poverty_prp), parseInt(dato.poverty_pt)] }
+        });
+
+        Highcharts.chart('container1', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Índices de pobreza entre Reino Unido y España'
+            },
+            subtitle: {
+                text: '(2017 - 2010)'
+            },
+            xAxis: {
+                categories: ["Riesgo de Pobreza", "Umbral Persona", "Umbral Hogar"],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Miles'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: UK
+        });
+    }
+    higchartsGraphG1();
+</script>
 
 <main>
+    <h2>Integraciones - Accidentes de Tráfico</h2>
     <br>
     <div class="row">
         <div class="col-4">
@@ -36,9 +122,6 @@
                 <div class="tab-pane fade show active" id="list-01" role="tabpanel" aria-labelledby="list-home-list">
                     <figure class="highcharts-figure">
                         <div id="container1"></div>
-                        <p class="highcharts-description">
-                            Descripcion 1
-                        </p>
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-02" role="tabpanel" aria-labelledby="list-profile-list">
