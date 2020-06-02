@@ -19,7 +19,7 @@
 	import DL from './driving-licenses/Home.svelte';
 	import EditDL from './driving-licenses/editDrivingLicense.svelte';
 	import HighchartsDL from './driving-licenses/HighchartsDL.svelte';
-	import am4Chart from './driving-licenses/am4chart.svelte';
+	import BillBoard from './driving-licenses/BillBoard.svelte';
 
 	const routes = {
 		"/": Home,
@@ -35,7 +35,7 @@
 		"/driving-licenses": DL,
 		"/driving-licenses/:aut_com/:year": EditDL,
 		"/driving-licenses/Highcharts": HighchartsDL,
-		"/driving-licenses/Am4Chart" : am4Chart,
+		"/driving-licenses/BillBoard" : BillBoard,
 		"*": NotFound
 	};
 
@@ -75,7 +75,7 @@
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="#/driving-licenses/">API</a>
 							<a class="dropdown-item" href="#/driving-licenses/Highcharts">Gráfica (Highcharts)</a>
-							<a class="dropdown-item" href="#/driving-licenses/Am4Chart">Gráfica (Am4Chart)</a>
+							<a class="dropdown-item" href="#/driving-licenses/Billboard">Gráfica (Billboard)</a>
 						</div>
 					</li>
 					<li class="nav-item">

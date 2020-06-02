@@ -10,6 +10,7 @@
     }
 
     async function loadInitialData() {
+        deleteAllDrivingLicenses();
         const res = await fetch("/api/v2/driving-licenses/loadInitialData", {
             method: "GET"
         }).then(function (res) {
