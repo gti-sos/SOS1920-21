@@ -189,7 +189,7 @@
 
     // G26 - goalscorers
     async function loadInitialDataGoalscorers() {
-        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/loadInitialData", {
+        const res = await fetch("https://sos1920-26.herokuapp.com/api/v3/global-marriages/loadInitialData", {
             method: "GET"
         }).then(function (res) {
             highchartsGraphG26();
@@ -199,7 +199,7 @@
     }
 
     async function deleteAllGoalscorers() {
-        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/", {
+        const res = await fetch("https://sos1920-26.herokuapp.com/api/v3/global-marriages/", {
             method: "DELETE"
         }).then(function (res) {
             if (res.status == 404) {
@@ -215,7 +215,7 @@
 
     // G28 - ppas
     async function loadInitialDataPpas() {
-        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/loadInitialData", {
+        const res = await fetch("https://sos1920-28.herokuapp.com/api/v3/global-marriages/loadInitialData", {
             method: "GET"
         }).then(function (res) {
             highchartsGraphG28();
@@ -225,7 +225,7 @@
     }
 
     async function deleteAllPpas() {
-        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/", {
+        const res = await fetch("https://sos1920-28.herokuapp.com/api/v3/global-marriages/", {
             method: "DELETE"
         }).then(function (res) {
             if (res.status == 404) {
@@ -241,7 +241,7 @@
 
     // G30 - indice_de_masa_corporal
     async function loadInitialDataIndiceMasaCorporal() {
-        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/loadInitialData", {
+        const res = await fetch("https://sos1920-30.herokuapp.com/api/v3/global-marriages/loadInitialData", {
             method: "GET"
         }).then(function (res) {
             highchartsGraphG30();
@@ -251,7 +251,7 @@
     }
 
     async function deleteAllIndiceMasaCorporal() {
-        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/", {
+        const res = await fetch("https://sos1920-30.herokuapp.com/api/v3/global-marriages/", {
             method: "DELETE"
         }).then(function (res) {
             if (res.status == 404) {
