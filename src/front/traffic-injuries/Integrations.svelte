@@ -5,11 +5,8 @@
     let infoAlertStatus = "";
     let infoAlertText = "";
 
-    function refreshPage() {
-        window.location.reload();
-    }
-
-    async function loadInitialData() {
+    // poverty-stats
+    async function loadInitialDataPovertyStats() {
         const res = await fetch("https://sos1920-01.herokuapp.com/api/v2/poverty-stats/loadInitialData", {
             method: "GET"
         }).then(function (res) {
@@ -19,8 +16,8 @@
         });
     }
 
-    async function deleteAllTrafficInjuries() {
-        const res = await fetch("/api/v2/traffic-injuries", {
+    async function deleteAllPovertyStats() {
+        const res = await fetch("https://sos1920-01.herokuapp.com/api/v2/poverty-stats/", {
             method: "DELETE"
         }).then(function (res) {
             if (res.status == 404) {
@@ -34,8 +31,34 @@
         });
     }
 
+    // rural-tourism-stats
+    async function loadInitialDataRuralTourismStats() {
+        const res = await fetch("https://sos1920-02.herokuapp.com/api/v2/rural-tourism-stats/loadInitialData", {
+            method: "GET"
+        }).then(function (res) {
+            higchartsGraphG2();
+            infoAlertStatus = res.status + " - " + res.statusText;
+            infoAlertText = "Recursos cargados correctamente.";
+        });
+    }
+
+    async function deleteAllRuralTourismStats() {
+        const res = await fetch("https://sos1920-02.herokuapp.com/api/v2/rural-tourism-stats/", {
+            method: "DELETE"
+        }).then(function (res) {
+            if (res.status == 404) {
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "No hay recursos que eliminar.";
+            } else {
+                higchartsGraphG2();
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "Se han eliminado todos los recursos correctamente.";
+            }
+        });
+    }
+
     async function higchartsGraphG1() {
-        console.log("Fetching traffic-injuries...");
+        console.log("Fetching poverty-stats...");
         const data = await fetch("https://sos1920-01.herokuapp.com/api/v2/poverty-stats");
         let jsonData = await data.json();
         console.log(jsonData);
@@ -83,6 +106,59 @@
         });
     }
     higchartsGraphG1();
+
+    async function higchartsGraphG2() {
+        console.log("Fetching rural-tourism-stats...");
+        const data = await fetch("https://sos1920-02.herokuapp.com/api/v2/rural-tourism-stats");
+        let jsonData = await data.json();
+        console.log(jsonData);
+        var cadiz = jsonData.filter(function (x) {
+            return x.province && parseInt(x.year) == 2016;
+        }).map((dato) => {
+            return { 'name': dato.province, 'y': parseInt(dato.averagestay) }
+        });
+
+        console.log(cadiz);
+
+        Highcharts.chart('container2', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Estancia media de turistas en Andalucía'
+            },
+            subtitle: {
+                text: '(2016)'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Estancia media',
+                colorByPoint: true,
+                data: cadiz
+            }]
+        });
+    }
+    higchartsGraphG2();
 </script>
 
 <main>
@@ -93,107 +169,112 @@
             <div class="list-group" id="list-tab" role="tablist">
 
                 <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
-                    href="#list-01" role="tab" aria-controls="home">Integración con Grupo 1 <br>poverty-stats</a>
+                    href="#list-01" role="tab" aria-controls="home">Integración con Grupo 1 <br>(poverty-stats)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
                     href="#list-02" role="tab" aria-controls="profile">Integración con Grupo 2
-                    <br>rural-tourism-stats</a>
+                    <br>(rural-tourism-stats)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-05" role="tab" aria-controls="profile">Integración con Grupo 5 <br>books-exports</a>
+                    href="#list-05" role="tab" aria-controls="profile">Integración con Grupo 5 <br>(books-exports)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
                     href="#list-09" role="tab" aria-controls="profile">Integración con Grupo 9
-                    <br>oil-coal-nuclear-energy-consumption-stats</a>
+                    <br>(oil-coal-nuclear-energy-consumption-stats)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-10" role="tab" aria-controls="profile">Integración con Grupo 10 <br>global-marriages</a>
+                    href="#list-10" role="tab" aria-controls="profile">Integración con Grupo 10
+                    <br>(global-marriages)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-22" role="tab" aria-controls="profile">Integración con Grupo 22 <br>og-basket-stats</a>
+                    href="#list-22" role="tab" aria-controls="profile">Integración con Grupo 22
+                    <br>(og-basket-stats)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-24" role="tab" aria-controls="profile">Integración con Grupo 24 <br>univregs-stats</a>
+                    href="#list-24" role="tab" aria-controls="profile">Integración con Grupo 24 <br>(univregs-stats)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-26" role="tab" aria-controls="profile">Integración con Grupo 26 <br>goalscorers</a>
+                    href="#list-26" role="tab" aria-controls="profile">Integración con Grupo 26 <br>(goalscorers)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-28" role="tab" aria-controls="profile">Integración con Grupo 28 <br>ppas</a>
+                    href="#list-28" role="tab" aria-controls="profile">Integración con Grupo 28 <br>(ppas)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
                     href="#list-30" role="tab" aria-controls="profile">Integración con Grupo 30
-                    <br>indice_de_masa_corporal</a>
+                    <br>(indice_de_masa_corporal)</a>
             </div>
         </div>
         <div class="col-8">
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="list-01" role="tabpanel" aria-labelledby="list-home-list">
+                    <h2>Integración con Grupo 1 (poverty-stats)</h2>
+                    <h3>Acciones</h3>
+                    {#if infoAlertStatus}
+                    <Alert>
+                        <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
+                        {infoAlertText}
+                    </Alert>
+                    {/if}
+                    <p><a href="/"><Button color="info">Volver a Inicio</Button></a></p>
+                    <p><Button color="success" on:click="{loadInitialDataPovertyStats}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllPovertyStats}">Elimina Todos los Recursos</Button></p>
                     <figure class="highcharts-figure">
                         <div id="container1"></div>
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-02" role="tabpanel" aria-labelledby="list-profile-list">
+                    <h2>Integración con Grupo 2 (rural-tourism-stats)</h2>
+                    <h3>Acciones</h3>
+                    {#if infoAlertStatus}
+                    <Alert>
+                        <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
+                        {infoAlertText}
+                    </Alert>
+                    {/if}
+                    <p><a href="/"><Button color="info">Volver a Inicio</Button></a></p>
+                    <p><Button color="success" on:click="{loadInitialDataRuralTourismStats}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllRuralTourismStats}">Elimina Todos los Recursos</Button></p>
                     <figure class="highcharts-figure">
                         <div id="container2"></div>
-                        <p class="highcharts-description">
-                            Descripcion 2
-                        </p>
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-05" role="tabpanel" aria-labelledby="list-profile-list">
+                    <h2>Integración con Grupo 5 (books-exports)</h2>
                     <figure class="highcharts-figure">
                         <div id="container5"></div>
-                        <p class="highcharts-description">
-                            Descripcion 5
-                        </p>
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-09" role="tabpanel" aria-labelledby="list-profile-list">
+                    <h2>Integración con Grupo 9 (oil-coal-nuclear-energy-consumption-stats)</h2>
                     <figure class="highcharts-figure">
                         <div id="container9"></div>
-                        <p class="highcharts-description">
-                            Descripcion 9
-                        </p>
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-10" role="tabpanel" aria-labelledby="list-profile-list">
+                    <h2>Integración con Grupo 10 (global-marriages)</h2>
                     <figure class="highcharts-figure">
                         <div id="container10"></div>
-                        <p class="highcharts-description">
-                            Descripcion 10
-                        </p>
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-22" role="tabpanel" aria-labelledby="list-profile-list">
+                    <h2>Integración con Grupo 22 (og-basket-stats)</h2>
                     <figure class="highcharts-figure">
                         <div id="container22"></div>
-                        <p class="highcharts-description">
-                            Descripcion 22
-                        </p>
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-24" role="tabpanel" aria-labelledby="list-profile-list">
+                    <h2>Integración con Grupo 24 (univregs-stats)</h2>
                     <figure class="highcharts-figure">
                         <div id="container24"></div>
-                        <p class="highcharts-description">
-                            Descripcion 24
-                        </p>
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-26" role="tabpanel" aria-labelledby="list-profile-list">
+                    <h2>Integración con Grupo 26 (goalscorers)</h2>
                     <figure class="highcharts-figure">
                         <div id="container26"></div>
-                        <p class="highcharts-description">
-                            Descripcion 26
-                        </p>
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-28" role="tabpanel" aria-labelledby="list-profile-list">
+                    <h2>Integración con Grupo 28 (ppas)</h2>
                     <figure class="highcharts-figure">
                         <div id="container28"></div>
-                        <p class="highcharts-description">
-                            Descripcion 28
-                        </p>
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-30" role="tabpanel" aria-labelledby="list-profile-list">
+                    <h2>Integración con Grupo 30 (indice_de_masa_corporal)</h2>
                     <figure class="highcharts-figure">
                         <div id="container30"></div>
-                        <p class="highcharts-description">
-                            Descripcion 30
-                        </p>
                     </figure>
                 </div>
             </div>
