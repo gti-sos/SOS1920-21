@@ -5,7 +5,7 @@
     let infoAlertStatus = "";
     let infoAlertText = "";
 
-    // poverty-stats
+    // G1 - poverty-stats
     async function loadInitialDataPovertyStats() {
         const res = await fetch("https://sos1920-01.herokuapp.com/api/v2/poverty-stats/loadInitialData", {
             method: "GET"
@@ -31,7 +31,7 @@
         });
     }
 
-    // rural-tourism-stats
+    // G2 - rural-tourism-stats
     async function loadInitialDataRuralTourismStats() {
         const res = await fetch("https://sos1920-02.herokuapp.com/api/v2/rural-tourism-stats/loadInitialData", {
             method: "GET"
@@ -57,7 +57,7 @@
         });
     }
 
-    // books-exports
+    // G5 - books-exports
     async function loadInitialDataBooksExports() {
         const res = await fetch("https://sos1920-05.herokuapp.com/api/v1/books-exports/loadInitialData", {
             method: "GET"
@@ -83,7 +83,7 @@
         });
     }
 
-    // oil-coal-nuclear-energy-consumption-stats
+    // G9 - oil-coal-nuclear-energy-consumption-stats
     async function loadInitialDataRenovableEnergy() {
         const res = await fetch("https://sos1920-09.herokuapp.com/api/v3/oil-coal-nuclear-energy-consumption-stats/loadInitialData", {
             method: "GET"
@@ -109,7 +109,7 @@
         });
     }
 
-    // global-marriages
+    // G10 - global-marriages
     async function loadInitialDataGlobalMarriages() {
         const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/loadInitialData", {
             method: "GET"
@@ -121,6 +121,32 @@
     }
 
     async function deleteAllGlobalMarriages() {
+        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/", {
+            method: "DELETE"
+        }).then(function (res) {
+            if (res.status == 404) {
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "No hay recursos que eliminar.";
+            } else {
+                higchartsGraphG10();
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "Se han eliminado todos los recursos correctamente.";
+            }
+        });
+    }
+
+    // G22 - og-basket-stats
+    async function loadInitialDataOgBasketStats() {
+        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/loadInitialData", {
+            method: "GET"
+        }).then(function (res) {
+            higchartsGraphG10();
+            infoAlertStatus = res.status + " - " + res.statusText;
+            infoAlertText = "Recursos cargados correctamente.";
+        });
+    }
+
+    async function deleteAllOgBasketStats() {
         const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/", {
             method: "DELETE"
         }).then(function (res) {
@@ -364,7 +390,7 @@
         var renovable = jsonData.filter(function (x) {
             return x.country && parseInt(x.year) == 2018;
         }).map((dato) => {
-            return { 'name': dato.country, 'data': [{ 'name': "Mujeres - " +  dato.avg_wm + " y Hombres - " +  dato.avg_m , 'value': dato.marriages}] }
+            return { 'name': dato.country, 'data': [{ 'name': "Mujeres - " + dato.avg_wm + " y Hombres - " + dato.avg_m, 'value': dato.marriages }] }
         });
 
         console.log(renovable)
@@ -449,6 +475,11 @@
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
                     href="#list-30" role="tab" aria-controls="profile">Integración con Grupo 30
                     <br>(indice_de_masa_corporal)</a>
+                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
+                    href="#list-ext1" role="tab" aria-controls="profile">API Externa (1)</a>
+                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
+                    href="#list-ext2" role="tab" aria-controls="profile">API Externa (2)</a>
+
             </div>
         </div>
         <div class="col-8">
@@ -530,7 +561,7 @@
                         {infoAlertText}
                     </Alert>
                     {/if}
-                    <p><a href="/"><Button color="info">Volver a Inicio</Button></a></p>
+                    <p><a href="/"><Button color="info">Volver</Button></a></p>
                     <p><a href="https://sos1920-10.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
                     <p><Button color="success" on:click="{loadInitialDataGlobalMarriages}">Cargar Datos Iniciales</Button></p>
                     <p><Button color="danger" on:click="{deleteAllGlobalMarriages}">Elimina Todos los Recursos</Button></p>
@@ -540,32 +571,121 @@
                 </div>
                 <div class="tab-pane fade" id="list-22" role="tabpanel" aria-labelledby="list-profile-list">
                     <h2>Integración con Grupo 22 (og-basket-stats)</h2>
+                    <h3>Acciones</h3>
+                    {#if infoAlertStatus}
+                    <Alert>
+                        <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
+                        {infoAlertText}
+                    </Alert>
+                    {/if}
+                    <p><a href="/"><Button color="info">Volver</Button></a></p>
+                    <p><a href="https://sos1920-22.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
+                    <p><Button color="success" on:click="{loadInitialDataGlobalMarriages}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllGlobalMarriages}">Elimina Todos los Recursos</Button></p>
                     <figure class="highcharts-figure">
                         <div id="container22"></div>
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-24" role="tabpanel" aria-labelledby="list-profile-list">
                     <h2>Integración con Grupo 24 (univregs-stats)</h2>
+                    <h3>Acciones</h3>
+                    {#if infoAlertStatus}
+                    <Alert>
+                        <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
+                        {infoAlertText}
+                    </Alert>
+                    {/if}
+                    <p><a href="/"><Button color="info">Volver</Button></a></p>
+                    <p><a href="https://sos1920-24.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
+                    <!--<p><Button color="success" on:click="{loadInitialDataGlobalMarriages}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllGlobalMarriages}">Elimina Todos los Recursos</Button></p>-->
                     <figure class="highcharts-figure">
                         <div id="container24"></div>
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-26" role="tabpanel" aria-labelledby="list-profile-list">
                     <h2>Integración con Grupo 26 (goalscorers)</h2>
+                    <h3>Acciones</h3>
+                    {#if infoAlertStatus}
+                    <Alert>
+                        <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
+                        {infoAlertText}
+                    </Alert>
+                    {/if}
+                    <p><a href="/"><Button color="info">Volver</Button></a></p>
+                    <p><a href="https://sos1920-26.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
+                    <!--<p><Button color="success" on:click="{loadInitialDataGlobalMarriages}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllGlobalMarriages}">Elimina Todos los Recursos</Button></p> -->
                     <figure class="highcharts-figure">
                         <div id="container26"></div>
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-28" role="tabpanel" aria-labelledby="list-profile-list">
                     <h2>Integración con Grupo 28 (ppas)</h2>
+                    <h3>Acciones</h3>
+                    {#if infoAlertStatus}
+                    <Alert>
+                        <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
+                        {infoAlertText}
+                    </Alert>
+                    {/if}
+                    <p><a href="/"><Button color="info">Volver</Button></a></p>
+                    <p><a href="https://sos1920-28.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
+                    <!--<p><Button color="success" on:click="{loadInitialDataGlobalMarriages}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllGlobalMarriages}">Elimina Todos los Recursos</Button></p> -->
                     <figure class="highcharts-figure">
                         <div id="container28"></div>
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-30" role="tabpanel" aria-labelledby="list-profile-list">
                     <h2>Integración con Grupo 30 (indice_de_masa_corporal)</h2>
+                    <h3>Acciones</h3>
+                    {#if infoAlertStatus}
+                    <Alert>
+                        <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
+                        {infoAlertText}
+                    </Alert>
+                    {/if}
+                    <p><a href="/"><Button color="info">Volver</Button></a></p>
+                    <p><a href="https://sos1920-10.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
+                    <!--<p><Button color="success" on:click="{loadInitialDataGlobalMarriages}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllGlobalMarriages}">Elimina Todos los Recursos</Button></p>-->
                     <figure class="highcharts-figure">
                         <div id="container30"></div>
+                    </figure>
+                </div>
+                <div class="tab-pane fade" id="list-ext1" role="tabpanel" aria-labelledby="list-profile-list">
+                    <h2>APi Externa (1)</h2>
+                    <h3>Acciones</h3>
+                    {#if infoAlertStatus}
+                    <Alert>
+                        <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
+                        {infoAlertText}
+                    </Alert>
+                    {/if}
+                    <p><a href="/"><Button color="info">Volver</Button></a></p>
+                    <p><a href="/"><Button color="primary">Página Web</Button></a></p>
+                    <!--<p><Button color="success" on:click="{loadInitialDataGlobalMarriages}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllGlobalMarriages}">Elimina Todos los Recursos</Button></p>-->
+                    <figure class="highcharts-figure">
+                        <div id="containerExt1"></div>
+                    </figure>
+                </div>
+                <div class="tab-pane fade" id="list-ext2" role="tabpanel" aria-labelledby="list-profile-list">
+                    <h2>APi Externa (2)</h2>
+                    <h3>Acciones</h3>
+                    {#if infoAlertStatus}
+                    <Alert>
+                        <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
+                        {infoAlertText}
+                    </Alert>
+                    {/if}
+                    <p><a href="/"><Button color="info">Volver</Button></a></p>
+                    <p><a href="/"><Button color="primary">Página Web</Button></a></p>
+                    <!--<p><Button color="success" on:click="{loadInitialDataGlobalMarriages}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllGlobalMarriages}">Elimina Todos los Recursos</Button></p>-->
+                    <figure class="highcharts-figure">
+                        <div id="containerExt1"></div>
                     </figure>
                 </div>
             </div>
