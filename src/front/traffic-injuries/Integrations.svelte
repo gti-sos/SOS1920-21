@@ -62,7 +62,7 @@
         const res = await fetch("https://sos1920-05.herokuapp.com/api/v1/books-exports/loadInitialData", {
             method: "GET"
         }).then(function (res) {
-            higchartsGraphG3();
+            higchartsGraphG5();
             infoAlertStatus = res.status + " - " + res.statusText;
             infoAlertText = "Recursos cargados correctamente.";
         });
@@ -76,7 +76,59 @@
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "No hay recursos que eliminar.";
             } else {
-                higchartsGraphG3();
+                higchartsGraphG5();
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "Se han eliminado todos los recursos correctamente.";
+            }
+        });
+    }
+
+    // oil-coal-nuclear-energy-consumption-stats
+    async function loadInitialDataRenovableEnergy() {
+        const res = await fetch("https://sos1920-09.herokuapp.com/api/v3/oil-coal-nuclear-energy-consumption-stats/loadInitialData", {
+            method: "GET"
+        }).then(function (res) {
+            higchartsGraphG9();
+            infoAlertStatus = res.status + " - " + res.statusText;
+            infoAlertText = "Recursos cargados correctamente.";
+        });
+    }
+
+    async function deleteAllRenovableEnergy() {
+        const res = await fetch("https://sos1920-09.herokuapp.com/api/v3/oil-coal-nuclear-energy-consumption-stats/", {
+            method: "DELETE"
+        }).then(function (res) {
+            if (res.status == 404) {
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "No hay recursos que eliminar.";
+            } else {
+                higchartsGraphG9();
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "Se han eliminado todos los recursos correctamente.";
+            }
+        });
+    }
+
+    // global-marriages
+    async function loadInitialDataGlobalMarriages() {
+        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/loadInitialData", {
+            method: "GET"
+        }).then(function (res) {
+            higchartsGraphG10();
+            infoAlertStatus = res.status + " - " + res.statusText;
+            infoAlertText = "Recursos cargados correctamente.";
+        });
+    }
+
+    async function deleteAllGlobalMarriages() {
+        const res = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/", {
+            method: "DELETE"
+        }).then(function (res) {
+            if (res.status == 404) {
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "No hay recursos que eliminar.";
+            } else {
+                higchartsGraphG10();
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "Se han eliminado todos los recursos correctamente.";
             }
@@ -184,20 +236,17 @@
     }
     higchartsGraphG2();
 
-    async function higchartsGraphG3() {
+    async function higchartsGraphG5() {
         console.log("Fetching books-exports...");
         const data = await fetch("https://sos1920-05.herokuapp.com/api/v1/books-exports");
         let jsonData = await data.json();
         console.log(jsonData);
-        
+
         var cadiz = jsonData.filter(function (x) {
-            return x.country && parseInt(x.year) == 2015 ;
+            return x.country && parseInt(x.year) == 2015;
         }).map((dato) => {
             return { 'name': dato.country + " - " + dato.year, 'data': [parseInt(dato.exp_book), parseInt(dato.exp_editorial), parseInt(dato.exp_graphic_sector)] }
         });
-
-        // uk intaly portugal france mexico
-        console.log(cadiz);
 
         Highcharts.chart('container5', {
             chart: {
@@ -240,7 +289,132 @@
             series: cadiz
         });
     }
-        higchartsGraphG3();
+    higchartsGraphG5();
+
+    async function higchartsGraphG9() {
+        console.log("Fetching oil-coal-nuclear-energy-consumption-stats...");
+        const data = await fetch("https://sos1920-09.herokuapp.com/api/v3/oil-coal-nuclear-energy-consumption-stats");
+        let jsonData = await data.json();
+        console.log(jsonData);
+
+        var renovable = jsonData.filter(function (x) {
+            return x.country && parseInt(x.year) == 2017;
+        }).map((dato) => {
+            return { 'name': dato.country, 'data': [{ 'name': dato.country, 'value': dato["oil-consumption"] }] }
+        });
+
+        console.log(renovable)
+
+        Highcharts.chart('container9', {
+            chart: {
+                type: 'packedbubble',
+                height: '50%'
+            },
+            title: {
+                text: 'Consumo de Gasolina por país'
+            },
+            subtitle: {
+                text: '(2017)'
+            },
+            tooltip: {
+                useHTML: true,
+                pointFormat: '<b>{point.name}:</b> {point.value} Litros'
+            },
+            plotOptions: {
+                packedbubble: {
+                    minSize: '40%',
+                    maxSize: '100%',
+                    zMin: 0,
+                    zMax: 1000,
+                    layoutAlgorithm: {
+                        gravitationalConstant: 0.05,
+                        splitSeries: true,
+                        seriesInteraction: false,
+                        dragBetweenSeries: true,
+                        parentNodeLimit: true
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}',
+                        filter: {
+                            property: 'y',
+                            operator: '>',
+                            value: 250
+                        },
+                        style: {
+                            color: 'white',
+                            textOutline: 'none',
+                            fontWeight: 'normal'
+                        }
+                    }
+                }
+            },
+            series: renovable
+        });
+
+    }
+    higchartsGraphG9();
+
+    async function higchartsGraphG10() {
+        console.log("Fetching global-marriages...");
+        const data = await fetch("https://sos1920-10.herokuapp.com/api/v3/global-marriages/");
+        let jsonData = await data.json();
+        console.log(jsonData);
+
+        var renovable = jsonData.filter(function (x) {
+            return x.country && parseInt(x.year) == 2018;
+        }).map((dato) => {
+            return { 'name': dato.country, 'data': [{ 'name': "Mujeres - " +  dato.avg_wm + " y Hombres - " +  dato.avg_m , 'value': dato.marriages}] }
+        });
+
+        console.log(renovable)
+
+        Highcharts.chart('container10', {
+            chart: {
+                type: 'packedbubble',
+                height: '100%'
+            },
+            title: {
+                text: 'Matrimonios registrados por país y media de edad entre géneros'
+            },
+            subtitle: {
+                text: '(2018)'
+            },
+            tooltip: {
+                useHTML: true,
+            },
+            plotOptions: {
+                packedbubble: {
+                    minSize: '40%',
+                    maxSize: '100%',
+                    zMin: 0,
+                    zMax: 1000,
+                    layoutAlgorithm: {
+                        splitSeries: false,
+                        gravitationalConstant: 0.02
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}',
+                        filter: {
+                            property: 'y',
+                            operator: '>',
+                            value: 250
+                        },
+                        style: {
+                            color: 'black',
+                            textOutline: 'none',
+                            fontWeight: 'normal'
+                        }
+                    }
+                }
+            },
+            series: renovable
+        });
+
+    }
+    higchartsGraphG10();
+
 </script>
 
 <main>
@@ -288,7 +462,8 @@
                         {infoAlertText}
                     </Alert>
                     {/if}
-                    <p><a href="/"><Button color="info">Volver a Inicio</Button></a></p>
+                    <p><a href="/"><Button color="info">Volver</Button></a></p>
+                    <p><a href="https://sos1920-01.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
                     <p><Button color="success" on:click="{loadInitialDataPovertyStats}">Cargar Datos Iniciales</Button></p>
                     <p><Button color="danger" on:click="{deleteAllPovertyStats}">Elimina Todos los Recursos</Button></p>
                     <figure class="highcharts-figure">
@@ -304,7 +479,8 @@
                         {infoAlertText}
                     </Alert>
                     {/if}
-                    <p><a href="/"><Button color="info">Volver a Inicio</Button></a></p>
+                    <p><a href="/"><Button color="info">Volver</Button></a></p>
+                    <p><a href="https://sos1920-02.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
                     <p><Button color="success" on:click="{loadInitialDataRuralTourismStats}">Cargar Datos Iniciales</Button></p>
                     <p><Button color="danger" on:click="{deleteAllRuralTourismStats}">Elimina Todos los Recursos</Button></p>
                     <figure class="highcharts-figure">
@@ -320,7 +496,8 @@
                         {infoAlertText}
                     </Alert>
                     {/if}
-                    <p><a href="/"><Button color="info">Volver a Inicio</Button></a></p>
+                    <p><a href="/"><Button color="info">Volver</Button></a></p>
+                    <p><a href="https://sos1920-05.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
                     <p><Button color="success" on:click="{loadInitialDataBooksExports}">Cargar Datos Iniciales</Button></p>
                     <p><Button color="danger" on:click="{deleteAllBooksExports}">Elimina Todos los Recursos</Button></p>
                     <figure class="highcharts-figure">
@@ -329,12 +506,34 @@
                 </div>
                 <div class="tab-pane fade" id="list-09" role="tabpanel" aria-labelledby="list-profile-list">
                     <h2>Integración con Grupo 9 (oil-coal-nuclear-energy-consumption-stats)</h2>
+                    <h3>Acciones</h3>
+                    {#if infoAlertStatus}
+                    <Alert>
+                        <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
+                        {infoAlertText}
+                    </Alert>
+                    {/if}
+                    <p><a href="/"><Button color="info">Volver</Button></a></p>
+                    <p><a href="https://sos1920-09.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
+                    <p><Button color="success" on:click="{loadInitialDataRenovableEnergy}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllRenovableEnergy}">Elimina Todos los Recursos</Button></p>
                     <figure class="highcharts-figure">
                         <div id="container9"></div>
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-10" role="tabpanel" aria-labelledby="list-profile-list">
                     <h2>Integración con Grupo 10 (global-marriages)</h2>
+                    <h3>Acciones</h3>
+                    {#if infoAlertStatus}
+                    <Alert>
+                        <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
+                        {infoAlertText}
+                    </Alert>
+                    {/if}
+                    <p><a href="/"><Button color="info">Volver a Inicio</Button></a></p>
+                    <p><a href="https://sos1920-10.herokuapp.com/"><Button color="primary">Página Web</Button></a></p>
+                    <p><Button color="success" on:click="{loadInitialDataGlobalMarriages}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllGlobalMarriages}">Elimina Todos los Recursos</Button></p>
                     <figure class="highcharts-figure">
                         <div id="container10"></div>
                     </figure>

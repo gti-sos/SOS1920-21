@@ -183,7 +183,7 @@
 <main>
     <h2>Bienvenido a driving-licenses</h2>
     <h3>Acciones</h3>
-    <p><a href="/"><Button color="info">Volver a Inicio</Button></a></p>
+    <p><a href="/"><Button color="info">Volver</Button></a></p>
 	<p><Button color="primary" on:click="{loadInitialData}">Cargar valores predeterminados</Button></p>
 	<p><Button outline  color="primary" on:click="{deleteAllDrivingLicenses}">Borrar todo</Button></p>
             <table style="width: 100%;">

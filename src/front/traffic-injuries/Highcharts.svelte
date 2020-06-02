@@ -86,7 +86,7 @@
 		{infoAlertText}
 	</Alert>
     {/if}
-    <p><a href="/"><Button color="info">Volver a Inicio</Button></a></p>
+    <p><a href="/"><Button color="info">Volver</Button></a></p>
     <p><Button color="success" on:click="{loadInitialData}">Cargar Datos Iniciales</Button></p>
     <p><Button color="danger" on:click="{deleteAllTrafficInjuries}">Elimina Todos los Recursos</Button></p>
   
