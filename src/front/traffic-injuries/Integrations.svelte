@@ -17,7 +17,7 @@
     }
 
     async function deleteAllPovertyStats() {
-        const res = await fetch("https://sos1920-01.herokuapp.com/api/v2/poverty-stats/", {
+        const res = await fetch("https://sos1920-01.herokuapp.com/api/v2/poverty-stats", {
             method: "DELETE"
         }).then(function (res) {
             if (res.status == 404) {
@@ -51,6 +51,32 @@
                 infoAlertText = "No hay recursos que eliminar.";
             } else {
                 higchartsGraphG2();
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "Se han eliminado todos los recursos correctamente.";
+            }
+        });
+    }
+
+    // books-exports
+    async function loadInitialDataBooksExports() {
+        const res = await fetch("https://sos1920-05.herokuapp.com/api/v1/books-exports/loadInitialData", {
+            method: "GET"
+        }).then(function (res) {
+            higchartsGraphG3();
+            infoAlertStatus = res.status + " - " + res.statusText;
+            infoAlertText = "Recursos cargados correctamente.";
+        });
+    }
+
+    async function deleteAllBooksExports() {
+        const res = await fetch("https://sos1920-05.herokuapp.com/api/v1/books-exports/", {
+            method: "DELETE"
+        }).then(function (res) {
+            if (res.status == 404) {
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "No hay recursos que eliminar.";
+            } else {
+                higchartsGraphG3();
                 infoAlertStatus = res.status + " - " + res.statusText;
                 infoAlertText = "Se han eliminado todos los recursos correctamente.";
             }
@@ -118,8 +144,6 @@
             return { 'name': dato.province, 'y': parseInt(dato.averagestay) }
         });
 
-        console.log(cadiz);
-
         Highcharts.chart('container2', {
             chart: {
                 plotBackgroundColor: null,
@@ -159,6 +183,64 @@
         });
     }
     higchartsGraphG2();
+
+    async function higchartsGraphG3() {
+        console.log("Fetching books-exports...");
+        const data = await fetch("https://sos1920-05.herokuapp.com/api/v1/books-exports");
+        let jsonData = await data.json();
+        console.log(jsonData);
+        
+        var cadiz = jsonData.filter(function (x) {
+            return x.country && parseInt(x.year) == 2015 ;
+        }).map((dato) => {
+            return { 'name': dato.country + " - " + dato.year, 'data': [parseInt(dato.exp_book), parseInt(dato.exp_editorial), parseInt(dato.exp_graphic_sector)] }
+        });
+
+        // uk intaly portugal france mexico
+        console.log(cadiz);
+
+        Highcharts.chart('container5', {
+            chart: {
+                type: 'area'
+            },
+            title: {
+                text: 'Comparativa de exportación de libros entre Mexico y Francia'
+            },
+            subtitle: {
+                text: '(2015)'
+            },
+            xAxis: {
+                categories: ['Libros', 'Editoriales', 'Sector Gráfico'],
+                tickmarkPlacement: 'on',
+                title: {
+                    enabled: false
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Miles'
+                }
+            },
+            tooltip: {
+                split: true,
+                valueSuffix: ' millions'
+            },
+            plotOptions: {
+                area: {
+                    stacking: 'normal',
+                    lineColor: '#666666',
+                    lineWidth: 1,
+                    marker: {
+                        lineWidth: 1,
+                        lineColor: '#666666'
+                    }
+                }
+            },
+            series: cadiz
+        });
+    }
+        higchartsGraphG3();
 </script>
 
 <main>
@@ -231,6 +313,16 @@
                 </div>
                 <div class="tab-pane fade" id="list-05" role="tabpanel" aria-labelledby="list-profile-list">
                     <h2>Integración con Grupo 5 (books-exports)</h2>
+                    <h3>Acciones</h3>
+                    {#if infoAlertStatus}
+                    <Alert>
+                        <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
+                        {infoAlertText}
+                    </Alert>
+                    {/if}
+                    <p><a href="/"><Button color="info">Volver a Inicio</Button></a></p>
+                    <p><Button color="success" on:click="{loadInitialDataBooksExports}">Cargar Datos Iniciales</Button></p>
+                    <p><Button color="danger" on:click="{deleteAllBooksExports}">Elimina Todos los Recursos</Button></p>
                     <figure class="highcharts-figure">
                         <div id="container5"></div>
                     </figure>
