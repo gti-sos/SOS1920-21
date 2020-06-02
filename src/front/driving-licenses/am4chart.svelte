@@ -1,5 +1,5 @@
 <script>
-    import { Button, Alert } from 'sveltestrap';
+   import { Button, Alert } from 'sveltestrap';
 
     // Alerts
     let infoAlertStatus = "";
@@ -32,7 +32,7 @@
                 infoAlertText = "Se han eliminado todos los recursos correctamente.";
             }
         });
-
+/*
         async function higchartsGraph() {
         console.log("Fetching driving-licenses...");
         const data = await fetch("/api/v2/driving-licenses");
@@ -68,6 +68,7 @@
             pieSeries.hiddenState.properties.startAngle = -90;
             });
     higchartsGraph();
+    */
     }
 
 
@@ -87,8 +88,5 @@
     <p><Button color="success" on:click="{loadInitialData}">Cargar Datos Iniciales</Button></p>
     <p><Button color="danger" on:click="{deleteAllDrivingLicenses}">Elimina Todos los Recursos</Button></p>
   
-    <br><figure>
-       <div id="chartdiv"></div>
-    </figure>
   </main>
   
