@@ -278,7 +278,7 @@
 
     // EXT2
     async function loadInitialDataEXT2() {
-        const res = await fetch("/", {
+        const res = await fetch("http://api.openweathermap.org/data/2.5/forecast?id=2510112&units=metric&APPID=fdaf5c96bb5721f801ea220253b0985c", {
             method: "GET"
         }).then(function (res) {
             highchartsGraphGEXT2();
@@ -287,23 +287,9 @@
         });
     }
 
-    async function deleteAllEXT2() {
-        const res = await fetch("/", {
-            method: "DELETE"
-        }).then(function (res) {
-            if (res.status == 404) {
-                infoAlertStatus = res.status + " - " + res.statusText;
-                infoAlertText = "No hay recursos que eliminar.";
-            } else {
-                highchartsGraphGEXT2();
-                infoAlertStatus = res.status + " - " + res.statusText;
-                infoAlertText = "Se han eliminado todos los recursos correctamente.";
-            }
-        });
-    }
-   
-   
-   
+
+
+
     // Graphs
     async function highchartsGraphG1() {
         console.log("Fetching poverty-stats...");
@@ -854,62 +840,115 @@
         console.log(jsonData["total"])
 
         Highcharts.chart('containerExt1', {
-  chart: {
-    plotBackgroundColor: null,
-    plotBorderWidth: null,
-    plotShadow: false,
-    type: 'pie'
-  },
-  title: {
-    text: 'Información del COVID-19 en España'
-  },
-  subtitle: {
-    text: '(Entre 02-06-2020 y 03-06-2020)'
-  },
-  tooltip: {
-    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-  },
-  accessibility: {
-    point: {
-      valueSuffix: '%'
-    }
-  },
-  plotOptions: {
-    pie: {
-      allowPointSelect: true,
-      cursor: 'pointer',
-      dataLabels: {
-        enabled: true,
-        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-      }
-    }
-  },
-  series: [{
-    name: 'COVID-19',
-    colorByPoint: true,
-    data: [{
-      name: 'Confirmados hoy',
-      y: data1,
-    }, {
-      name: 'Muertos hoy',
-      y: data2
-    }, {
-      name: 'Confirmados ayer',
-      y: data3
-    }, {
-      name: 'Muertos ayer',
-      y: data4
-    }]
-  }]
-});
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Información del COVID-19 en España'
+            },
+            subtitle: {
+                text: '(Entre 02-06-2020 y 03-06-2020)'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                name: 'COVID-19',
+                colorByPoint: true,
+                data: [{
+                    name: 'Confirmados hoy',
+                    y: data1,
+                }, {
+                    name: 'Muertos hoy',
+                    y: data2
+                }, {
+                    name: 'Confirmados ayer',
+                    y: data3
+                }, {
+                    name: 'Muertos ayer',
+                    y: data4
+                }]
+            }]
+        });
     }
     highchartsGraphGEXT1();
 
     async function highchartsGraphGEXT2() {
-        //console.log("Fetching EXT2...");
-        //const data = await fetch("/");
-        //let jsonData = await data.json();
-        //console.log(jsonData);
+        console.log("Fetching EXT2...");
+        const data = await fetch("http://api.openweathermap.org/data/2.5/forecast?id=2510112&units=metric&APPID=fdaf5c96bb5721f801ea220253b0985c");
+        let jsonData = await data.json();
+        console.log(jsonData);
+
+        var data1 = jsonData["list"][0]["main"]["temp"]
+        var data2 = jsonData["list"][0]["main"]["temp_max"]
+        var data3 = jsonData["list"][0]["main"]["temp_min"]
+
+        Highcharts.chart('containerExt2', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Temperatura en Ubrique (Cádiz)'
+            },
+            subtitle: {
+                text: '(Hoy)'
+            },
+            xAxis: {
+                categories: [, , ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Temperatura (ºC)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} ªC</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: "Temperatura actual",
+                data: [data1]
+
+            }, {
+                name: "Temperatura Máxima",
+                data: [data2]
+
+            }, {
+                name: "Temperatura Mínima",
+                data: [data3]
+
+            }]
+        });
     }
 
     highchartsGraphGEXT2();
@@ -950,9 +989,9 @@
                     href="#list-30" role="tab" aria-controls="profile">Integración con Grupo 30
                     <br>(indice_de_masa_corporal)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-ext1" role="tab" aria-controls="profile">API Externa (1)</a>
+                    href="#list-ext1" role="tab" aria-controls="profile">API Externa <br>(COVID-19)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-ext2" role="tab" aria-controls="profile">API Externa (2)</a>
+                    href="#list-ext2" role="tab" aria-controls="profile">API Externa <br>(OpenWeatherMap)</a>
 
             </div>
         </div>
@@ -1129,7 +1168,7 @@
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-ext1" role="tabpanel" aria-labelledby="list-profile-list">
-                    <h2>APi Externa (1)</h2>
+                    <h2>API Externa (COVID-19)</h2>
                     <h3>Acciones</h3>
                     {#if infoAlertStatus}
                     <Alert>
@@ -1145,7 +1184,7 @@
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-ext2" role="tabpanel" aria-labelledby="list-profile-list">
-                    <h2>APi Externa (2)</h2>
+                    <h2>API Externa (OpenWeatherMap)</h2>
                     <h3>Acciones</h3>
                     {#if infoAlertStatus}
                     <Alert>
@@ -1154,7 +1193,7 @@
                     </Alert>
                     {/if}
                     <p><a href="/"><Button color="info">Volver</Button></a></p>
-                    <p><a href="/"><Button color="primary">Página Web</Button></a></p>
+                    <p><a href="https://home.openweathermap.org/"><Button color="primary">Página Web</Button></a></p>
                     <p><Button color="success" on:click="{loadInitialDataEXT2}">Cargar Datos Iniciales</Button></p>
                     <figure class="highcharts-figure">
                         <div id="containerExt2"></div>
