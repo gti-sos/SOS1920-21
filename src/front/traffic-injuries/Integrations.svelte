@@ -828,7 +828,7 @@
 
     async function highchartsGraphGEXT1() {
         console.log("Fetching EXT1...");
-        const data = await fetch("/api/2020-06-03/country/spain");
+        const data = await fetch("api/2020-06-03/country/spain");
         let jsonData = await data.json();
         console.log(jsonData);
 

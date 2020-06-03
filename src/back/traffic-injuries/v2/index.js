@@ -530,9 +530,9 @@ module.exports = function (app, express, request, bodyParser, path) {
     req.pipe(request(url)).pipe(res);
   });
 
-  /*
+
   // Proxy (EXT1)
-  var pathsEXT1 = "/api/";
+  var pathsEXT1 = "/api/2020-06-03";
   var apiServerHostEXT1 = "https://api.covid19tracking.narrativa.com";
 
   app.use(pathsEXT1, function (req, res) {
@@ -540,7 +540,7 @@ module.exports = function (app, express, request, bodyParser, path) {
     console.log("piped: " + req.baseUrl + req.url);
     req.pipe(request(url)).pipe(res);
   });
-*/
+
   // Redirect to postman url
   app.get("/api/v2/traffic-injuries/docs", (req, res) => {
     res.redirect("https://documenter.getpostman.com/view/10693282/SzmccKbJ");
