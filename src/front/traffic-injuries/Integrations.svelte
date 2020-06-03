@@ -956,49 +956,49 @@
 </script>
 
 <main>
-    <h2>Integraciones - Accidentes de Tráfico</h2>
+    <h2>Usos e Integraciones - Accidentes de Tráfico</h2>
     <br>
     <div class="row">
         <div class="col-4">
             <div class="list-group" id="list-tab" role="tablist">
 
                 <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
-                    href="#list-01" role="tab" aria-controls="home">Integración con Grupo 1 <br>(poverty-stats)</a>
+                    href="#list-01" role="tab" aria-controls="home">Uso de API del Grupo 1 <br>(poverty-stats)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-02" role="tab" aria-controls="profile">Integración con Grupo 2
+                    href="#list-02" role="tab" aria-controls="profile">Uso de API del Grupo 2
                     <br>(rural-tourism-stats)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-05" role="tab" aria-controls="profile">Integración con Grupo 5 <br>(books-exports)</a>
+                    href="#list-05" role="tab" aria-controls="profile">Uso de API del Grupo 5 <br>(books-exports)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-09" role="tab" aria-controls="profile">Integración con Grupo 9
+                    href="#list-09" role="tab" aria-controls="profile">Uso de API del Grupo 9
                     <br>(oil-coal-nuclear-energy-consumption-stats)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-10" role="tab" aria-controls="profile">Integración con Grupo 10
+                    href="#list-10" role="tab" aria-controls="profile">Uso de API del Grupo 10
                     <br>(global-marriages)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-22" role="tab" aria-controls="profile">Integración con Grupo 22
+                    href="#list-22" role="tab" aria-controls="profile">Uso de API del Grupo 22
                     <br>(og-basket-stats)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-24" role="tab" aria-controls="profile">Integración con Grupo 24 <br>(univregs-stats)</a>
+                    href="#list-24" role="tab" aria-controls="profile">Uso de API del Grupo 24 <br>(univregs-stats)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-26" role="tab" aria-controls="profile">Integración con Grupo 26 <br>(goalscorers)</a>
+                    href="#list-26" role="tab" aria-controls="profile">Uso de API del Grupo 26 <br>(goalscorers)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-28" role="tab" aria-controls="profile">Integración con Grupo 28 - Usando
+                    href="#list-28" role="tab" aria-controls="profile">Uso de API del Grupo 28 - Usando
                     Proxy<br>(ppas)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-30" role="tab" aria-controls="profile">Integración con Grupo 30
+                    href="#list-30" role="tab" aria-controls="profile">Uso de API del Grupo 30
                     <br>(indice_de_masa_corporal)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-ext1" role="tab" aria-controls="profile">API Externa <br>(COVID-19)</a>
+                    href="#list-ext1" role="tab" aria-controls="profile">Uso de API Externa <br>(COVID-19)</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-ext2" role="tab" aria-controls="profile">API Externa <br>(OpenWeatherMap)</a>
+                    href="#list-ext2" role="tab" aria-controls="profile">Uso de API Externa <br>(OpenWeatherMap)</a>
 
             </div>
         </div>
         <div class="col-8">
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="list-01" role="tabpanel" aria-labelledby="list-home-list">
-                    <h2>Integración con Grupo 1 (poverty-stats)</h2>
+                    <h2>Uso de API del Grupo 1 (poverty-stats)</h2>
                     <h3>Acciones</h3>
                     {#if infoAlertStatus}
                     <Alert>
@@ -1015,7 +1015,7 @@
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-02" role="tabpanel" aria-labelledby="list-profile-list">
-                    <h2>Integración con Grupo 2 (rural-tourism-stats)</h2>
+                    <h2>Uso de API del Grupo 2 (rural-tourism-stats)</h2>
                     <h3>Acciones</h3>
                     {#if infoAlertStatus}
                     <Alert>
@@ -1032,7 +1032,7 @@
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-05" role="tabpanel" aria-labelledby="list-profile-list">
-                    <h2>Integración con Grupo 5 (books-exports)</h2>
+                    <h2>Uso de API del Grupo 5 (books-exports)</h2>
                     <h3>Acciones</h3>
                     {#if infoAlertStatus}
                     <Alert>
@@ -1049,7 +1049,7 @@
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-09" role="tabpanel" aria-labelledby="list-profile-list">
-                    <h2>Integración con Grupo 9 (oil-coal-nuclear-energy-consumption-stats)</h2>
+                    <h2>Uso de API del Grupo 9 (oil-coal-nuclear-energy-consumption-stats)</h2>
                     <h3>Acciones</h3>
                     {#if infoAlertStatus}
                     <Alert>
@@ -1066,7 +1066,7 @@
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-10" role="tabpanel" aria-labelledby="list-profile-list">
-                    <h2>Integración con Grupo 10 (global-marriages)</h2>
+                    <h2>Uso de API del Grupo 10 (global-marriages)</h2>
                     <h3>Acciones</h3>
                     {#if infoAlertStatus}
                     <Alert>
@@ -1083,7 +1083,7 @@
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-22" role="tabpanel" aria-labelledby="list-profile-list">
-                    <h2>Integración con Grupo 22 (og-basket-stats)</h2>
+                    <h2>Uso de API del Grupo 22 (og-basket-stats)</h2>
                     <h3>Acciones</h3>
                     {#if infoAlertStatus}
                     <Alert>
@@ -1100,7 +1100,7 @@
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-24" role="tabpanel" aria-labelledby="list-profile-list">
-                    <h2>Integración con Grupo 24 (univregs-stats)</h2>
+                    <h2>Uso de API del Grupo 24 (univregs-stats)</h2>
                     <h3>Acciones</h3>
                     {#if infoAlertStatus}
                     <Alert>
@@ -1117,7 +1117,7 @@
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-26" role="tabpanel" aria-labelledby="list-profile-list">
-                    <h2>Integración con Grupo 26 (goalscorers)</h2>
+                    <h2>Uso de API del Grupo 26 (goalscorers)</h2>
                     <h3>Acciones</h3>
                     {#if infoAlertStatus}
                     <Alert>
@@ -1134,7 +1134,7 @@
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-28" role="tabpanel" aria-labelledby="list-profile-list">
-                    <h2>Integración con Grupo 28 (ppas)</h2>
+                    <h2>Uso de API del Grupo 28 (ppas)</h2>
                     <h3>Acciones</h3>
                     {#if infoAlertStatus}
                     <Alert>
@@ -1151,7 +1151,7 @@
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-30" role="tabpanel" aria-labelledby="list-profile-list">
-                    <h2>Integración con Grupo 30 (indice_de_masa_corporal)</h2>
+                    <h2>Uso de API del Grupo 30 (indice_de_masa_corporal)</h2>
                     <h3>Acciones</h3>
                     {#if infoAlertStatus}
                     <Alert>
@@ -1168,7 +1168,7 @@
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-ext1" role="tabpanel" aria-labelledby="list-profile-list">
-                    <h2>API Externa (COVID-19)</h2>
+                    <h2>Uso de API Externa (COVID-19)</h2>
                     <h3>Acciones</h3>
                     {#if infoAlertStatus}
                     <Alert>
@@ -1184,7 +1184,7 @@
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="list-ext2" role="tabpanel" aria-labelledby="list-profile-list">
-                    <h2>API Externa (OpenWeatherMap)</h2>
+                    <h2>Uso de API Externa (OpenWeatherMap)</h2>
                     <h3>Acciones</h3>
                     {#if infoAlertStatus}
                     <Alert>

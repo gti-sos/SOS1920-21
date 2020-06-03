@@ -2,7 +2,7 @@
 <section class="page-section" id="apis">
     <div class="jumbotron bg-primary">
         <div class="container">
-            <h2 class="text-center text-white mt-0">Integraciones</h2>
+            <h2 class="text-center text-white mt-0">Usos e Integraciones</h2>
             <hr class="divider my-4" />
             <div class="row">
                 <div class="col-lg-3 col-md-6 text-center"></div>
@@ -12,7 +12,7 @@
                         <h3 class="h4 mb-2 text-white">Accidentes de Tráfico</h3>
                         <p class="text-white-50 mb-0">traffic-injuries</p>
                         <br><a href="#/integrations/traffic-injuries"><button type="button" class="btn btn-light">Ver
-                                todas las integraciones</button></a>
+                                todos</button></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
@@ -21,7 +21,7 @@
                         <h3 class="h4 mb-2 text-white">Licencias de Conducir</h3>
                         <p class="text-white-50 mb-0">driving-licenses</p>
                         <br><a href="#/integrations/driving-licenses"><button type="button" class="btn btn-light">Ver
-                                todas las integraciones</button></a>
+                                todos</button></a>
                     </div>
                 </div>
             </div>

@@ -87,7 +87,7 @@
 						<a class="nav-link" href="#/about">Acerca de</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#/integrations">Integraciones</a>
+						<a class="nav-link" href="#/integrations">Usos e Integraciones</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#/analytics">Analíticas</a>
