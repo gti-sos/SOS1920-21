@@ -1,0 +1,971 @@
+{
+	"info": {
+		"_postman_id": "97fa129b-d764-4f26-acf2-4afc7e5c6fc4",
+		"name": "SOS1920-21-driving-licenses V1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Driving licenses (vacío)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "69ec53af-9f6d-42e7-9628-69ed03b08c51",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses"
+					]
+				},
+				"description": "GET que devuelve error dado que está vacía."
+			},
+			"response": []
+		},
+		{
+			"name": "Driving licenses Load Initial Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "50e1ff6b-76b8-4384-be20-99018ebcd8df",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"There are 57 driving licenses\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.lengthOf(57);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/loadInitialData",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						"loadInitialData"
+					]
+				},
+				"description": "Carga los datos que tenemos en Goorm en la base de Datos."
+			},
+			"response": []
+		},
+		{
+			"name": "Driving licenses(Todos)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d22a9328-58ea-4209-9dd4-74a1e43b2a24",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses"
+					]
+				},
+				"description": "Muestra todos los recursos que haya en la base de datos.\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Prueba paginación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "99e9292c-840f-44e4-b58e-c66ba1182f1e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"There are 5 driving licenses\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.lengthOf(5);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses?limit=5&offset=10",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "offset",
+							"value": "10"
+						}
+					]
+				},
+				"description": "Paginación que muestra 5 recursos desde el décimo recurso."
+			},
+			"response": []
+		},
+		{
+			"name": "Prueba búsqueda",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "577bcd56-2f90-4a2d-abcb-e20f5fc78695",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses?aut_com=aragon&year=2018&cars_men=7694&cars_women=6472&mot_men=1034&mot_women=119&total_cars=14166&total_mot=1153&rel_cars=118.88&rel_mot=868.91",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses"
+					],
+					"query": [
+						{
+							"key": "aut_com",
+							"value": "aragon"
+						},
+						{
+							"key": "year",
+							"value": "2018"
+						},
+						{
+							"key": "cars_men",
+							"value": "7694"
+						},
+						{
+							"key": "cars_women",
+							"value": "6472"
+						},
+						{
+							"key": "mot_men",
+							"value": "1034"
+						},
+						{
+							"key": "mot_women",
+							"value": "119"
+						},
+						{
+							"key": "total_cars",
+							"value": "14166"
+						},
+						{
+							"key": "total_mot",
+							"value": "1153"
+						},
+						{
+							"key": "rel_cars",
+							"value": "118.88"
+						},
+						{
+							"key": "rel_mot",
+							"value": "868.91"
+						}
+					]
+				},
+				"description": "Búsqueda por parámetros que devuelve todos los recursos que cumplan los parámetros incluidos."
+			},
+			"response": []
+		},
+		{
+			"name": "Nuevo Driving license",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a5159c8d-34bb-4c4f-9ea4-5783bca9a70d",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"aut_com\": \"test\",\n\t\"year\": 2018,\n    \"cars_men\": 4549,\n    \"cars_women\": 4424,\n    \"mot_men\": 742,\n    \"mot_women\": 124,\n    \"total_cars\": 8973,\n    \"total_mot\": 866,\n    \"rel_cars\": 102.83,\n    \"rel_mot\": 598.39\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses"
+					]
+				},
+				"description": "Añade un recurso."
+			},
+			"response": []
+		},
+		{
+			"name": "Nuevo Driving license (Error)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "512ae53a-457b-42cb-aa78-2439bfd719dc",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"aut_com\": \"test\",\n\t\"year\": null,\n    \"cars_men\": 4549,\n    \"cars_women\": 4424,\n    \"mot_men\": 742,\n    \"mot_women\": 124,\n    \"total_cars\": 8973,\n    \"total_mot\": 866,\n    \"rel_cars\": 102.83,\n    \"rel_mot\": 598.39\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses"
+					]
+				},
+				"description": "Error al añadir un recurso, porque un campo está vacío."
+			},
+			"response": []
+		},
+		{
+			"name": "Devuelve recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3d380cd6-12d8-4a68-ae2b-d5719bb02590",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Object has autonomous community value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property(\"aut_com\"); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/andalusia/2018",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						"andalusia",
+						"2018"
+					]
+				},
+				"description": "Devuelve el recurso de la comunidad autónoma y año solicitados."
+			},
+			"response": []
+		},
+		{
+			"name": "Devuelve recurso (Error)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df94c3f8-deea-46e0-b2ee-7e08b4db84b3",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/test/2014",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						"test",
+						"2014"
+					]
+				},
+				"description": "Error producido porque no existe ese recurso."
+			},
+			"response": []
+		},
+		{
+			"name": "Borra recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a15afddf-f5c1-4945-8f16-698c4150f7a4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/test/2018",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						"test",
+						"2018"
+					]
+				},
+				"description": "Borrado de un recurso determinado."
+			},
+			"response": []
+		},
+		{
+			"name": "Borra recurso (Error)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5a21de8c-7a2d-447a-a614-7f9de6febec7",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/catalonia/2020",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						"catalonia",
+						"2020"
+					]
+				},
+				"description": "Error producido porque no existe ese recurso."
+			},
+			"response": []
+		},
+		{
+			"name": "Devuelve comunidad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c7999515-134d-482c-91fb-99a12f6d4aca",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/andalusia",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						"andalusia"
+					]
+				},
+				"description": "Devuelve todos los recursos de una comunidad."
+			},
+			"response": []
+		},
+		{
+			"name": "Devuelve comunidad (Error)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "68acd44e-367c-4d28-b08d-4a04fef2002f",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/andalucia",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						"andalucia"
+					]
+				},
+				"description": "Error producido porque no existe una comunidad con ese nombre."
+			},
+			"response": []
+		},
+		{
+			"name": "Borra  comunidad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2b4aebcf-7ddc-4772-adf9-a19c1052e5eb",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/andalusia",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						"andalusia"
+					]
+				},
+				"description": "Borra todos los recursos de una comunidad."
+			},
+			"response": []
+		},
+		{
+			"name": "Borra comunidad (Error)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36bd5f26-39ce-492c-ba5d-b31c3f216db7",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/andalucia",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						"andalucia"
+					]
+				},
+				"description": "Error producido porque no existe una comunidad con ese nombre."
+			},
+			"response": []
+		},
+		{
+			"name": "Actualiza recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa5c8998-b2b9-4058-8516-a8b724ba1557",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"aut_com\": \"madrid\",\n    \"year\": 9999,\n    \"cars_men\": 10,\n    \"cars_women\": 10,\n    \"mot_men\": 10,\n    \"mot_women\": 10,\n    \"total_cars\": 10,\n    \"total_mot\": 10,\n    \"rel_cars\": 10,\n    \"rel_mot\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/madrid/2018",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						"madrid",
+						"2018"
+					]
+				},
+				"description": "Actualiza un recurso específico."
+			},
+			"response": []
+		},
+		{
+			"name": "Actualiza recurso (Error)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa5c8998-b2b9-4058-8516-a8b724ba1557",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"aut_com\": \"madrid\",\n    \"year\": null,\n    \"cars_men\": 10,\n    \"cars_women\": 10,\n    \"mot_men\": 10,\n    \"mot_women\": 10,\n    \"total_cars\": 10,\n    \"total_mot\": 10,\n    \"rel_cars\": 10,\n    \"rel_mot\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/madrid/2016",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						"madrid",
+						"2016"
+					]
+				},
+				"description": "Error producido porque hay un campo que está vacío."
+			},
+			"response": []
+		},
+		{
+			"name": "Error método no permitido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "61c23ecb-ca8c-43e0-b0e9-946f39b927cf",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/andalucia",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						"andalucia"
+					]
+				},
+				"description": "Método no permitido, url incorrecta. No debe incluir una comunidad."
+			},
+			"response": []
+		},
+		{
+			"name": "Error método no permitido (1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "61c23ecb-ca8c-43e0-b0e9-946f39b927cf",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/aragon/2018",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						"aragon",
+						"2018"
+					]
+				},
+				"description": "Método no permitido, url incorrecta. No debe incluir una comunidad."
+			},
+			"response": []
+		},
+		{
+			"name": "Error método no permitido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9c441b9-7690-472a-8c15-264c9a1d0ff1",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"aut_com\": \"andalucia\",\n    \"year\": 2018,\n    \"cars_men\": 48446,\n    \"cars_women\": 46618,\n    \"mot_men\": 6505,\n    \"mot_women\": 782,\n    \"total_cars\": 95064,\n    \"total_mot\": 7287,\n    \"rel_cars\": 103.92,\n    \"rel_mot\": 831.84\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						""
+					]
+				},
+				"description": "Método no permitido, url incorrecta. Debe incluir una comunidad y un año."
+			},
+			"response": []
+		},
+		{
+			"name": "Error método no permitido (1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9c441b9-7690-472a-8c15-264c9a1d0ff1",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"aut_com\": \"aragon\",\n    \"year\": 2018,\n    \"cars_men\": 48446,\n    \"cars_women\": 46618,\n    \"mot_men\": 6505,\n    \"mot_women\": 782,\n    \"total_cars\": 95064,\n    \"total_mot\": 7287,\n    \"rel_cars\": 103.92,\n    \"rel_mot\": 831.84\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/aragon",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						"aragon"
+					]
+				},
+				"description": "Método no permitido, url incorrecta. Debe incluir una comunidad y un año."
+			},
+			"response": []
+		},
+		{
+			"name": "Borra todo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8eb197fc-16cd-422a-a7f7-e5c2d6106a90",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						""
+					]
+				},
+				"description": "Borra todos los recursos de la base de datos"
+			},
+			"response": []
+		},
+		{
+			"name": "Borra todo vacío",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8eb197fc-16cd-422a-a7f7-e5c2d6106a90",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/driving-licenses/",
+					"host": [
+						"http://localhost:3000"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driving-licenses",
+						""
+					]
+				},
+				"description": "Devuelve un error al intentar borrar todos los datos dado que no hay datos en la base."
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
