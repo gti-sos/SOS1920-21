@@ -16,6 +16,7 @@
       method: "GET"
     }).then(function(res) {
       loadGraph();
+      refreshPage();
       infoAlertStatus = res.status + " - " + res.statusText;
       infoAlertText = "Recursos cargados correctamente.";
     });
@@ -30,6 +31,7 @@
         infoAlertText = "No hay recursos que eliminar.";
       } else {
         loadGraph();
+        refreshPage();
         infoAlertStatus = res.status + " - " + res.statusText;
         infoAlertText = "Se han eliminado todos los recursos correctamente.";
       }
