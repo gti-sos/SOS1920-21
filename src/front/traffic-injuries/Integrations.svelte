@@ -278,7 +278,7 @@
 
     // EXT2
     async function loadInitialDataEXT2() {
-        const res = await fetch("http://api.openweathermap.org/data/2.5/forecast?id=2510112&units=metric&APPID=fdaf5c96bb5721f801ea220253b0985c", {
+        const res = await fetch("/data/2.5/forecast?id=2510112&units=metric&APPID=fdaf5c96bb5721f801ea220253b0985c", {
             method: "GET"
         }).then(function (res) {
             highchartsGraphGEXT2();
