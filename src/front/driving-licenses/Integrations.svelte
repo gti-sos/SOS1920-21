@@ -75,7 +75,7 @@
         method: "GET"
       }
     ).then(function(res) {
-      highchartsGraphG1();
+      highchartsGraphG22();
       infoAlertStatus = res.status + " - " + res.statusText;
       infoAlertText = "Recursos cargados correctamente.";
     });
@@ -92,7 +92,7 @@
         infoAlertStatus = res.status + " - " + res.statusText;
         infoAlertText = "No hay recursos que eliminar.";
       } else {
-        highchartsGraphG23();
+        highchartsGraphG22();
         infoAlertStatus = res.status + " - " + res.statusText;
         infoAlertText = "Se han eliminado todos los recursos correctamente.";
       }
