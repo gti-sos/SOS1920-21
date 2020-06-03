@@ -215,7 +215,7 @@
 
     // G28 - ppas
     async function loadInitialDataPpas() {
-        const res = await fetch("https://sos1920-28.herokuapp.com/api/v1/ppas/loadInitialData", {
+        const res = await fetch("/api/v1/ppas/loadInitialData", {
             method: "GET"
         }).then(function (res) {
             highchartsGraphG28();
@@ -225,7 +225,7 @@
     }
 
     async function deleteAllPpas() {
-        const res = await fetch("https://sos1920-28.herokuapp.com/api/v1/ppas/", {
+        const res = await fetch("/api/v1/ppas/", {
             method: "DELETE"
         }).then(function (res) {
             if (res.status == 404) {
@@ -717,10 +717,47 @@
         var ppas = jsonData.filter(function (x) {
             return x.country && parseInt(x.year);
         }).map((dato) => {
-            return { 'name': dato.country + " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
+            return { 'name': dato.country, 'data': [parseInt(dato.aas_gross), parseInt(dato.aas_net), parseInt(dato.ppa_per_capita)] }
         });
 
         console.log(ppas)
+
+        Highcharts.chart('container28', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Paridad de poder adquisitivo (PPA)'
+            },
+            subtitle: {
+                text: '(2017)'
+            },
+            xAxis: {
+                categories: ["Bruto", "Neto", "Paridad"],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'PPA'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} PPAs</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: ppas
+        });
     }
     highchartsGraphG28();
 
