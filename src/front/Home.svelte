@@ -9,12 +9,14 @@
 					<hr class="divider my-4" />
 				</div>
 				<div class="col-lg-8 align-self-baseline">
-					<a href="https://github.com/gti-sos/SOS1920-21"><button type="button" class="btn btn-primary">Repositorio de GitHub</button></a>
-					<br><br><p class="text-white-75 font-weight-light mb-5">Nuestra fuente de información está orientada a
+					<a href="https://github.com/gti-sos/SOS1920-21"><button type="button"
+							class="btn btn-primary">Repositorio de GitHub</button></a>
+					<br><br>
+					<p class="text-white-75 font-weight-light mb-5">Nuestra fuente de información está orientada a
 						analizar la relación entre las víctimas en accidentes de tráfico y permisos de conducir en
 						España.</p>
 				</div>
-				
+
 			</div>
 		</div>
 	</header>
@@ -132,24 +134,28 @@
 
 	<!-- Equipo-->
 	<section class="page-section" id="equipo">
-		<div class="jumbotron ">
+		<div class="jumbotron bg-dark">
 			<div class="container">
-				<h2 class="text-center text-dark mt-0">Equipo</h2>
-				<hr class="divider light my-4" />
+				<h2 class="text-center text-white mt-0">Equipo</h2>
+				<hr class="divider dark my-4" />
 				<div class="row">
 					<div class="col-lg-3 col-md-6 text-center"></div>
 					<div class="col-lg-3 col-md-6 text-center">
 						<div class="mt-5">
-							<i class="fas fa-4x fa-user text-dark mb-4"></i>
-							<h3 class="h4 mb-2 text-dark">Juan Gómez Mateos</h3>
+							<i class="fas fa-4x fa-user text-white mb-4"></i>
+							<h3 class="h4 mb-2 text-white">Juan Gómez Mateos</h3>
 							<p class="text-muted mb-0">Desarrollador de la API sobre traffic-injuries</p>
+							<br><a href="https://github.com/juanillo62gm"><button type="button"
+									class="btn btn-primary">Github</button></a>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-6 text-center">
 						<div class="mt-5">
-							<i class="fas fa-4x fa-user text-dark mb-4"></i>
-							<h3 class="h4 mb-2 text-dark">Antonio Prieto Tagua</h3>
+							<i class="fas fa-4x fa-user text-white mb-4"></i>
+							<h3 class="h4 mb-2 text-white">Antonio Prieto Tagua</h3>
 							<p class="text-muted mb-0 ">Desarrollador de la API sobre driving-licenses</p>
+							<br><a href="https://github.com/antonio98pt"><button type="button"
+									class="btn btn-primary">Github</button></a>
 						</div>
 					</div>
 				</div>
