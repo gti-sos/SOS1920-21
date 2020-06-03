@@ -541,6 +541,16 @@ module.exports = function (app, express, request, bodyParser, path) {
     req.pipe(request(url)).pipe(res);
   });
 
+  // Proxy (EXT2)
+  var pathsEXT2 = "/data/2.5";
+  var apiServerHostEXT2 = "http://api.openweathermap.org/";
+
+  app.use(pathsEXT2, function (req, res) {
+    var url = apiServerHostEXT2 + req.baseUrl + req.url;
+    console.log("piped: " + req.baseUrl + req.url);
+    req.pipe(request(url)).pipe(res);
+  });
+
   // Redirect to postman url
   app.get("/api/v2/traffic-injuries/docs", (req, res) => {
     res.redirect("https://documenter.getpostman.com/view/10693282/SzmccKbJ");

@@ -893,7 +893,7 @@
 
     async function highchartsGraphGEXT2() {
         console.log("Fetching EXT2...");
-        const data = await fetch("http://api.openweathermap.org/data/2.5/forecast?id=2510112&units=metric&APPID=fdaf5c96bb5721f801ea220253b0985c");
+        const data = await fetch("/data/2.5/forecast?id=2510112&units=metric&APPID=fdaf5c96bb5721f801ea220253b0985c");
         let jsonData = await data.json();
         console.log(jsonData);
 
