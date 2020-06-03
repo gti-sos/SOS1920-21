@@ -4,11 +4,7 @@
   // Alerts
   let infoAlertStatus = "";
   let infoAlertText = "";
-
-  function refreshPage() {
-    window.location.reload();
-  }
-
+  
   async function loadInitialData() {
     const res = await fetch("/api/v2/traffic-injuries/loadInitialData", {
       method: "GET"
