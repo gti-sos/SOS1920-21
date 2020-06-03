@@ -709,7 +709,7 @@ module.exports = function(app, express,request, bodyParser, path) {
      var pathsG01 = "/api/v2/natality-stats";
      var apiServerHostG01 = "https://sos1920-01.herokuapp.com";
    
-     app.use(pathsG12, function (req, res) {
+     app.use(pathsG01, function (req, res) {
        var url = apiServerHostG01 + req.baseUrl + req.url;
        console.log("piped: " + req.baseUrl + req.url);
        req.pipe(request(url)).pipe(res);
