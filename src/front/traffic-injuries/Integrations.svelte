@@ -912,7 +912,7 @@
                 text: '(Hoy)'
             },
             xAxis: {
-                categories: [, , ],
+                categories: ["Temperatura"],
                 crosshair: true
             },
             yAxis: {
@@ -936,15 +936,15 @@
                 }
             },
             series: [{
-                name: "Temperatura actual",
+                name: "Actual",
                 data: [data1]
 
             }, {
-                name: "Temperatura Máxima",
+                name: "Máxima",
                 data: [data2]
 
             }, {
-                name: "Temperatura Mínima",
+                name: "Mínima",
                 data: [data3]
 
             }]
