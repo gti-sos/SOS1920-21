@@ -520,12 +520,22 @@ module.exports = function (app, express, request, bodyParser, path) {
     },
   ];
 
-  // Proxy
-  var paths = "/api/v1/ppas";
-  var apiServerHost = "https://sos1920-28.herokuapp.com";
+  // Proxy (G28)
+  var pathsG28 = "/api/v1/ppas";
+  var apiServerHostG28 = "https://sos1920-28.herokuapp.com";
 
-  app.use(paths, function (req, res) {
-    var url = apiServerHost + req.baseUrl + req.url;
+  app.use(pathsG28, function (req, res) {
+    var url = apiServerHostG28 + req.baseUrl + req.url;
+    console.log("piped: " + req.baseUrl + req.url);
+    req.pipe(request(url)).pipe(res);
+  });
+
+  // Proxy (EXT1)
+  var pathsEXT1 = "/api/";
+  var apiServerHostEXT1 = "https://api.covid19tracking.narrativa.com";
+
+  app.use(pathsEXT1, function (req, res) {
+    var url = apiServerHostEXT1 + req.baseUrl + req.url;
     console.log("piped: " + req.baseUrl + req.url);
     req.pipe(request(url)).pipe(res);
   });

@@ -265,6 +265,45 @@
         });
     }
 
+    // EXT1
+    async function loadInitialDataEXT1() {
+        const res = await fetch("/api/2020-06-03/country/spain", {
+            method: "GET"
+        }).then(function (res) {
+            highchartsGraphGEXT1();
+            infoAlertStatus = res.status + " - " + res.statusText;
+            infoAlertText = "Recursos cargados correctamente.";
+        });
+    }
+
+    // EXT2
+    async function loadInitialDataEXT2() {
+        const res = await fetch("/", {
+            method: "GET"
+        }).then(function (res) {
+            highchartsGraphGEXT2();
+            infoAlertStatus = res.status + " - " + res.statusText;
+            infoAlertText = "Recursos cargados correctamente.";
+        });
+    }
+
+    async function deleteAllEXT2() {
+        const res = await fetch("/", {
+            method: "DELETE"
+        }).then(function (res) {
+            if (res.status == 404) {
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "No hay recursos que eliminar.";
+            } else {
+                highchartsGraphGEXT2();
+                infoAlertStatus = res.status + " - " + res.statusText;
+                infoAlertText = "Se han eliminado todos los recursos correctamente.";
+            }
+        });
+    }
+   
+   
+   
     // Graphs
     async function highchartsGraphG1() {
         console.log("Fetching poverty-stats...");
@@ -801,6 +840,80 @@
     }
     highchartsGraphG30();
 
+    async function highchartsGraphGEXT1() {
+        console.log("Fetching EXT1...");
+        const data = await fetch("/api/2020-06-03/country/spain");
+        let jsonData = await data.json();
+        console.log(jsonData);
+
+        var data1 = jsonData["total"]["today_confirmed"]
+        var data2 = jsonData["total"]["today_deaths"]
+        var data3 = jsonData["total"]["yesterday_confirmed"]
+        var data4 = jsonData["total"]["yesterday_deaths"]
+
+        console.log(jsonData["total"])
+
+        Highcharts.chart('containerExt1', {
+  chart: {
+    plotBackgroundColor: null,
+    plotBorderWidth: null,
+    plotShadow: false,
+    type: 'pie'
+  },
+  title: {
+    text: 'Información del COVID-19 en España'
+  },
+  subtitle: {
+    text: '(Entre 02-06-2020 y 03-06-2020)'
+  },
+  tooltip: {
+    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+  },
+  accessibility: {
+    point: {
+      valueSuffix: '%'
+    }
+  },
+  plotOptions: {
+    pie: {
+      allowPointSelect: true,
+      cursor: 'pointer',
+      dataLabels: {
+        enabled: true,
+        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+      }
+    }
+  },
+  series: [{
+    name: 'COVID-19',
+    colorByPoint: true,
+    data: [{
+      name: 'Confirmados hoy',
+      y: data1,
+    }, {
+      name: 'Muertos hoy',
+      y: data2
+    }, {
+      name: 'Confirmados ayer',
+      y: data3
+    }, {
+      name: 'Muertos ayer',
+      y: data4
+    }]
+  }]
+});
+    }
+    highchartsGraphGEXT1();
+
+    async function highchartsGraphGEXT2() {
+        //console.log("Fetching EXT2...");
+        //const data = await fetch("/");
+        //let jsonData = await data.json();
+        //console.log(jsonData);
+    }
+
+    highchartsGraphGEXT2();
+
 </script>
 
 <main>
@@ -1025,9 +1138,8 @@
                     </Alert>
                     {/if}
                     <p><a href="/"><Button color="info">Volver</Button></a></p>
-                    <p><a href="/"><Button color="primary">Página Web</Button></a></p>
-                    <!--<p><Button color="success" on:click="{loadInitialDataGlobalMarriages}">Cargar Datos Iniciales</Button></p>
-                    <p><Button color="danger" on:click="{deleteAllGlobalMarriages}">Elimina Todos los Recursos</Button></p>-->
+                    <p><a href="https://covid19tracking.narrativa.com/"><Button color="primary">Página Web</Button></a></p>
+                    <p><Button color="success" on:click="{loadInitialDataEXT1}">Cargar Datos Iniciales</Button></p>
                     <figure class="highcharts-figure">
                         <div id="containerExt1"></div>
                     </figure>
@@ -1043,10 +1155,9 @@
                     {/if}
                     <p><a href="/"><Button color="info">Volver</Button></a></p>
                     <p><a href="/"><Button color="primary">Página Web</Button></a></p>
-                    <!--<p><Button color="success" on:click="{loadInitialDataGlobalMarriages}">Cargar Datos Iniciales</Button></p>
-                    <p><Button color="danger" on:click="{deleteAllGlobalMarriages}">Elimina Todos los Recursos</Button></p>-->
+                    <p><Button color="success" on:click="{loadInitialDataEXT2}">Cargar Datos Iniciales</Button></p>
                     <figure class="highcharts-figure">
-                        <div id="containerExt1"></div>
+                        <div id="containerExt2"></div>
                     </figure>
                 </div>
             </div>
