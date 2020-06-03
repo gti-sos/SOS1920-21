@@ -1,4 +1,5 @@
 const express = require('express');
+const request = require('request');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
@@ -29,7 +30,7 @@ drivinglicensesAPIV2(app, express, bodyParser, path);
 // ==================================================
 
 trafficInjuriesAPIV1(app, express, bodyParser, path);
-trafficInjuriesAPIV2(app, express, bodyParser, path);
+trafficInjuriesAPIV2(app, express, request, bodyParser, path);
 
 // ==================================================
 

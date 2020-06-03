@@ -648,26 +648,79 @@
         console.log(jsonData);
 
         var goals = jsonData.filter(function (x) {
-            return x.country && parseInt(x.year);
+            return x.country && parseInt(x.debut);
         }).map((dato) => {
-            return { 'name': dato.country + " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
+            return { 'name': dato.name + " - " + dato.debut, 'data': [parseInt(dato.goals), parseInt(dato.matches)] }
         });
 
+        Highcharts.chart('container26', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Estadísticas mejores goleadores (1993 - 2011) '
+            },
+            xAxis: {
+                categories: ["Goles", "Partidos"]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total goles y partidos'
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: ( // theme
+                            Highcharts.defaultOptions.title.style &&
+                            Highcharts.defaultOptions.title.style.color
+                        ) || 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'right',
+                x: -30,
+                verticalAlign: 'top',
+                y: 25,
+                floating: true,
+                backgroundColor:
+                    Highcharts.defaultOptions.legend.backgroundColor || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                headerFormat: '<b>{point.x}</b><br/>',
+                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            series: goals
+        });
     }
     highchartsGraphG26();
 
     async function highchartsGraphG28() {
         console.log("Fetching ppas...");
-        const data = await fetch("https://sos1920-28.herokuapp.com/api/v1/ppas");
+        const data = await fetch("/api/v1/ppas");
         let jsonData = await data.json();
         console.log(jsonData);
 
-        var goals = jsonData.filter(function (x) {
+        var ppas = jsonData.filter(function (x) {
             return x.country && parseInt(x.year);
         }).map((dato) => {
             return { 'name': dato.country + " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
         });
 
+        console.log(ppas)
     }
     highchartsGraphG28();
 
@@ -677,10 +730,35 @@
         let jsonData = await data.json();
         console.log(jsonData);
 
-        var goals = jsonData.filter(function (x) {
-            return x.country && parseInt(x.year);
+        var mass = jsonData.filter(function (x) {
+            return x.place && parseInt(x.year);
         }).map((dato) => {
-            return { 'name': dato.country + " - " + dato.year, 'data': [parseInt(dato.points), parseInt(dato.rebounds), parseInt(dato.threepoints)] }
+            return { 'name': dato.place + " - " + dato.year, 'y': parseFloat(dato.indice_de_masa_corporal), 'z': parseFloat(dato.tasa_obesidad) }
+        });
+
+        Highcharts.chart('container30', {
+            chart: {
+                type: 'variablepie'
+            },
+            title: {
+                text: 'Estimaciones futuras entre la obesidad e IMC de países desarrollados'
+            },
+            subtitle: {
+                text: '(2019 - 2021)'
+            },
+            tooltip: {
+                headerFormat: '',
+                pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+                    'IMC: <b>{point.y}</b><br/>' +
+                    'Tasa de obesidad: <b>{point.z}</b><br/>'
+            },
+            series: [{
+                minPointSize: 10,
+                innerSize: '20%',
+                zMin: 0,
+                name: 'countries',
+                data: mass
+            }]
         });
 
     }
