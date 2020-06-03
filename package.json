@@ -20,7 +20,7 @@
     "@rollup/plugin-node-resolve": "^7.0.0",
     "codecov": "^3.7.0",
     "mocha": "^7.2.0",
-    "nyc": "^15.0.1",
+    "nyc": "^15.1.0",
     "rollup": "^1.20.0",
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "^5.2.2",
@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/gti-sos/SOS1920-21#readme",
   "dependencies": {
-    "billboard.js": "^1.12.0-next.5",
+    "billboard.js": "^1.12.10",
     "blockchain.info": "^2.12.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -46,8 +46,8 @@
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
     "require": "^2.4.20",
-    "snyk": "^1.332.1",
-    "svelte-spa-router": "^2.1.0",
+    "snyk": "^1.335.0",
+    "svelte-spa-router": "^2.2.0",
     "sveltestrap": "^3.3.3"
   },
   "snyk": true
