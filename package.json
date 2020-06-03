@@ -35,13 +35,17 @@
   "homepage": "https://github.com/gti-sos/SOS1920-21#readme",
   "dependencies": {
     "billboard.js": "^1.12.0-next.5",
+    "blockchain.info": "^2.12.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "http-proxy": "^1.18.1",
     "nedb": "^1.8.0",
     "newman": "^5.0.1",
     "path": "^0.12.7",
     "request": "^2.88.2",
+    "request-promise": "^4.2.5",
+    "require": "^2.4.20",
     "snyk": "^1.332.1",
     "svelte-spa-router": "^2.1.0",
     "sveltestrap": "^3.3.3"

@@ -1,4 +1,4 @@
-module.exports = function(app, express, bodyParser, path) {
+module.exports = function(app, express,request, bodyParser, path) {
     console.log('Registering driving-licenses API V2...');
 
     const dataStore = require('nedb');
@@ -704,11 +704,33 @@ module.exports = function(app, express, bodyParser, path) {
 
     var driving_licenses_aux = initialDrivingLicenses;
 
+     //Proxy G01
+
+     var pathsG01 = "/api/v2/natality-stats";
+     var apiServerHostG01 = "https://sos1920-01.herokuapp.com";
+   
+     app.use(pathsG12, function (req, res) {
+       var url = apiServerHostG01 + req.baseUrl + req.url;
+       console.log("piped: " + req.baseUrl + req.url);
+       req.pipe(request(url)).pipe(res);
+     });
+ 
+     var pathsEXT = "/v1/cryptocurrency/";
+     var apiServerHostEXT = "https://pro-api.coinmarketcap.com";
+   
+     app.use(pathsEXT, function (req, res) {
+       var url = apiServerHostEXT + req.baseUrl + req.url;
+       console.log("piped: " + req.baseUrl + req.url);
+       req.pipe(request(url)).pipe(res);
+     });
+
     ////// POSTMAN /////////////////////////
 
     app.get('/api/v2/driving-licenses/docs', (req, res) => {
         res.redirect('https://documenter.getpostman.com/view/10660202/Szme3xjQ');
     });
+
+   
 
     // NEW GET LoadInitialData
     app.get(BASE_API_URL + '/driving-licenses/loadInitialData', (req, res) => {

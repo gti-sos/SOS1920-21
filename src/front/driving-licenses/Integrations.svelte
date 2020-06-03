@@ -161,6 +161,37 @@
     });
   }
 
+  async function loadInitialDrugOffences() {
+    const res = await fetch(
+      "https://sos1920-12.herokuapp.com/api/v1/drug_offences/loadInitData",
+      {
+        method: "GET"
+      }
+    ).then(function(res) {
+      highchartsGraphG12();
+      infoAlertStatus = res.status + " - " + res.statusText;
+      infoAlertText = "Recursos cargados correctamente.";
+    });
+  }
+
+  async function deleteAlldrugOffences() {
+    const res = await fetch(
+      "https://sos1920-12.herokuapp.com/api/v1/drug_offences/",
+      {
+        method: "DELETE"
+      }
+    ).then(function(res) {
+      if (res.status == 404) {
+        infoAlertStatus = res.status + " - " + res.statusText;
+        infoAlertText = "No hay recursos que eliminar.";
+      } else {
+        highchartsGraphG26();
+        infoAlertStatus = res.status + " - " + res.statusText;
+        infoAlertText = "Se han eliminado todos los recursos correctamente.";
+      }
+    });
+  }
+
   async function highchartsGraphG1() {
     console.log("Fetching Natality-stats...");
     const data = await fetch(
@@ -457,6 +488,90 @@
     });
   }
   highchartsGraphG26();
+
+  async function highchartsGraphG12() {
+    console.log("Fetching drug_offences...");
+    const data = await fetch(
+      "https://sos1920-12.herokuapp.com/api/v1/drug_offences"
+    );
+    let jsonData = await data.json();
+    console.log(jsonData);
+
+    var drugOffencesData = jsonData
+      .filter(function(x) {
+        return x.country && parseInt(x.year) == 2015;
+      })
+      .map(dato => {
+        return {
+          name: dato.country,
+          data: [
+            parseInt(dato.offences_use),
+            parseInt(dato.offences_supply),
+            parseInt(dato.cannabis_offences)
+          ]
+        };
+      });
+
+    Highcharts.chart("container12", {
+      chart: {
+        type: "area"
+      },
+      title: {
+        text: "Delitos relacionados con la droga"
+      },
+      subtitle: {
+        text: "(2015)"
+      },
+      xAxis: {
+        categories: [
+          "Delitos relacionados con el uso",
+          "Delitos relacionados con el tráfico",
+          "Delitos relacionados con el cannabis"
+        ],
+        tickmarkPlacement: "on",
+        title: {
+          enabled: false
+        }
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: " "
+        }
+      },
+      plotOptions: {
+        area: {
+          stacking: "normal",
+          lineColor: "#666666",
+          lineWidth: 1,
+          marker: {
+            lineWidth: 1,
+            lineColor: "#666666"
+          }
+        }
+      },
+      series: drugOffencesData
+    });
+  }
+  highchartsGraphG12();
+
+  // API EXTERNA 1
+
+  async function loadPrueba(){
+    console.log("Fetching cryptos...");
+     const res = await fetch(
+      "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?X-CMC_PRO_API_KEY=320accd4-62dc-4177-9718-bbda3efd9c52",
+      {
+        method: "GET"
+      }
+    ).then(function(res) {
+      infoAlertStatus = res.status + " - " + res.statusText;
+      infoAlertText = "Recursos cargados correctamente.";
+      console.log(res);
+    });
+  }
+   loadPrueba();
+  
 </script>
 
 <main>
@@ -495,9 +610,9 @@
           href="#list-03"
           role="tab"
           aria-controls="profile">
-          Integración con Grupo 23
+          Integración con Grupo 12 con Proxy
           <br />
-          (offworks-stats)
+          (drug_offences)
         </a>
         <a
           class="list-group-item list-group-item-action"
@@ -517,9 +632,31 @@
           href="#list-05"
           role="tab"
           aria-controls="profile">
+          Integración con Grupo 23
+          <br />
+          (offworks-stats)
+        </a>
+        <a
+          class="list-group-item list-group-item-action"
+          id="list-profile-list"
+          data-toggle="list"
+          href="#list-06"
+          role="tab"
+          aria-controls="profile">
           Integración con Grupo 26
           <br />
           (global-transfers)
+        </a>
+        <a
+          class="list-group-item list-group-item-action"
+          id="list-profile-list"
+          data-toggle="list"
+          href="#list-07"
+          role="tab"
+          aria-controls="profile">
+          Integración con coinmarketcap (API EXTERNA)
+          <br />
+          (cryptocurrency information)
         </a>
       </div>
     </div>
@@ -601,43 +738,6 @@
         </div>
         <div
           class="tab-pane fade"
-          id="list-03"
-          role="tabpanel"
-          aria-labelledby="list-profile-list">
-          <h2>Integración con Grupo 23 (offworks-stats)</h2>
-          <h3>Acciones</h3>
-          {#if infoAlertStatus}
-            <Alert>
-              <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
-              {infoAlertText}
-            </Alert>
-          {/if}
-          <p>
-            <a href="/">
-              <Button color="info">Volver</Button>
-            </a>
-          </p>
-          <p>
-            <a href="https://sos1920-23.herokuapp.com/">
-              <Button color="primary">Página Web</Button>
-            </a>
-          </p>
-          <p>
-            <Button color="success" on:click={loadInitialOffworksStats}>
-              Cargar Datos Iniciales
-            </Button>
-          </p>
-          <p>
-            <Button color="danger" on:click={deleteAllOffworksStats}>
-              Elimina Todos los Recursos
-            </Button>
-          </p>
-          <figure class="highcharts-figure">
-            <div id="container23" />
-          </figure>
-        </div>
-        <div
-          class="tab-pane fade"
           id="list-04"
           role="tabpanel"
           aria-labelledby="list-profile-list">
@@ -675,7 +775,81 @@
         </div>
         <div
           class="tab-pane fade"
+          id="list-03"
+          role="tabpanel"
+          aria-labelledby="list-profile-list">
+          <h2>Integración con Grupo 12 (drug_offences) con Proxy</h2>
+          <h3>Acciones</h3>
+          {#if infoAlertStatus}
+            <Alert>
+              <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
+              {infoAlertText}
+            </Alert>
+          {/if}
+          <p>
+            <a href="/">
+              <Button color="info">Volver</Button>
+            </a>
+          </p>
+          <p>
+            <a href="https://sos1920-12.herokuapp.com/">
+              <Button color="primary">Página Web</Button>
+            </a>
+          </p>
+          <p>
+            <Button color="success" on:click={loadInitialDrugOffences}>
+              Cargar Datos Iniciales
+            </Button>
+          </p>
+          <p>
+            <Button color="danger" on:click={deleteAlldrugOffences}>
+              Elimina Todos los Recursos
+            </Button>
+          </p>
+          <figure class="highcharts-figure">
+            <div id="container12" />
+          </figure>
+        </div>
+        <div
+          class="tab-pane fade"
           id="list-05"
+          role="tabpanel"
+          aria-labelledby="list-profile-list">
+          <h2>Integración con Grupo 23 (offworks-stats)</h2>
+          <h3>Acciones</h3>
+          {#if infoAlertStatus}
+            <Alert>
+              <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
+              {infoAlertText}
+            </Alert>
+          {/if}
+          <p>
+            <a href="/">
+              <Button color="info">Volver</Button>
+            </a>
+          </p>
+          <p>
+            <a href="https://sos1920-23.herokuapp.com/">
+              <Button color="primary">Página Web</Button>
+            </a>
+          </p>
+          <p>
+            <Button color="success" on:click={loadInitialOffworksStats}>
+              Cargar Datos Iniciales
+            </Button>
+          </p>
+          <p>
+            <Button color="danger" on:click={deleteAllOffworksStats}>
+              Elimina Todos los Recursos
+            </Button>
+          </p>
+          <figure class="highcharts-figure">
+            <div id="container23" />
+          </figure>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="list-06"
           role="tabpanel"
           aria-labelledby="list-profile-list">
           <h2>Integración con Grupo 26 (global-transfers)</h2>
@@ -708,6 +882,38 @@
           </p>
           <figure class="highcharts-figure">
             <div id="container26" />
+          </figure>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="list-07"
+          role="tabpanel"
+          aria-labelledby="list-profile-list">
+          <h2>Integración con coinmarketcap (cryptocurrency information)</h2>
+          <h3>Acciones</h3>
+          {#if infoAlertStatus}
+            <Alert>
+              <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
+              {infoAlertText}
+            </Alert>
+          {/if}
+          <p>
+            <a href="/">
+              <Button color="info">Volver</Button>
+            </a>
+          </p>
+          <p>
+            <a href="https://coinmarketcap.com/api/">
+              <Button color="primary">Página Web</Button>
+            </a>
+          </p>
+          <p>
+            <Button color="success" on:click={loadPrueba}>
+              Cargar Datos Iniciales
+            </Button>
+          </p>
+          <figure class="highcharts-figure">
+            <div id="containerAPIext1" />
           </figure>
         </div>
       </div>
