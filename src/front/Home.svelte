@@ -116,7 +116,7 @@
 							<i class="fas fa-4x fab fa-youtube text-white mb-4"></i>
 							<h3 class="h4 mb-2 text-white">Juan Gómez Mateos</h3>
 							<p class="text-white-50 mb-0">Accidentes de Tráfico</p>
-							<br><a href=""><button type="button" class="btn btn-light">Ver</button></a>
+							<br><a href="https://youtu.be/52Z5lUP7AwE"><button type="button" class="btn btn-light">Ver</button></a>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-6 text-center">
@@ -124,7 +124,7 @@
 							<i class="fas fa-4x fab fa-youtube text-white mb-4"></i>
 							<h3 class="h4 mb-2 text-white">Antonio Prieto Tagua</h3>
 							<p class="text-white-50 mb-0 ">Licencias de Conducir</p>
-							<br><a href=""><button type="button" class="btn btn-light">Ver</button></a>
+							<br><a href="https://youtube.com"><button type="button" class="btn btn-light">Ver</button></a>
 						</div>
 					</div>
 				</div>
