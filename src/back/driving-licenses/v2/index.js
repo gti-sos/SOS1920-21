@@ -715,13 +715,7 @@ module.exports = function(app, express,request, bodyParser, path) {
        req.pipe(request(url)).pipe(res);
      });
  
-    var pathEXT2 = "/statistics";
-    var apiServerHostEXT2 = "https://api-basketball.p.rapidapi.com";
-    app.use(pathsEXT2, function (req, res) {
-        var url = apiServerHostEXT2 + req.baseUrl + req.url;
-        console.log("piped: " + req.baseUrl + req.url);
-        req.pipe(request(url)).pipe(res);
-      });
+
 
       var pathEXT2B = "//v1/cryptocurrency/listings/latest";
       var apiServerHostEXT2B = "https://pro-api.coinmarketcap.com";
