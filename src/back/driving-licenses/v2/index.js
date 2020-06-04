@@ -725,7 +725,7 @@ module.exports = function(app, express,request, bodyParser, path) {
 
       var pathEXT2B = "//v1/cryptocurrency/listings/latest";
       var apiServerHostEXT2B = "https://pro-api.coinmarketcap.com";
-      app.use(pathsEXT2B, function (req, res) {
+      app.use(pathEXT2B, function (req, res) {
         var url = apiServerHostEXT2B + req.baseUrl + req.url;
         console.log("piped: " + req.baseUrl + req.url);
         req.pipe(request(url)).pipe(res);
