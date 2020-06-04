@@ -7,12 +7,9 @@
 
   // Natality-stats
   async function loadInitialDataNatalityStats() {
-    const res = await fetch(
-      "https://sos1920-01.herokuapp.com/api/v2/natality-stats/loadInitialData",
-      {
-        method: "GET"
-      }
-    ).then(function(res) {
+    const res = await fetch("/api/v2/natality-stats/loadInitialData", {
+      method: "GET"
+    }).then(function(res) {
       highchartsGraphG1();
       infoAlertStatus = res.status + " - " + res.statusText;
       infoAlertText = "Recursos cargados correctamente.";
@@ -20,12 +17,9 @@
   }
 
   async function deleteAllNatalityStats() {
-    const res = await fetch(
-      "https://sos1920-01.herokuapp.com/api/v2/natality-stats",
-      {
-        method: "DELETE"
-      }
-    ).then(function(res) {
+    const res = await fetch("/api/v2/natality-stats", {
+      method: "DELETE"
+    }).then(function(res) {
       if (res.status == 404) {
         infoAlertStatus = res.status + " - " + res.statusText;
         infoAlertText = "No hay recursos que eliminar.";
@@ -194,9 +188,7 @@
 
   async function highchartsGraphG1() {
     console.log("Fetching Natality-stats...");
-    const data = await fetch(
-      "https://sos1920-01.herokuapp.com/api/v2/natality-stats"
-    );
+    const data = await fetch("/api/v2/natality-stats");
     let jsonData = await data.json();
     console.log(jsonData);
     var natalityData = jsonData
@@ -555,23 +547,138 @@
   }
   highchartsGraphG12();
 
+  let title = "";
+  let today = "";
+  let tomorrow = "";
   // API EXTERNA 1
+  async function loadApiExt1() {
+    console.log("Fetching EXT1...");
+    const data = await fetch(
+      "https://www.el-tiempo.net/api/json/v2/provincias/41"
+    );
+    let jsonData = await data.json();
+    console.log(jsonData);
+    title = jsonData.title;
+    today = jsonData["today"]["p"];
+    tomorrow = jsonData["tomorrow"]["p"];
+  }
 
-  async function loadPrueba(){
-    console.log("Fetching cryptos...");
-     const res = await fetch(
-      "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?X-CMC_PRO_API_KEY=320accd4-62dc-4177-9718-bbda3efd9c52",
-      {
-        method: "GET"
-      }
-    ).then(function(res) {
-      infoAlertStatus = res.status + " - " + res.statusText;
-      infoAlertText = "Recursos cargados correctamente.";
-      console.log(res);
+  async function loadApiExt2B() {
+    console.log("Fetching EXT2...");
+    const Data = await fetch("/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=320accd4-62dc-4177-9718-bbda3efd9c52&limit=10");
+
+    const jsonData =await Data.json();
+    console.log(jsonData);
+    /*var coinmarketcap = jsonData.filter(function (x){
+      return x["data"][0] || x["data"][1] || x["data"][3];
+    }).map((dato) => {
+      return {'name' : dato["data"]["name"], 'data': [parseFloat(dato["data"]["quote"]["USD"]["price"])]}
+    });*/
+    var names = [[jsonData["data"][0]["name"]],[jsonData["data"][1]["name"]],[jsonData["data"][3]["name"]]]
+    var values = [jsonData["data"][0]["quote"]["USD"]["price"],jsonData["data"][1]["quote"]["USD"]["price"],jsonData["data"][3]["quote"]["USD"]["price"]];
+    var values = [parseFloat(values[0]),parseFloat(values[1]),parseFloat(values[2])]
+    var map = [{name: names[0],data: values[0]},{name: names[1],data: values[1]},{name: names[2],data: values[2]}]
+    console.log(map);
+
+     Highcharts.chart("containerext2B", {
+      chart: {
+        type: "column"
+      },
+      title: {
+        text: "Valores (Bitcoin-Ethereum-Ripple)"
+      },
+      xAxis: {
+        categories: " ",
+        crosshair: true
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Valor en dólares"
+        }
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y:.1f} dólares </b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      },
+      series: [{
+        name: names[0],
+        data: [values[0]]
+      },{
+        name: names[1],
+        data: [values[1]] 
+      },{
+        name: names[2],
+        data: [values[2]]
+      }]
+      
     });
   }
-   loadPrueba();
-  
+  loadApiExt2B();
+  // API EXTERNA 2
+  /*async function loadApiExt2() {
+    console.log("Fetching EXT2...");
+    const Data = await fetch(
+      "/statistics?league=12&season=2018-2019&team=133",
+      {
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "api-basketball.p.rapidapi.com",
+          "x-rapidapi-key": "74bc47a6c9mshba733fd38e3ba5ap1a929djsne5cd6c218a1f"
+        }
+      }
+    );
+    const jsonData = Data.json();
+    console.log(jsonData.then.toString);
+    var victorias = jsonData["response"]["games"]["wins"]["all"]["total"];
+    var derrotas = jsonData["response"]["games"]["loses"]["all"]["total"];
+    Highcharts.chart("containerext2", {
+      chart: {
+        type: "column"
+      },
+      title: {
+        text: "Victorias y derrotas de los Boston Celtics Temporada 2018-2019"
+      },
+      xAxis: {
+        categories: ["Victorias", "Derrotas"],
+        crosshair: true
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: " "
+        }
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y:.1f} partidos </b></td></tr>',
+        footerFormat: "</table>",
+        shared: true,
+        useHTML: true
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      },
+      series: [victorias, derrotas]
+    });
+  }
+ // loadApiExt2();*/
 </script>
 
 <main>
@@ -588,9 +695,9 @@
           href="#list-01"
           role="tab"
           aria-controls="home">
-          Integración con Grupo 1
+          Integración con Grupo 1 con Proxy
           <br />
-          (Natality-stats)
+          (natality-stats)
         </a>
         <a
           class="list-group-item list-group-item-action"
@@ -610,7 +717,7 @@
           href="#list-03"
           role="tab"
           aria-controls="profile">
-          Integración con Grupo 12 con Proxy
+          Integración con Grupo 12
           <br />
           (drug_offences)
         </a>
@@ -653,10 +760,22 @@
           data-toggle="list"
           href="#list-07"
           role="tab"
+          on:click={loadApiExt1}
+          aria-controls="profile">
+          Integración con el-tiempo.net (API EXTERNA)
+          <br />
+          (Pronóstico Sevilla)
+        </a>
+        <a
+          class="list-group-item list-group-item-action"
+          id="list-profile-list"
+          data-toggle="list"
+          href="#list-08"
+          role="tab"
           aria-controls="profile">
           Integración con coinmarketcap (API EXTERNA)
           <br />
-          (cryptocurrency information)
+          (precio Criptomonedas)
         </a>
       </div>
     </div>
@@ -667,7 +786,7 @@
           id="list-01"
           role="tabpanel"
           aria-labelledby="list-home-list">
-          <h2>Integración con Grupo 1 (Natality-stats)</h2>
+          <h2>Integración con Grupo 1 con Proxy (natality-stats)</h2>
           <h3>Acciones</h3>
           {#if infoAlertStatus}
             <Alert>
@@ -778,7 +897,7 @@
           id="list-03"
           role="tabpanel"
           aria-labelledby="list-profile-list">
-          <h2>Integración con Grupo 12 (drug_offences) con Proxy</h2>
+          <h2>Integración con Grupo 12 (drug_offences)</h2>
           <h3>Acciones</h3>
           {#if infoAlertStatus}
             <Alert>
@@ -889,7 +1008,10 @@
           id="list-07"
           role="tabpanel"
           aria-labelledby="list-profile-list">
-          <h2>Integración con coinmarketcap (cryptocurrency information)</h2>
+          <h2>
+            Integración con el-tiempo.net (Prónostico del tiempo en Sevilla para
+            hoy y mañana)
+          </h2>
           <h3>Acciones</h3>
           {#if infoAlertStatus}
             <Alert>
@@ -903,17 +1025,48 @@
             </a>
           </p>
           <p>
-            <a href="https://coinmarketcap.com/api/">
+            <a href="https://www.el-tiempo.net">
               <Button color="primary">Página Web</Button>
             </a>
           </p>
+          <h3>{title}</h3>
+          <table>
+            <tr>
+              <th>Tiempo para hoy:</th>
+              <td>{today}</td>
+            </tr>
+            <tr>
+              <th>Tiempo para mañana:</th>
+              <td>{tomorrow}</td>
+            </tr>
+          </table>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="list-08"
+          role="tabpanel"
+          aria-labelledby="list-profile-list">
+          <h2>Integración con coinmarketcap (precio Criptomonedas)</h2>
+          <h3>Acciones</h3>
+          {#if infoAlertStatus}
+            <Alert>
+              <h4 class="alert-heading text-capitalize">{infoAlertStatus}</h4>
+              {infoAlertText}
+            </Alert>
+          {/if}
           <p>
-            <Button color="success" on:click={loadPrueba}>
-              Cargar Datos Iniciales
-            </Button>
+            <a href="/">
+              <Button color="info">Volver</Button>
+            </a>
           </p>
+          <p>
+            <a href="https://coinmarketcap.com/api/documentation/v1/#">
+              <Button color="primary">Página Web</Button>
+            </a>
+          </p>
+          <p />
           <figure class="highcharts-figure">
-            <div id="containerAPIext1" />
+            <div id="containerext2B" />
           </figure>
         </div>
       </div>
