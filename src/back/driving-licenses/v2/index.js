@@ -714,16 +714,15 @@ module.exports = function(app, express,request, bodyParser, path) {
        console.log("piped: " + req.baseUrl + req.url);
        req.pipe(request(url)).pipe(res);
      });
+     var pathsEXT = "/v1/cryptocurrency/";
+     var apiServerHostEXT = "https://pro-api.coinmarketcap.com";
+
+     app.use(pathsEXT, function (req, res) {
+       var url = apiServerHostEXT + req.baseUrl + req.url;
+       console.log("piped: " + req.baseUrl + req.url);
+       req.pipe(request(url)).pipe(res);
+     });
  
-
-
-      var pathEXT2B = "//v1/cryptocurrency/listings/latest";
-      var apiServerHostEXT2B = "https://pro-api.coinmarketcap.com";
-      app.use(pathEXT2B, function (req, res) {
-        var url = apiServerHostEXT2B + req.baseUrl + req.url;
-        console.log("piped: " + req.baseUrl + req.url);
-        req.pipe(request(url)).pipe(res);
-      });  
 
     ////// POSTMAN /////////////////////////
 
