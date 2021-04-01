@@ -47,7 +47,7 @@
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
     "require": "^2.4.20",
-    "snyk": "^1.335.0",
+    "snyk": "^1.518.0",
     "svelte-spa-router": "^2.2.0",
     "sveltestrap": "^3.3.3",
     "unirest": "^0.6.0"
